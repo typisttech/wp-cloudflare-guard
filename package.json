@@ -1,0 +1,43 @@
+{
+	"name": "wp-cloudflare-guard",
+	"version": "0.1.0",
+	"description": "Connecting WordPress with Cloudflare firewall, protect your WordPress site at DNS level. Automatically create firewall rules to block dangerous IPs",
+	"keywords": [
+		"wordpress",
+		"wp",
+		"cloudflare",
+		"firewall",
+		"security"
+	],
+	"homepage": "https://github.com/TypistTech/wp-cloudflare-guard",
+	"bugs": {
+		"email": "wp-cloudflare-guard@typist.tech",
+		"url": "https://github.com/TypistTech/wp-cloudflare-guard/issues"
+	},
+	"license": "GPL-2.0+",
+	"author": "Typist Tech <wp-cloudflare-guard@typist.tech> (http://typist.tech/)",
+	"contributors": [
+		"Tang Rufus <tangrufus@gmail.com> (http://typist.tech/)"
+	],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/TypistTech/wp-cloudflare-guard.git"
+	},
+	"main": "Gruntfile.js",
+	"devDependencies": {
+		"grunt": "^1.0.1",
+		"grunt-contrib-clean": "^1.0.0",
+		"grunt-contrib-compress": "^1.4.1",
+		"grunt-contrib-copy": "^1.0.0",
+		"grunt-replace": "^1.0.1",
+		"grunt-version": "^1.1.1",
+		"grunt-wp-i18n": "^0.5.0",
+		"load-grunt-tasks": "^3.5.2"
+	},
+	"private": true,
+	"pot": {
+		"languageteam": "Typist Tech <wp-cloudflare-guard@typist.tech>",
+		"lasttranslator": "Typist Tech <wp-cloudflare-guard@typist.tech>",
+		"reportmsgidbugsto": "https://wordpress.org/support/plugin/wp-cloudflare-guard"
+	}
+}

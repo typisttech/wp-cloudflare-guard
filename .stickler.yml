@@ -1,0 +1,6 @@
+linters:
+  phpcs:
+    standard: 'WordPress'
+
+files:
+    ignore: ['assets/*', 'tests/*', 'vendor/*']
