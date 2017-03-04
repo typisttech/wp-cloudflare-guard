@@ -2,7 +2,7 @@
 namespace WPCFG;
 
 /**
- * @coversDefaultClass  \WPCFG\Option_Store
+ * @coversDefaultClass \WPCFG\Option_Store
  */
 class Option_Store_Test extends \Codeception\Test\Unit
 {
