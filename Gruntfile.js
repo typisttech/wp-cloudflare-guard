@@ -93,6 +93,12 @@ module.exports = function ( grunt ) {
 					'release/',
 					'vendor/'
 				]
+			},
+			"post-build": {
+				src: [
+					'build/',
+					'vendor/'
+				]
 			}
 		},
 
@@ -188,6 +194,7 @@ module.exports = function ( grunt ) {
 	grunt.registerTask( 'i18n', ['addtextdomain', 'makepot'] );
 	grunt.registerTask( 'pre-tag', ['version', 'i18n'] );
 	grunt.registerTask( 'pre-build', ['clean:pre-build'] );
+	grunt.registerTask( 'post-build', ['clean:post-build'] );
 	grunt.registerTask( 'build', ['copy:build', 'compress:build'] );
 
 	grunt.util.linefeed = '\n';

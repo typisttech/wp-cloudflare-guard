@@ -61,7 +61,7 @@
 	},
 	"scripts": {
 		"build": [
-			"npm update",
+			"npm install",
 			"grunt pre-build",
 			"composer install --no-dev --prefer-dist --no-suggest",
 			"grunt build"
@@ -79,7 +79,7 @@
 			"phpcs --config-set installed_paths vendor/wp-coding-standards/wpcs"
 		],
 		"pre-autoload-dump": [
-			"npm update",
+			"npm install",
 			"cfwp build",
 			"grunt replace_namespaces"
 		],
