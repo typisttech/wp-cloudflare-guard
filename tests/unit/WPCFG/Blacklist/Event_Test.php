@@ -2,7 +2,7 @@
 namespace WPCFG\Blacklist;
 
 /**
- * @coversDefaultClass  WPCFG\Blacklist\Event
+ * @coversDefaultClass \WPCFG\Blacklist\Event
  */
 class Event_Test extends \Codeception\Test\Unit
 {

@@ -8,7 +8,7 @@ use WPCFG\Option_Store;
 use WPCFG\Vendor\Cloudflare\Zone\Firewall\AccessRules;
 
 /**
- * @coversDefaultClass  \WPCFG\Blacklist\Handler
+ * @coversDefaultClass \WPCFG\Blacklist\Handler
  */
 class Handler_Test extends \Codeception\Test\Unit
 {
@@ -80,7 +80,7 @@ class Handler_Test extends \Codeception\Test\Unit
 
     /**
      * @test
-     * @covers \WPCFG\Blacklist\Handler::register
+     * @covers ::register
      */
     public function it_hooked_into_wpcfg_blacklist()
     {

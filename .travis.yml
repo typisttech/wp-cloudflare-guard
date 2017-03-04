@@ -68,14 +68,12 @@ before_install:
   - wp plugin install ./release/wp-cloudflare-guard.zip --force --activate --path=/tmp/wordpress
   # Export a dump of plugin-activated database to the _data folder
   - wp db export $TRAVIS_BUILD_DIR/tests/_data/dump.sql --path=/tmp/wordpress
-  # Clean to prevent cannot re-declare class ComposerAutoloaderInitXXX error.
-  - grunt post-build
 
 install:
   - travis_retry composer install --prefer-dist --no-suggest
 
 script:
-  - if [[ "$WITH_COVERAGE" == "true" ]]; then vendor/bin/codecept run unit --coverage --coverage-xml --coverage-html; fi
+  - if [[ "$WITH_COVERAGE" == "true" ]]; then vendor/bin/codecept run unit --coverage --coverage-xml; fi
   - if [[ "$WITH_COVERAGE" != "true" ]]; then vendor/bin/codecept run unit; fi
 
   - vendor/bin/codecept run functional

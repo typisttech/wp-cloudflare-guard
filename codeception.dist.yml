@@ -14,6 +14,8 @@ coverage:
   enabled: true
   include:
     - src/*
+  exclude:
+    - src/**/*.pot
 modules:
   config:
     WPDb:
@@ -44,8 +46,6 @@ modules:
       tablePrefix: int_wp_
       domain: wordpress.dev
       adminEmail: admin@wordpress.dev
-      plugins: [wp-cloudflare-guard/wp-cloudflare-guard.php]
-      activatePlugins: [wp-cloudflare-guard/wp-cloudflare-guard.php]
     WPWebDriver:
       url: 'http://wp.dev:8080'
       port: 4444

@@ -9,7 +9,7 @@ use WPCFG\Loader;
 use WPCFG\Option_Store;
 
 /**
- * @coversDefaultClass  \WPCFG\Bad_Login\Bad_Login
+ * @coversDefaultClass \WPCFG\Bad_Login\Bad_Login
  */
 class Bad_Login_Test extends \Codeception\Test\Unit
 {
