@@ -1,8 +1,17 @@
 # Change Log
 
+## [0.1.1](https://github.com/TypistTech/wp-cloudflare-guard/tree/0.1.1) (2017-03-05)
+[Full Changelog](https://github.com/TypistTech/wp-cloudflare-guard/compare/0.1.0...0.1.1)
+
+**Merged pull requests:**
+
+- i18n: Translate vendor files [\#7](https://github.com/TypistTech/wp-cloudflare-guard/pull/7) ([TangRufus](https://github.com/TangRufus))
+- Add grunt-wp-deploy [\#6](https://github.com/TypistTech/wp-cloudflare-guard/pull/6) ([TangRufus](https://github.com/TangRufus))
+
 ## [0.1.0](https://github.com/TypistTech/wp-cloudflare-guard/tree/0.1.0) (2017-03-05)
 **Merged pull requests:**
 
+- Version bump 0.1.0 [\#5](https://github.com/TypistTech/wp-cloudflare-guard/pull/5) ([TangRufus](https://github.com/TangRufus))
 - Add wordpress.org meta [\#4](https://github.com/TypistTech/wp-cloudflare-guard/pull/4) ([TangRufus](https://github.com/TangRufus))
 - Add i18n translation [\#3](https://github.com/TypistTech/wp-cloudflare-guard/pull/3) ([TangRufus](https://github.com/TangRufus))
 - Fix: TravisCI test coverage is always 0% [\#2](https://github.com/TypistTech/wp-cloudflare-guard/pull/2) ([TangRufus](https://github.com/TangRufus))

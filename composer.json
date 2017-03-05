@@ -1,7 +1,7 @@
 {
 	"name": "typisttech/wp-cloudflare-guard",
 	"description": "Connecting WordPress with Cloudflare firewall, protect your WordPress site at DNS level. Automatically create firewall rules to block dangerous IPs",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"keywords": [
 		"wordpress",
 		"wp",
