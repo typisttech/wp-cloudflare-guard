@@ -56,7 +56,7 @@ I make [Typist Tech](https://www.typist.tech/) also.
 
 = Support =
 
-We hang out in the WordPress support forum for this plugin at [https://wordpress.org/support/plugin/wp-cloudflare-guard](https://wordpress.org/support/plugin/wp-cloudflare-guard). However, to save time so that we can spend it on development, please read the plugin's FAQs at [https://wordpress.org/plugins/wp-cloudflare-guard/faq/](https://wordpress.org/plugins/wp-cloudflare-guard/faq/). Before going there, and ensure that you have updated WP Cloudflare Guard and WordPress to the latest released version.
+We hang out in the WordPress [support forum](https://wordpress.org/support/plugin/wp-cloudflare-guard) for this plugin. However, to save time so that we can spend it on development, please read the plugin's [FAQs](https://wordpress.org/plugins/wp-cloudflare-guard/faq/) first. Before going there, and ensure that you have updated WP Cloudflare Guard and WordPress to the latest released version and installed PHP 7 or later.
 
 == Installation ==
 
@@ -75,7 +75,15 @@ We hang out in the WordPress support forum for this plugin at [https://wordpress
 1. Upload it to `wp-content/plugins/`
 1. Go to the WordPress plugin menu and activate it
 
+= Via WP CLI =
+
+1. `$ wp plugin install wp-cloudflare-guard --activate`
+
 == Frequently Asked Questions ==
+
+= What version of PHP do I need? =
+
+PHP 7 or later.
 
 = Is this plugin written by Cloudflare, Inc.? =
 
@@ -88,7 +96,7 @@ Yes, all of them work together without problems.
 
 * Install [WP Cloudflare Guard](https://wordpress.org/plugins/wp-cloudflare-guard/) if you want to protect your site from bad IPs
 * Install [Sunny](https://wordpress.org/plugins/sunny/) if you want to purge CloudFlare's cache automatically
-* Install the [offical plugin](https://wordpress.org/plugins/cloudflare/) if you can't see the real IP from visitors
+* Install the [official plugin](https://wordpress.org/plugins/cloudflare/) if you can't see the real IP from visitors
 
 = What if WP Cloudflare Guard blacklisted my IP? =
 
@@ -97,9 +105,13 @@ Yes, all of them work together without problems.
 1. Go `Firewall`
 1. Release you IP under `Access Rules`
 
-= What version of PHP do I need? =
+= Does this plugin available in my language? =
 
-PHP 7 or later.
+English works out of the box.
+
+Traditional Chinese language pack is available [here](https://translate.wordpress.org/projects/wp-plugins/wp-cloudflare-guard/language-packs).
+
+You can add your own translation at [translate.wordpress.org](https://translate.wordpress.org/projects/wp-plugins/wp-cloudflare-guard).
 
 = How to get support? =
 
@@ -110,6 +122,9 @@ Make sure you have read the plugin's FAQs at [https://wordpress.org/plugins/wp-c
 = How can I support this plugin? =
 
 If you like the plugin, feel free to [rate it](https://wordpress.org/support/plugin/wp-cloudflare-guard/reviews/#new-post) or [donate via PayPal](https://www.typist.tech/donate/wp-cloudflare-guard/). Thanks a lot! :)
+
+You can add your own translation at [translate.wordpress.org](https://translate.wordpress.org/projects/wp-plugins/wp-cloudflare-guard).
+
 
 Besides, `WP Cloudflare Guard` is open source and hosted on [GitHub](https://github.com/TypistTech/wp-cloudflare-guard). Feel free to make pull requests.
 

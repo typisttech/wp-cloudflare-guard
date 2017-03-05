@@ -30,9 +30,17 @@ module.exports = function ( grunt ) {
 			target: {
 				files: {
 					src: [
-						'src/.*',
-						'uninstall.php',
-						'<%= pkg.name %>.php'
+						'*.php',
+						'**/*.php',
+						'*.phtml',
+						'**/*.phtml',
+						'*.html',
+						'**/*.html',
+						'!assets/**',
+						'!build/**',
+						'!node_modules/**',
+						'!release/**',
+						'!tests/**'
 					]
 				}
 			}
@@ -42,9 +50,17 @@ module.exports = function ( grunt ) {
 			target: {
 				options: {
 					include: [
-						'src/.*',
-						'uninstall.php',
-						'<%= pkg.name %>.php'
+						'*.php',
+						'**/*.php',
+						'*.phtml',
+						'**/*.phtml',
+						'*.html',
+						'**/*.html',
+						'!assets/**',
+						'!build/**',
+						'!node_modules/**',
+						'!release/**',
+						'!tests/**'
 					],
 					mainFile: '<%= pkg.name %>.php',
 					potHeaders: {
@@ -205,7 +221,7 @@ module.exports = function ( grunt ) {
 	grunt.registerTask( 'i18n', ['addtextdomain', 'makepot'] );
 	grunt.registerTask( 'pre-tag', ['version', 'i18n'] );
 	grunt.registerTask( 'pre-build', ['clean:pre-build'] );
-	grunt.registerTask( 'build', ['copy:build', 'compress:build'] );
+	grunt.registerTask( 'build', ['addtextdomain', 'copy:build', 'compress:build'] );
 
 	grunt.util.linefeed = '\n';
 
