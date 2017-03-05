@@ -143,12 +143,12 @@ module.exports = function ( grunt ) {
 				options: {
 					patterns: [
 						{
-							match: "namespace WPBS",
-							replacement: "namespace WPCFG\\Vendor"
+							match: "namespace WP_Better_Settings",
+							replacement: "namespace WPCFG\\Vendor\\WP_Better_Settings"
 						},
 						{
-							match: "use WPBS",
-							replacement: "use WPCFG\\Vendor"
+							match: "use WP_Better_Settings",
+							replacement: "use WPCFG\\Vendor\\WP_Better_Settings"
 						}
 					],
 					usePrefix: false

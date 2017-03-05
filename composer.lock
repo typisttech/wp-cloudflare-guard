@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "e271d77d98ddc4ecf4520ee97ad1da07",
+    "content-hash": "e64987393d6004c126239bd79b745bec",
     "packages": [
         {
             "name": "cloudflare/cf-ip-rewrite",
@@ -153,16 +153,16 @@
         },
         {
             "name": "typisttech/wp-better-settings",
-            "version": "0.7.1",
+            "version": "0.8.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/TypistTech/wp-better-settings.git",
-                "reference": "b8430c28135fe0550ad2f892363b9f6ccfec472b"
+                "reference": "b21fadb3844fcc8060da6c6299c884804b53d5e4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/TypistTech/wp-better-settings/zipball/b8430c28135fe0550ad2f892363b9f6ccfec472b",
-                "reference": "b8430c28135fe0550ad2f892363b9f6ccfec472b",
+                "url": "https://api.github.com/repos/TypistTech/wp-better-settings/zipball/b21fadb3844fcc8060da6c6299c884804b53d5e4",
+                "reference": "b21fadb3844fcc8060da6c6299c884804b53d5e4",
                 "shasum": ""
             },
             "require": {
@@ -170,7 +170,9 @@
             },
             "require-dev": {
                 "codeception/mockery-module": "^0.2.2",
+                "jakoch/phantomjs-installer": "^2.1",
                 "lucatume/wp-browser": "^1.19",
+                "neronmoon/scriptsdev": "^0.1.0",
                 "php-mock/php-mock-phpunit": "^1.1",
                 "site5/phantoman": "^1.1",
                 "wp-coding-standards/wpcs": "^0.10.0"
@@ -178,7 +180,7 @@
             "type": "library",
             "autoload": {
                 "classmap": [
-                    "src/wp-better-settings"
+                    "src"
                 ]
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -205,7 +207,7 @@
                 "wordpress",
                 "wp"
             ],
-            "time": "2017-02-28T11:25:38+00:00"
+            "time": "2017-03-05T14:24:22+00:00"
         }
     ],
     "packages-dev": [
@@ -2945,23 +2947,23 @@
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",
-            "version": "1.0.0",
+            "version": "1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/code-unit-reverse-lookup.git",
-                "reference": "c36f5e7cfce482fde5bf8d10d41a53591e0198fe"
+                "reference": "4419fcdb5eabb9caa61a27c7a1db532a6b55dd18"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/code-unit-reverse-lookup/zipball/c36f5e7cfce482fde5bf8d10d41a53591e0198fe",
-                "reference": "c36f5e7cfce482fde5bf8d10d41a53591e0198fe",
+                "url": "https://api.github.com/repos/sebastianbergmann/code-unit-reverse-lookup/zipball/4419fcdb5eabb9caa61a27c7a1db532a6b55dd18",
+                "reference": "4419fcdb5eabb9caa61a27c7a1db532a6b55dd18",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.6"
+                "php": "^5.6 || ^7.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "~5"
+                "phpunit/phpunit": "^5.7 || ^6.0"
             },
             "type": "library",
             "extra": {
@@ -2986,7 +2988,7 @@
             ],
             "description": "Looks up which function or method a line of code belongs to",
             "homepage": "https://github.com/sebastianbergmann/code-unit-reverse-lookup/",
-            "time": "2016-02-13T06:45:14+00:00"
+            "time": "2017-03-04T06:30:41+00:00"
         },
         {
             "name": "sebastian/comparator",
