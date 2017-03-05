@@ -71,7 +71,7 @@
 			"phpcs --standard=tests/ruleset.xml --colors -p -s tests"
 		],
 		"deploy": [
-			"npm update",
+			"@build",
 			"grunt wp_deploy"
 		],
 		"fix-style": [
