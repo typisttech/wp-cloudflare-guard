@@ -79,6 +79,12 @@ module.exports = function ( grunt ) {
 					prefix: '\\* Version:\\s+'
 				},
 				src: ['<%= pkg.name %>.php']
+			},
+			readme: {
+				options: {
+					prefix: 'Stable tag:\\s+'
+				},
+				src: ['README.txt']
 			}
 		},
 
@@ -176,6 +182,19 @@ module.exports = function ( grunt ) {
 						]
 					}
 				]
+			}
+		},
+
+		wp_deploy: {
+			deploy: {
+				options: {
+					plugin_slug: '<%= pkg.name %>',
+					plugin_main_file: '<%= pkg.name %>.php',
+					svn_user: 'tangrufus',
+					build_dir: 'build',
+					assets_dir: 'assets',
+					skip_confirmation: true
+				}
 			}
 		}
 
