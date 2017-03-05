@@ -24,20 +24,15 @@ module.exports = function ( grunt ) {
 
 		addtextdomain: {
 			options: {
-				textdomain: '<%= pkg.name %>'
+				textdomain: '<%= pkg.name %>',
+				updateDomains: true
 			},
 			target: {
 				files: {
 					src: [
-						'*.php',
-						'**/*.php',
-						'!bin/**',
-						'!build/**',
-						'!node_modules/**',
-						'!release/**',
-						'!tests/**',
-						'!tmp/**',
-						'!vendor/**'
+						'src/.*',
+						'uninstall.php',
+						'<%= pkg.name %>.php'
 					]
 				}
 			}
@@ -46,10 +41,12 @@ module.exports = function ( grunt ) {
 		makepot: {
 			target: {
 				options: {
-					domainPath: '/src/languages',
-					exclude: ['bin/.*', 'build/*', 'node_modules/.*', 'release/*', 'tests/.*', 'tmp/.*', 'vendor/.*'],
+					include: [
+						'src/.*',
+						'uninstall.php',
+						'<%= pkg.name %>.php'
+					],
 					mainFile: '<%= pkg.name %>.php',
-					potFilename: '<%= pkg.name %>.pot',
 					potHeaders: {
 						poedit: true,
 						'Project-Id-Version': '<%= pkg.name %> <%= pkg.version %>',
@@ -102,6 +99,7 @@ module.exports = function ( grunt ) {
 				expand: true,
 				src: [
 					'src/**',
+					'languages/**',
 					'vendor/**',
 					'LICENSE',
 					'README.txt',

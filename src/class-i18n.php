@@ -43,11 +43,10 @@ final class I18n {
 	 * @return void
 	 */
 	public function load_plugin_textdomain() {
-
 		load_plugin_textdomain(
 			'wp-cloudflare-guard',
 			false,
-			plugin_dir_path( __FILE__ ) . 'languages/'
+			dirname( plugin_basename( __FILE__ ), 2 ) . '/languages/'
 		);
 	}
 }
