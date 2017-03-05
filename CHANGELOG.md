@@ -1,10 +1,18 @@
 # Change Log
 
+## [0.1.2](https://github.com/TypistTech/wp-cloudflare-guard/tree/0.1.2) (2017-03-05)
+[Full Changelog](https://github.com/TypistTech/wp-cloudflare-guard/compare/0.1.1...0.1.2)
+
+**Merged pull requests:**
+
+- Composer Script: build before deploy [\#9](https://github.com/TypistTech/wp-cloudflare-guard/pull/9) ([TangRufus](https://github.com/TangRufus))
+
 ## [0.1.1](https://github.com/TypistTech/wp-cloudflare-guard/tree/0.1.1) (2017-03-05)
 [Full Changelog](https://github.com/TypistTech/wp-cloudflare-guard/compare/0.1.0...0.1.1)
 
 **Merged pull requests:**
 
+- Version bump 0.1.1 [\#8](https://github.com/TypistTech/wp-cloudflare-guard/pull/8) ([TangRufus](https://github.com/TangRufus))
 - i18n: Translate vendor files [\#7](https://github.com/TypistTech/wp-cloudflare-guard/pull/7) ([TangRufus](https://github.com/TangRufus))
 - Add grunt-wp-deploy [\#6](https://github.com/TypistTech/wp-cloudflare-guard/pull/6) ([TangRufus](https://github.com/TangRufus))
 

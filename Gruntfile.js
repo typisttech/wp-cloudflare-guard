@@ -50,17 +50,10 @@ module.exports = function ( grunt ) {
 			target: {
 				options: {
 					include: [
-						'*.php',
-						'**/*.php',
-						'*.phtml',
-						'**/*.phtml',
-						'*.html',
-						'**/*.html',
-						'!assets/**',
-						'!build/**',
-						'!node_modules/**',
-						'!release/**',
-						'!tests/**'
+						'src/.*',
+						'vendor/.*',
+						'uninstall.php',
+						'<%= pkg.name %>.php'
 					],
 					mainFile: '<%= pkg.name %>.php',
 					potHeaders: {
@@ -71,7 +64,8 @@ module.exports = function ( grunt ) {
 						'report-msgid-bugs-to': '<%= pkg.pot.reportmsgidbugsto %>'
 					},
 					type: 'wp-plugin',
-					updateTimestamp: true
+					updateTimestamp: true,
+					updatePoFiles: true
 				}
 			}
 		},
