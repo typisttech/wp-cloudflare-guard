@@ -18,7 +18,7 @@
  * Plugin Name:     WP CloudFlare Guard
  * Plugin URI:      https://www.typist.tech/
  * Description:     Connecting WordPress with Cloudflare firewall.
- * Version:         0.1.1
+ * Version:         0.1.2
  * Author:          Typist Tech
  * Author URI:      https://www.typist.tech/
  * License:         GPL-2.0+

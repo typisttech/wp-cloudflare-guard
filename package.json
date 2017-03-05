@@ -1,6 +1,6 @@
 {
 	"name": "wp-cloudflare-guard",
-	"version": "0.1.1",
+	"version": "0.1.2",
 	"description": "Connecting WordPress with Cloudflare firewall, protect your WordPress site at DNS level. Automatically create firewall rules to block dangerous IPs",
 	"keywords": [
 		"wordpress",
