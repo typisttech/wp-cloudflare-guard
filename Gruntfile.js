@@ -164,20 +164,12 @@ module.exports = function ( grunt ) {
 				options: {
 					patterns: [
 						{
-							match: "namespace Cloudflare",
-							replacement: "namespace WPCFG\\Vendor\\Cloudflare"
+							match: "namespace Cloud",
+							replacement: "namespace WPCFG\\Vendor\\Cloud"
 						},
 						{
-							match: "use Cloudflare",
-							replacement: "use WPCFG\\Vendor\\Cloudflare"
-						},
-						{
-							match: "namespace CloudFlare",
-							replacement: "namespace WPCFG\\Vendor\\CloudFlare"
-						},
-						{
-							match: "use CloudFlare",
-							replacement: "use WPCFG\\Vendor\\CloudFlare"
+							match: "use Cloud",
+							replacement: "use WPCFG\\Vendor\\Cloud"
 						}
 					],
 					usePrefix: false
