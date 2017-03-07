@@ -1,10 +1,13 @@
 # Change Log
 
-## [0.1.2](https://github.com/TypistTech/wp-cloudflare-guard/tree/0.1.2) (2017-03-05)
-[Full Changelog](https://github.com/TypistTech/wp-cloudflare-guard/compare/0.1.1...0.1.2)
+## [0.1.3](https://github.com/TypistTech/wp-cloudflare-guard/tree/0.1.3) (2017-03-07)
+[Full Changelog](https://github.com/TypistTech/wp-cloudflare-guard/compare/0.1.1...0.1.3)
 
 **Merged pull requests:**
 
+- Add Yoast i18n module [\#12](https://github.com/TypistTech/wp-cloudflare-guard/pull/12) ([TangRufus](https://github.com/TangRufus))
+- composer update [\#11](https://github.com/TypistTech/wp-cloudflare-guard/pull/11) ([TangRufus](https://github.com/TangRufus))
+- Fix: grunt makepot not working and Version bump 0.1.2 [\#10](https://github.com/TypistTech/wp-cloudflare-guard/pull/10) ([TangRufus](https://github.com/TangRufus))
 - Composer Script: build before deploy [\#9](https://github.com/TypistTech/wp-cloudflare-guard/pull/9) ([TangRufus](https://github.com/TangRufus))
 
 ## [0.1.1](https://github.com/TypistTech/wp-cloudflare-guard/tree/0.1.1) (2017-03-05)

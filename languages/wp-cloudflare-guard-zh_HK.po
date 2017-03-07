@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: wp-cloudflare-guard 0.1.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wp-cloudflare-"
 "guard\n"
-"POT-Creation-Date: 2017-03-05 15:50+0800\n"
+"POT-Creation-Date: 2017-03-07 03:02:52+00:00\n"
 "PO-Revision-Date: 2017-03-05 15:51+0800\n"
 "Last-Translator: \n"
 "Language-Team: Typist Tech <wp-cloudflare-guard@typist.tech>\n"
@@ -72,11 +72,41 @@ msgstr "Zone ID"
 msgid "Zone identifier for this domain"
 msgstr "此網域的 Zone identifier"
 
-#: vendor/typisttech/wp-better-settings/src/wp-better-settings/class-sanitizer.php:59
+#: vendor/typisttech/wp-better-settings/src/class-sanitizer.php:60
 msgid ""
-"The email address entered did not appear to be a valid email address. Please "
-"enter a valid email address."
-msgstr "這不是正確的電郵地址。請輸入正確電郵地址。"
+"Sorry, that isn&#8217;t a valid email address. Email addresses look like "
+"<code>username@example.com</code>."
+msgstr ""
+
+#: vendor/yoast/i18n-module/src/i18n-module.php:196
+msgid ""
+"As you can see, there is a translation of this plugin in %1$s. This "
+"translation is currently %3$d%% complete. We need your help to make it "
+"complete and to fix any errors. Please register at %4$s to help complete the "
+"translation to %1$s!"
+msgstr ""
+
+#: vendor/yoast/i18n-module/src/i18n-module.php:198
+msgid ""
+"You're using WordPress in %1$s. While %2$s has been translated to %1$s for "
+"%3$d%%, it's not been shipped with the plugin yet. You can help! Register at "
+"%4$s to help complete the translation to %1$s!"
+msgstr ""
+
+#: vendor/yoast/i18n-module/src/i18n-module.php:200
+msgid ""
+"You're using WordPress in a language we don't support yet. We'd love for "
+"%2$s to be translated in that language too, but unfortunately, it isn't "
+"right now. You can change that! Register at %4$s to help translate it!"
+msgstr ""
+
+#: vendor/yoast/i18n-module/src/i18n-module.php:222
+msgid "Translation of %s"
+msgstr ""
+
+#: vendor/yoast/i18n-module/src/i18n-module.php:227
+msgid "Register now &raquo;"
+msgstr ""
 
 #. Plugin Name of the plugin/theme
 msgid "WP CloudFlare Guard"
@@ -93,3 +123,8 @@ msgstr "Connecting WordPress with Cloudflare firewall."
 #. Author of the plugin/theme
 msgid "Typist Tech"
 msgstr "Typist Tech"
+
+#~ msgid ""
+#~ "The email address entered did not appear to be a valid email address. "
+#~ "Please enter a valid email address."
+#~ msgstr "這不是正確的電郵地址。請輸入正確電郵地址。"
