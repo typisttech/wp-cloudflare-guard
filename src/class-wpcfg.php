@@ -19,7 +19,7 @@ declare( strict_types = 1 );
 namespace WPCFG;
 
 use WPCFG\{
-	Bad_Login\Admin as Bad_Login_Admin, Bad_Login\Bad_Login, Blacklist\Handler, Cloudflare\Admin as Cloudflare_Admin
+	Ads\I18n_Promoter, Bad_Login\Admin as Bad_Login_Admin, Bad_Login\Bad_Login, Blacklist\Handler, Cloudflare\Admin as Cloudflare_Admin
 };
 
 /**
@@ -37,11 +37,18 @@ final class WPCFG {
 	private $loader;
 
 	/**
-	 * Holds the option store.
+	 * The WPCFG option store.
 	 *
 	 * @var Option_Store
 	 */
 	private $option_store;
+
+	/**
+	 * The WPCFG admin.
+	 *
+	 * @var Admin
+	 */
+	private $admin;
 
 	/**
 	 * WPCFG constructor.
@@ -49,6 +56,7 @@ final class WPCFG {
 	public function __construct() {
 		$this->loader       = new Loader;
 		$this->option_store = new Option_Store;
+		$this->admin        = Admin::register( $this->loader, $this->option_store );
 
 		$this->register_dependencies();
 	}
@@ -60,12 +68,12 @@ final class WPCFG {
 	 */
 	private function register_dependencies() {
 		$modules = [
-			Admin::class,
 			Bad_Login::class,
 			Bad_Login_Admin::class,
 			Handler::class,
 			Cloudflare_Admin::class,
 			I18n::class,
+			I18n_Promoter::class,
 		];
 
 		array_walk( $modules, [ $this, 'register_module' ] );
@@ -88,6 +96,6 @@ final class WPCFG {
 	 * @return void
 	 */
 	private function register_module( $module ) {
-		$module::register( $this->loader, $this->option_store );
+		$module::register( $this->loader, $this->option_store, $this->admin );
 	}
 }

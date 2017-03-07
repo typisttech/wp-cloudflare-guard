@@ -34,7 +34,8 @@
 		"php": "^7.0",
 		"cloudflare/cf-ip-rewrite": "^1.0",
 		"typisttech/cloudflare-wp-api": "^0.3.0",
-		"typisttech/wp-better-settings": "^0.8.0"
+		"typisttech/wp-better-settings": "^0.8.0",
+		"yoast/i18n-module": "^2.0"
 	},
 	"require-dev": {
 		"codeception/mockery-module": "^0.2.2",
