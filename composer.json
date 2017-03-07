@@ -89,7 +89,7 @@
 			"grunt replace_namespaces"
 		],
 		"pre-tag": [
-			"npm update",
+			"composer update --no-dev --prefer-dist --no-suggest",
 			"grunt pre-tag",
 			"doctoc README.md",
 			"github_changelog_generator --no-verbose"
