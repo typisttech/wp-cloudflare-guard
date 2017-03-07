@@ -4,7 +4,7 @@ Donate link: https://www.typist.tech/donate/wp-cloudflare-guard/
 Tags: cloudflare, firewall, security, spam
 Requires at least: 4.6
 Tested up to: 4.7.2
-Stable tag: 0.1.2
+Stable tag: 0.1.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -145,6 +145,11 @@ Shoot me an email at [info@typist.tech](mailto:info@typist.tech) or use this [co
 
 Full change log available at [GitHub](https://github.com/TangRufus/wp-cloudflare-guard/blob/master/CHANGELOG.md)
 
+= 0.1.3 =
+
+* Add yoast i18n module
+* Fix PHP undefined notices
+
 = 0.1.2 =
 
 * Better translation support
@@ -158,6 +163,7 @@ Full change log available at [GitHub](https://github.com/TangRufus/wp-cloudflare
 
 == Upgrade Notice ==
 
-= 0.1.2 =
+= 0.1.3 =
 
-* Better translation support
+* Add yoast i18n module
+* Fix PHP undefined notices

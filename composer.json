@@ -1,7 +1,7 @@
 {
 	"name": "typisttech/wp-cloudflare-guard",
 	"description": "Connecting WordPress with Cloudflare firewall, protect your WordPress site at DNS level. Automatically create firewall rules to block dangerous IPs",
-	"version": "0.1.2",
+	"version": "0.1.3",
 	"keywords": [
 		"wordpress",
 		"wp",
@@ -89,7 +89,7 @@
 			"grunt replace_namespaces"
 		],
 		"pre-tag": [
-			"npm update",
+			"composer update --no-dev --prefer-dist --no-suggest",
 			"grunt pre-tag",
 			"doctoc README.md",
 			"github_changelog_generator --no-verbose"
