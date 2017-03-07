@@ -19,7 +19,7 @@ declare( strict_types = 1 );
 namespace WPCFG;
 
 use WPCFG\Vendor\WP_Better_Settings\{
-	Menu_Pages, Settings
+	Menu_Page_Config, Menu_Pages, Settings
 };
 
 /**
@@ -50,6 +50,13 @@ final class Admin {
 	private $settings;
 
 	/**
+	 * Menu page configs.
+	 *
+	 * @var Menu_Page_Config[]
+	 */
+	private $menu_page_configs;
+
+	/**
 	 * Setting constructor.
 	 *
 	 * @param Option_Store $option_store The WPCFG option store.
@@ -63,6 +70,8 @@ final class Admin {
 	 *
 	 * @param Loader       $loader       The WPCFG loader.
 	 * @param Option_Store $option_store The WPCFG option store.
+	 *
+	 * @return Admin
 	 */
 	public static function register( Loader $loader, Option_Store $option_store ) {
 		$self = new self( $option_store );
@@ -71,6 +80,8 @@ final class Admin {
 		$loader->add_action( 'admin_menu', $self, 'admin_menu' );
 		// Initialize the settings class on admin_init.
 		$loader->add_action( 'admin_init', $self, 'admin_init' );
+
+		return $self;
 	}
 
 	/**
@@ -90,8 +101,21 @@ final class Admin {
 	 * @return void
 	 */
 	public function admin_menu() {
-		$menu_page_configs = apply_filters( 'wpcfg_menu_page_configs', [] );
+		$menu_page_configs = $this->get_menu_page_configs();
 		$this->menu_pages  = new Menu_Pages( $menu_page_configs );
 		$this->menu_pages->admin_menu();
+	}
+
+	/**
+	 * Menu page configs getter.
+	 *
+	 * @return Menu_Page_Config[]
+	 */
+	public function get_menu_page_configs() {
+		if ( empty( $this->menu_page_configs ) ) {
+			$this->menu_page_configs = apply_filters( 'wpcfg_menu_page_configs', [] );
+		}
+
+		return $this->menu_page_configs;
 	}
 }

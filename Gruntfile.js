@@ -160,6 +160,23 @@ module.exports = function ( grunt ) {
 					}
 				]
 			},
+			namespace_yoast_i18n: {
+				options: {
+					patterns: [
+						{
+							match: /^<\?php\s+(?!namespace)/g,
+							replacement: "<?php\nnamespace WPCFG\\Vendor;\n"
+						}
+					],
+					usePrefix: false
+				},
+				files: [
+					{
+						expand: true,
+						src: ['vendor/yoast/i18n-module/src/**']
+					}
+				]
+			},
 			namespace_cloudflare: {
 				options: {
 					patterns: [
