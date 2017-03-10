@@ -31,16 +31,8 @@ module.exports = function ( grunt ) {
 				files: {
 					src: [
 						'*.php',
-						'**/*.php',
-						'*.phtml',
-						'**/*.phtml',
-						'*.html',
-						'**/*.html',
-						'!assets/**',
-						'!build/**',
-						'!node_modules/**',
-						'!release/**',
-						'!tests/**'
+						'src/**/*.php',
+						'vendor/**/*.php'
 					]
 				}
 			}
@@ -50,10 +42,9 @@ module.exports = function ( grunt ) {
 			target: {
 				options: {
 					include: [
+						'.*.php',
 						'src/.*',
-						'vendor/.*',
-						'uninstall.php',
-						'<%= pkg.name %>.php'
+						'vendor/.*'
 					],
 					mainFile: '<%= pkg.name %>.php',
 					potHeaders: {
@@ -64,20 +55,13 @@ module.exports = function ( grunt ) {
 						'report-msgid-bugs-to': '<%= pkg.pot.reportmsgidbugsto %>'
 					},
 					type: 'wp-plugin',
-					updateTimestamp: true,
-					updatePoFiles: true
+					updateTimestamp: true
 				}
 			}
 		},
 
 		// Bump version numbers
 		version: {
-			composer: {
-				options: {
-					prefix: '"version"\\:\\s+"'
-				},
-				src: ['composer.json']
-			},
 			changelog: {
 				options: {
 					prefix: 'future-release='
@@ -95,46 +79,6 @@ module.exports = function ( grunt ) {
 					prefix: 'Stable tag:\\s+'
 				},
 				src: ['README.txt']
-			}
-		},
-
-		// Clean the build folder
-		clean: {
-			"pre-build": {
-				src: [
-					'build/',
-					'release/',
-					'vendor/'
-				]
-			}
-		},
-
-		// Copy to build folder
-		copy: {
-			build: {
-				expand: true,
-				src: [
-					'src/**',
-					'languages/**',
-					'vendor/**',
-					'LICENSE',
-					'README.txt',
-					'uninstall.php',
-					'<%= pkg.name %>.php'
-				],
-				dest: 'build/'
-			}
-		},
-
-		compress: {
-			build: {
-				options: {
-					archive: 'release/<%= pkg.name %>.zip'
-				},
-				expand: true,
-				dest: '<%= pkg.name %>/',
-				cwd: 'build/',
-				src: ['**']
 			}
 		},
 
@@ -220,11 +164,6 @@ module.exports = function ( grunt ) {
 	} );
 
 	require( 'load-grunt-tasks' )( grunt );
-	grunt.registerTask( 'replace_namespaces', ['replace'] );
-	grunt.registerTask( 'i18n', ['addtextdomain', 'makepot'] );
-	grunt.registerTask( 'pre-tag', ['version', 'i18n'] );
-	grunt.registerTask( 'pre-build', ['clean:pre-build'] );
-	grunt.registerTask( 'build', ['addtextdomain', 'copy:build', 'compress:build'] );
 
 	grunt.util.linefeed = '\n';
 

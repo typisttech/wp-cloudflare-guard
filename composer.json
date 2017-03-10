@@ -61,18 +61,28 @@
 	},
 	"scripts": {
 		"build": [
-			"npm update",
-			"grunt pre-build",
+			"rm -fr vendor",
 			"composer install --no-dev --prefer-dist --no-suggest",
-			"grunt build"
+			"grunt addtextdomain",
+			"composer archive --format=zip --dir=release --file=wp-cloudflare-guard"
+		],
+		"deploy": [
+			"rm -fr build",
+			"@build",
+			"unzip -qo release/wp-cloudflare-guard.zip -d build",
+			"grunt wp_deploy"
+		],
+		"pre-tag": [
+			"composer update --no-dev --prefer-dist --no-suggest",
+			"grunt version",
+			"grunt addtextdomain",
+			"grunt makepot",
+			"doctoc README.md",
+			"github_changelog_generator --no-verbose"
 		],
 		"check-style": [
 			"phpcs --standard=ruleset.xml --colors -p -s .",
 			"phpcs --standard=tests/ruleset.xml --colors -p -s tests"
-		],
-		"deploy": [
-			"@build",
-			"grunt wp_deploy"
 		],
 		"fix-style": [
 			"phpcbf --standard=ruleset.xml -p --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1 .",
@@ -85,13 +95,7 @@
 		"pre-autoload-dump": [
 			"npm update",
 			"cfwp build",
-			"grunt replace_namespaces"
-		],
-		"pre-tag": [
-			"composer update --no-dev --prefer-dist --no-suggest",
-			"grunt pre-tag",
-			"doctoc README.md",
-			"github_changelog_generator --no-verbose"
+			"grunt replace"
 		],
 		"test": [
 			"@test-unit",
@@ -126,5 +130,17 @@
 				"@install-dev-extra"
 			]
 		}
+	},
+	"archive": {
+		"exclude": [
+			"/*",
+			".*",
+			"!/languages",
+			"!/src",
+			"!/vendor",
+			"!/LICENSE",
+			"!/README.txt",
+			"!/*.php"
+		]
 	}
 }
