@@ -26,9 +26,6 @@
 	"main": "Gruntfile.js",
 	"devDependencies": {
 		"grunt": "^1.0.1",
-		"grunt-contrib-clean": "^1.0.0",
-		"grunt-contrib-compress": "^1.4.1",
-		"grunt-contrib-copy": "^1.0.0",
 		"grunt-replace": "^1.0.1",
 		"grunt-version": "^1.1.1",
 		"grunt-wp-deploy": "^1.2.1",
