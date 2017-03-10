@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "3513e78985d4733cf01a279e1e338e49",
+    "content-hash": "29f56e1e35faad32bef6bd3d2955e51a",
     "packages": [
         {
             "name": "cloudflare/cf-ip-rewrite",
@@ -153,16 +153,16 @@
         },
         {
             "name": "typisttech/wp-better-settings",
-            "version": "0.8.0",
+            "version": "0.8.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/TypistTech/wp-better-settings.git",
-                "reference": "b21fadb3844fcc8060da6c6299c884804b53d5e4"
+                "reference": "71d5ac251f83ccd9bf77a66ce7efe26c9c02ba25"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/TypistTech/wp-better-settings/zipball/b21fadb3844fcc8060da6c6299c884804b53d5e4",
-                "reference": "b21fadb3844fcc8060da6c6299c884804b53d5e4",
+                "url": "https://api.github.com/repos/TypistTech/wp-better-settings/zipball/71d5ac251f83ccd9bf77a66ce7efe26c9c02ba25",
+                "reference": "71d5ac251f83ccd9bf77a66ce7efe26c9c02ba25",
                 "shasum": ""
             },
             "require": {
@@ -207,7 +207,7 @@
                 "wordpress",
                 "wp"
             ],
-            "time": "2017-03-05T14:24:22+00:00"
+            "time": "2017-03-07T01:41:57+00:00"
         },
         {
             "name": "yoast/i18n-module",
@@ -251,16 +251,16 @@
     "packages-dev": [
         {
             "name": "antecedent/patchwork",
-            "version": "2.0.0",
+            "version": "2.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/antecedent/patchwork.git",
-                "reference": "698b39d41c1786ef065b3fb3d0a82e9257c36178"
+                "reference": "c0169ef3a3ed4e1ed5033297b588b58ee367b8d5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/antecedent/patchwork/zipball/698b39d41c1786ef065b3fb3d0a82e9257c36178",
-                "reference": "698b39d41c1786ef065b3fb3d0a82e9257c36178",
+                "url": "https://api.github.com/repos/antecedent/patchwork/zipball/c0169ef3a3ed4e1ed5033297b588b58ee367b8d5",
+                "reference": "c0169ef3a3ed4e1ed5033297b588b58ee367b8d5",
                 "shasum": ""
             },
             "require": {
@@ -288,7 +288,7 @@
                 "runkit",
                 "testing"
             ],
-            "time": "2016-08-12T18:56:30+00:00"
+            "time": "2017-03-09T13:30:51+00:00"
         },
         {
             "name": "bacon/bacon-string-utils",
@@ -595,23 +595,23 @@
         },
         {
             "name": "composer/composer",
-            "version": "1.3.2",
+            "version": "1.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/composer.git",
-                "reference": "e7569edb4a5eadcbb2e4ad5ed753282260f281df"
+                "reference": "7ee2a5e1cf32e9c8439445fe8dce2c046c2abebd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/composer/zipball/e7569edb4a5eadcbb2e4ad5ed753282260f281df",
-                "reference": "e7569edb4a5eadcbb2e4ad5ed753282260f281df",
+                "url": "https://api.github.com/repos/composer/composer/zipball/7ee2a5e1cf32e9c8439445fe8dce2c046c2abebd",
+                "reference": "7ee2a5e1cf32e9c8439445fe8dce2c046c2abebd",
                 "shasum": ""
             },
             "require": {
                 "composer/ca-bundle": "^1.0",
                 "composer/semver": "^1.0",
                 "composer/spdx-licenses": "^1.0",
-                "justinrainbow/json-schema": "^1.6 || ^2.0 || ^3.0 || ^4.0",
+                "justinrainbow/json-schema": "^3.0 || ^4.0 || ^5.0",
                 "php": "^5.3.2 || ^7.0",
                 "psr/log": "^1.0",
                 "seld/cli-prompt": "^1.0",
@@ -637,7 +637,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.3-dev"
+                    "dev-master": "1.4-dev"
                 }
             },
             "autoload": {
@@ -668,7 +668,7 @@
                 "dependency",
                 "package"
             ],
-            "time": "2017-01-27T17:23:42+00:00"
+            "time": "2017-03-10T08:29:45+00:00"
         },
         {
             "name": "composer/semver",
@@ -1418,16 +1418,16 @@
         },
         {
             "name": "justinrainbow/json-schema",
-            "version": "4.1.0",
+            "version": "5.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/justinrainbow/json-schema.git",
-                "reference": "d39c56a46b3ebe1f3696479966cd2b9f50aaa24f"
+                "reference": "48817e5f95c9d29e11513f12e43cc0223fa5eb6c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/justinrainbow/json-schema/zipball/d39c56a46b3ebe1f3696479966cd2b9f50aaa24f",
-                "reference": "d39c56a46b3ebe1f3696479966cd2b9f50aaa24f",
+                "url": "https://api.github.com/repos/justinrainbow/json-schema/zipball/48817e5f95c9d29e11513f12e43cc0223fa5eb6c",
+                "reference": "48817e5f95c9d29e11513f12e43cc0223fa5eb6c",
                 "shasum": ""
             },
             "require": {
@@ -1444,7 +1444,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "4.0.x-dev"
+                    "dev-master": "5.0.x-dev"
                 }
             },
             "autoload": {
@@ -1480,7 +1480,7 @@
                 "json",
                 "schema"
             ],
-            "time": "2016-12-22T16:43:46+00:00"
+            "time": "2017-02-22T03:28:16+00:00"
         },
         {
             "name": "lucatume/codeception-setup-local",
@@ -1526,16 +1526,16 @@
         },
         {
             "name": "lucatume/wp-browser",
-            "version": "1.19.11",
+            "version": "1.19.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/lucatume/wp-browser.git",
-                "reference": "edc7475983ab54d3478a4238257947c1df02f681"
+                "reference": "3b3ce54baf2afd8af0245c8fb90d1cabde9d009f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/lucatume/wp-browser/zipball/edc7475983ab54d3478a4238257947c1df02f681",
-                "reference": "edc7475983ab54d3478a4238257947c1df02f681",
+                "url": "https://api.github.com/repos/lucatume/wp-browser/zipball/3b3ce54baf2afd8af0245c8fb90d1cabde9d009f",
+                "reference": "3b3ce54baf2afd8af0245c8fb90d1cabde9d009f",
                 "shasum": ""
             },
             "require": {
@@ -1582,7 +1582,7 @@
                 "codeception",
                 "wordpress"
             ],
-            "time": "2017-02-20T11:29:41+00:00"
+            "time": "2017-03-09T19:45:05+00:00"
         },
         {
             "name": "lucatume/wp-browser-commons",
@@ -1929,16 +1929,16 @@
         },
         {
             "name": "neronmoon/scriptsdev",
-            "version": "v0.1.0",
+            "version": "dev-move-scripts-dev-into-extra",
             "source": {
                 "type": "git",
-                "url": "https://github.com/neronmoon/scriptsdev.git",
-                "reference": "ab5cec346cab353500b957de8c7e6548961d35fe"
+                "url": "https://github.com/TangRufus/scriptsdev.git",
+                "reference": "3ff02f49c4890a4e082a91d00e18e2d60d41b60d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/neronmoon/scriptsdev/zipball/ab5cec346cab353500b957de8c7e6548961d35fe",
-                "reference": "ab5cec346cab353500b957de8c7e6548961d35fe",
+                "url": "https://api.github.com/repos/TangRufus/scriptsdev/zipball/3ff02f49c4890a4e082a91d00e18e2d60d41b60d",
+                "reference": "3ff02f49c4890a4e082a91d00e18e2d60d41b60d",
                 "shasum": ""
             },
             "require": {
@@ -1956,14 +1956,20 @@
                     "": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
             "authors": [
                 {
                     "name": "Vitaliy Krasnoperov",
-                    "email": "alistar.neron@gmail.com"
+                    "email": "alistar.neron@gmail.com",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Tang Rufus",
+                    "email": "tangrufus@gmail.com",
+                    "homepage": "https://www.typist.tech",
+                    "role": "Contributor"
                 }
             ],
             "description": "Scripts-dev behaviour for Composer",
@@ -1975,7 +1981,10 @@
                 "dev",
                 "scripts"
             ],
-            "time": "2015-11-12T17:00:24+00:00"
+            "support": {
+                "source": "https://github.com/TangRufus/scriptsdev/tree/move-scripts-dev-into-extra"
+            },
+            "time": "2017-03-10T15:05:08+00:00"
         },
         {
             "name": "paragonie/random_compat",
@@ -3765,16 +3774,16 @@
         },
         {
             "name": "symfony/browser-kit",
-            "version": "v3.2.4",
+            "version": "v3.2.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/browser-kit.git",
-                "reference": "394a2475a3a89089353fde5714a7f402fbb83880"
+                "reference": "2fe0caa60c1a1dfeefd0425741182687a9b382b8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/browser-kit/zipball/394a2475a3a89089353fde5714a7f402fbb83880",
-                "reference": "394a2475a3a89089353fde5714a7f402fbb83880",
+                "url": "https://api.github.com/repos/symfony/browser-kit/zipball/2fe0caa60c1a1dfeefd0425741182687a9b382b8",
+                "reference": "2fe0caa60c1a1dfeefd0425741182687a9b382b8",
                 "shasum": ""
             },
             "require": {
@@ -3818,7 +3827,7 @@
             ],
             "description": "Symfony BrowserKit Component",
             "homepage": "https://symfony.com",
-            "time": "2017-01-31T21:49:23+00:00"
+            "time": "2017-02-21T09:12:04+00:00"
         },
         {
             "name": "symfony/config",
@@ -3939,16 +3948,16 @@
         },
         {
             "name": "symfony/css-selector",
-            "version": "v3.2.4",
+            "version": "v3.2.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/css-selector.git",
-                "reference": "f0e628f04fc055c934b3211cfabdb1c59eefbfaa"
+                "reference": "a48f13dc83c168f1253a5d2a5a4fb46c36244c4c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/css-selector/zipball/f0e628f04fc055c934b3211cfabdb1c59eefbfaa",
-                "reference": "f0e628f04fc055c934b3211cfabdb1c59eefbfaa",
+                "url": "https://api.github.com/repos/symfony/css-selector/zipball/a48f13dc83c168f1253a5d2a5a4fb46c36244c4c",
+                "reference": "a48f13dc83c168f1253a5d2a5a4fb46c36244c4c",
                 "shasum": ""
             },
             "require": {
@@ -3988,7 +3997,7 @@
             ],
             "description": "Symfony CssSelector Component",
             "homepage": "https://symfony.com",
-            "time": "2017-01-02T20:32:22+00:00"
+            "time": "2017-02-21T09:12:04+00:00"
         },
         {
             "name": "symfony/debug",
@@ -4112,16 +4121,16 @@
         },
         {
             "name": "symfony/dom-crawler",
-            "version": "v3.2.4",
+            "version": "v3.2.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/dom-crawler.git",
-                "reference": "b814b41373fc4e535aff8c765abe39545216f391"
+                "reference": "403944e294cf4ceb3b8447f54cbad88ea7b99cee"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/dom-crawler/zipball/b814b41373fc4e535aff8c765abe39545216f391",
-                "reference": "b814b41373fc4e535aff8c765abe39545216f391",
+                "url": "https://api.github.com/repos/symfony/dom-crawler/zipball/403944e294cf4ceb3b8447f54cbad88ea7b99cee",
+                "reference": "403944e294cf4ceb3b8447f54cbad88ea7b99cee",
                 "shasum": ""
             },
             "require": {
@@ -4164,7 +4173,7 @@
             ],
             "description": "Symfony DomCrawler Component",
             "homepage": "https://symfony.com",
-            "time": "2017-01-21T17:14:11+00:00"
+            "time": "2017-02-21T09:12:04+00:00"
         },
         {
             "name": "symfony/event-dispatcher",
@@ -4792,7 +4801,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "neronmoon/scriptsdev": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
