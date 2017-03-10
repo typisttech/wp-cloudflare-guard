@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "4ea6aa0d69b7b46633f43431d0a7f0a3",
+    "content-hash": "29f56e1e35faad32bef6bd3d2955e51a",
     "packages": [
         {
             "name": "cloudflare/cf-ip-rewrite",
@@ -1929,16 +1929,16 @@
         },
         {
             "name": "neronmoon/scriptsdev",
-            "version": "v0.1.0",
+            "version": "dev-move-scripts-dev-into-extra",
             "source": {
                 "type": "git",
-                "url": "https://github.com/neronmoon/scriptsdev.git",
-                "reference": "ab5cec346cab353500b957de8c7e6548961d35fe"
+                "url": "https://github.com/TangRufus/scriptsdev.git",
+                "reference": "3ff02f49c4890a4e082a91d00e18e2d60d41b60d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/neronmoon/scriptsdev/zipball/ab5cec346cab353500b957de8c7e6548961d35fe",
-                "reference": "ab5cec346cab353500b957de8c7e6548961d35fe",
+                "url": "https://api.github.com/repos/TangRufus/scriptsdev/zipball/3ff02f49c4890a4e082a91d00e18e2d60d41b60d",
+                "reference": "3ff02f49c4890a4e082a91d00e18e2d60d41b60d",
                 "shasum": ""
             },
             "require": {
@@ -1956,14 +1956,20 @@
                     "": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
             "authors": [
                 {
                     "name": "Vitaliy Krasnoperov",
-                    "email": "alistar.neron@gmail.com"
+                    "email": "alistar.neron@gmail.com",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Tang Rufus",
+                    "email": "tangrufus@gmail.com",
+                    "homepage": "https://www.typist.tech",
+                    "role": "Contributor"
                 }
             ],
             "description": "Scripts-dev behaviour for Composer",
@@ -1975,7 +1981,10 @@
                 "dev",
                 "scripts"
             ],
-            "time": "2015-11-12T17:00:24+00:00"
+            "support": {
+                "source": "https://github.com/TangRufus/scriptsdev/tree/move-scripts-dev-into-extra"
+            },
+            "time": "2017-03-10T15:05:08+00:00"
         },
         {
             "name": "paragonie/random_compat",
@@ -4792,7 +4801,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "neronmoon/scriptsdev": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
