@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "29f56e1e35faad32bef6bd3d2955e51a",
+    "content-hash": "39857d8ceb4969f479ff19119a7ad47a",
     "packages": [
         {
             "name": "cloudflare/cf-ip-rewrite",
@@ -53,20 +53,20 @@
         },
         {
             "name": "jamesryanbell/cloudflare",
-            "version": "1.10.1",
+            "version": "1.10.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jamesryanbell/cloudflare.git",
-                "reference": "fc0ad3f3f16ebd16956ee61fc4c03e5cfc51e9ce"
+                "reference": "003b869a814f6f3e9cd7011e97835b3b0847651d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jamesryanbell/cloudflare/zipball/fc0ad3f3f16ebd16956ee61fc4c03e5cfc51e9ce",
-                "reference": "fc0ad3f3f16ebd16956ee61fc4c03e5cfc51e9ce",
+                "url": "https://api.github.com/repos/jamesryanbell/cloudflare/zipball/003b869a814f6f3e9cd7011e97835b3b0847651d",
+                "reference": "003b869a814f6f3e9cd7011e97835b3b0847651d",
                 "shasum": ""
             },
             "require-dev": {
-                "phpunit/phpunit": "*",
+                "phpunit/phpunit": "< 6",
                 "satooshi/php-coveralls": "dev-master"
             },
             "type": "library",
@@ -90,7 +90,7 @@
                 "api",
                 "cloudflare"
             ],
-            "time": "2017-02-27T21:21:23+00:00"
+            "time": "2017-03-14T08:52:11+00:00"
         },
         {
             "name": "typisttech/cloudflare-wp-api",
@@ -251,16 +251,16 @@
     "packages-dev": [
         {
             "name": "antecedent/patchwork",
-            "version": "2.0.1",
+            "version": "2.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/antecedent/patchwork.git",
-                "reference": "c0169ef3a3ed4e1ed5033297b588b58ee367b8d5"
+                "reference": "b9dd9ba89279c89134be1d7a0c62a63f78d7e622"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/antecedent/patchwork/zipball/c0169ef3a3ed4e1ed5033297b588b58ee367b8d5",
-                "reference": "c0169ef3a3ed4e1ed5033297b588b58ee367b8d5",
+                "url": "https://api.github.com/repos/antecedent/patchwork/zipball/b9dd9ba89279c89134be1d7a0c62a63f78d7e622",
+                "reference": "b9dd9ba89279c89134be1d7a0c62a63f78d7e622",
                 "shasum": ""
             },
             "require": {
@@ -288,7 +288,7 @@
                 "runkit",
                 "testing"
             ],
-            "time": "2017-03-09T13:30:51+00:00"
+            "time": "2017-03-23T11:32:30+00:00"
         },
         {
             "name": "bacon/bacon-string-utils",
@@ -953,34 +953,37 @@
         },
         {
             "name": "facebook/webdriver",
-            "version": "1.3.0",
+            "version": "1.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/facebook/php-webdriver.git",
-                "reference": "77300c4ab2025d4316635f592ec849ca7323bd8c"
+                "reference": "3ea034c056189e11c0ce7985332a9f4b5b2b5db2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/facebook/php-webdriver/zipball/77300c4ab2025d4316635f592ec849ca7323bd8c",
-                "reference": "77300c4ab2025d4316635f592ec849ca7323bd8c",
+                "url": "https://api.github.com/repos/facebook/php-webdriver/zipball/3ea034c056189e11c0ce7985332a9f4b5b2b5db2",
+                "reference": "3ea034c056189e11c0ce7985332a9f4b5b2b5db2",
                 "shasum": ""
             },
             "require": {
                 "ext-curl": "*",
+                "ext-zip": "*",
                 "php": "^5.5 || ~7.0",
                 "symfony/process": "^2.8 || ^3.1"
             },
             "require-dev": {
-                "friendsofphp/php-cs-fixer": "^1.11",
+                "friendsofphp/php-cs-fixer": "^2.0",
                 "php-mock/php-mock-phpunit": "^1.1",
                 "phpunit/phpunit": "4.6.* || ~5.0",
                 "satooshi/php-coveralls": "^1.0",
                 "squizlabs/php_codesniffer": "^2.6"
             },
-            "suggest": {
-                "phpdocumentor/phpdocumentor": "2.*"
-            },
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-community": "1.5-dev"
+                }
+            },
             "autoload": {
                 "psr-4": {
                     "Facebook\\WebDriver\\": "lib/"
@@ -990,7 +993,7 @@
             "license": [
                 "Apache-2.0"
             ],
-            "description": "A PHP client for WebDriver",
+            "description": "A PHP client for Selenium WebDriver",
             "homepage": "https://github.com/facebook/php-webdriver",
             "keywords": [
                 "facebook",
@@ -998,7 +1001,7 @@
                 "selenium",
                 "webdriver"
             ],
-            "time": "2017-01-13T15:48:08+00:00"
+            "time": "2017-03-22T10:56:03+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -1115,16 +1118,16 @@
         },
         {
             "name": "guzzlehttp/psr7",
-            "version": "1.4.1",
+            "version": "1.4.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/psr7.git",
-                "reference": "0d6c7ca039329247e4f0f8f8f6506810e8248855"
+                "reference": "f5b8a8512e2b58b0071a7280e39f14f72e05d87c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/psr7/zipball/0d6c7ca039329247e4f0f8f8f6506810e8248855",
-                "reference": "0d6c7ca039329247e4f0f8f8f6506810e8248855",
+                "url": "https://api.github.com/repos/guzzle/psr7/zipball/f5b8a8512e2b58b0071a7280e39f14f72e05d87c",
+                "reference": "f5b8a8512e2b58b0071a7280e39f14f72e05d87c",
                 "shasum": ""
             },
             "require": {
@@ -1176,7 +1179,7 @@
                 "uri",
                 "url"
             ],
-            "time": "2017-02-27T10:51:17+00:00"
+            "time": "2017-03-20T17:10:46+00:00"
         },
         {
             "name": "hamcrest/hamcrest-php",
@@ -1418,22 +1421,23 @@
         },
         {
             "name": "justinrainbow/json-schema",
-            "version": "5.1.0",
+            "version": "5.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/justinrainbow/json-schema.git",
-                "reference": "48817e5f95c9d29e11513f12e43cc0223fa5eb6c"
+                "reference": "e3c9bccdc38bbd09bcac0131c00f3be58368b416"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/justinrainbow/json-schema/zipball/48817e5f95c9d29e11513f12e43cc0223fa5eb6c",
-                "reference": "48817e5f95c9d29e11513f12e43cc0223fa5eb6c",
+                "url": "https://api.github.com/repos/justinrainbow/json-schema/zipball/e3c9bccdc38bbd09bcac0131c00f3be58368b416",
+                "reference": "e3c9bccdc38bbd09bcac0131c00f3be58368b416",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3"
             },
             "require-dev": {
+                "friendsofphp/php-cs-fixer": "^2.1",
                 "json-schema/json-schema-test-suite": "1.2.0",
                 "phpdocumentor/phpdocumentor": "~2",
                 "phpunit/phpunit": "^4.8.22"
@@ -1480,7 +1484,7 @@
                 "json",
                 "schema"
             ],
-            "time": "2017-02-22T03:28:16+00:00"
+            "time": "2017-03-22T22:43:35+00:00"
         },
         {
             "name": "lucatume/codeception-setup-local",
@@ -1929,16 +1933,16 @@
         },
         {
             "name": "neronmoon/scriptsdev",
-            "version": "dev-move-scripts-dev-into-extra",
+            "version": "v0.1.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/TangRufus/scriptsdev.git",
-                "reference": "3ff02f49c4890a4e082a91d00e18e2d60d41b60d"
+                "url": "https://github.com/neronmoon/scriptsdev.git",
+                "reference": "2bda142b08900baa5476a40673f1465236831d1e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/TangRufus/scriptsdev/zipball/3ff02f49c4890a4e082a91d00e18e2d60d41b60d",
-                "reference": "3ff02f49c4890a4e082a91d00e18e2d60d41b60d",
+                "url": "https://api.github.com/repos/neronmoon/scriptsdev/zipball/2bda142b08900baa5476a40673f1465236831d1e",
+                "reference": "2bda142b08900baa5476a40673f1465236831d1e",
                 "shasum": ""
             },
             "require": {
@@ -1949,11 +1953,11 @@
             },
             "type": "composer-plugin",
             "extra": {
-                "class": "\\Plugin"
+                "class": "ScriptsDev\\Plugin"
             },
             "autoload": {
-                "psr-0": {
-                    "": "src/"
+                "psr-4": {
+                    "ScriptsDev\\": "src/"
                 }
             },
             "license": [
@@ -1962,14 +1966,7 @@
             "authors": [
                 {
                     "name": "Vitaliy Krasnoperov",
-                    "email": "alistar.neron@gmail.com",
-                    "role": "Maintainer"
-                },
-                {
-                    "name": "Tang Rufus",
-                    "email": "tangrufus@gmail.com",
-                    "homepage": "https://www.typist.tech",
-                    "role": "Contributor"
+                    "email": "alistar.neron@gmail.com"
                 }
             ],
             "description": "Scripts-dev behaviour for Composer",
@@ -1982,22 +1979,23 @@
                 "scripts"
             ],
             "support": {
-                "source": "https://github.com/TangRufus/scriptsdev/tree/move-scripts-dev-into-extra"
+                "source": "https://github.com/neronmoon/scriptsdev/tree/v0.1.1",
+                "issues": "https://github.com/neronmoon/scriptsdev/issues"
             },
-            "time": "2017-03-10T15:05:08+00:00"
+            "time": "2017-03-13T17:11:56+00:00"
         },
         {
             "name": "paragonie/random_compat",
-            "version": "v2.0.9",
+            "version": "v2.0.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/paragonie/random_compat.git",
-                "reference": "6968531206671f94377b01dc7888d5d1b858a01b"
+                "reference": "634bae8e911eefa89c1abfbf1b66da679ac8f54d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/paragonie/random_compat/zipball/6968531206671f94377b01dc7888d5d1b858a01b",
-                "reference": "6968531206671f94377b01dc7888d5d1b858a01b",
+                "url": "https://api.github.com/repos/paragonie/random_compat/zipball/634bae8e911eefa89c1abfbf1b66da679ac8f54d",
+                "reference": "634bae8e911eefa89c1abfbf1b66da679ac8f54d",
                 "shasum": ""
             },
             "require": {
@@ -2032,7 +2030,7 @@
                 "pseudorandom",
                 "random"
             ],
-            "time": "2017-03-03T20:43:42+00:00"
+            "time": "2017-03-13T16:27:32+00:00"
         },
         {
             "name": "php-mock/php-mock",
@@ -2663,16 +2661,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "5.7.15",
+            "version": "5.7.17",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "b99112aecc01f62acf3d81a3f59646700a1849e5"
+                "reference": "68752b665d3875f9a38a357e3ecb35c79f8673bf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/b99112aecc01f62acf3d81a3f59646700a1849e5",
-                "reference": "b99112aecc01f62acf3d81a3f59646700a1849e5",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/68752b665d3875f9a38a357e3ecb35c79f8673bf",
+                "reference": "68752b665d3875f9a38a357e3ecb35c79f8673bf",
                 "shasum": ""
             },
             "require": {
@@ -2741,7 +2739,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2017-03-02T15:22:43+00:00"
+            "time": "2017-03-19T16:52:12+00:00"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
@@ -3508,16 +3506,16 @@
         },
         {
             "name": "seld/cli-prompt",
-            "version": "1.0.2",
+            "version": "1.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/cli-prompt.git",
-                "reference": "8cbe10923cae5bcd7c5a713f6703fc4727c8c1b4"
+                "reference": "a19a7376a4689d4d94cab66ab4f3c816019ba8dd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/cli-prompt/zipball/8cbe10923cae5bcd7c5a713f6703fc4727c8c1b4",
-                "reference": "8cbe10923cae5bcd7c5a713f6703fc4727c8c1b4",
+                "url": "https://api.github.com/repos/Seldaek/cli-prompt/zipball/a19a7376a4689d4d94cab66ab4f3c816019ba8dd",
+                "reference": "a19a7376a4689d4d94cab66ab4f3c816019ba8dd",
                 "shasum": ""
             },
             "require": {
@@ -3552,7 +3550,7 @@
                 "input",
                 "prompt"
             ],
-            "time": "2016-04-18T09:31:41+00:00"
+            "time": "2017-03-18T11:32:45+00:00"
         },
         {
             "name": "seld/jsonlint",
@@ -4722,20 +4720,20 @@
         },
         {
             "name": "wp-coding-standards/wpcs",
-            "version": "0.10.0",
+            "version": "0.11.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards.git",
-                "reference": "b39490465f6fd7375743a395019cd597e12119c9"
+                "reference": "407e4b85f547a5251185f89ceae6599917343388"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/WordPress-Coding-Standards/WordPress-Coding-Standards/zipball/b39490465f6fd7375743a395019cd597e12119c9",
-                "reference": "b39490465f6fd7375743a395019cd597e12119c9",
+                "url": "https://api.github.com/repos/WordPress-Coding-Standards/WordPress-Coding-Standards/zipball/407e4b85f547a5251185f89ceae6599917343388",
+                "reference": "407e4b85f547a5251185f89ceae6599917343388",
                 "shasum": ""
             },
             "require": {
-                "squizlabs/php_codesniffer": "^2.6"
+                "squizlabs/php_codesniffer": "^2.8.1"
             },
             "type": "library",
             "notification-url": "https://packagist.org/downloads/",
@@ -4754,7 +4752,7 @@
                 "standards",
                 "wordpress"
             ],
-            "time": "2016-08-29T20:04:47+00:00"
+            "time": "2017-03-20T23:17:58+00:00"
         },
         {
             "name": "xamin/handlebars.php",
@@ -4801,9 +4799,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "neronmoon/scriptsdev": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
