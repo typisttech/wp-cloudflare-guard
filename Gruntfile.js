@@ -83,33 +83,12 @@ module.exports = function ( grunt ) {
 		},
 
 		replace: {
-			namespace_wpbs: {
-				options: {
-					patterns: [
-						{
-							match: "namespace WP_Better_Settings",
-							replacement: "namespace WPCFG\\Vendor\\WP_Better_Settings"
-						},
-						{
-							match: "use WP_Better_Settings",
-							replacement: "use WPCFG\\Vendor\\WP_Better_Settings"
-						}
-					],
-					usePrefix: false
-				},
-				files: [
-					{
-						expand: true,
-						src: ['vendor/typisttech/wp-better-settings/src/**']
-					}
-				]
-			},
 			namespace_yoast_i18n: {
 				options: {
 					patterns: [
 						{
-							match: /^<\?php\s+(?!namespace)/g,
-							replacement: "<?php\nnamespace WPCFG\\Vendor;\n"
+							match: /<\?php\s+(?!namespace WPCFG\\Vendor;\n)/g,
+							replacement: "<?php namespace WPCFG\\Vendor;\n"
 						}
 					],
 					usePrefix: false
@@ -118,31 +97,6 @@ module.exports = function ( grunt ) {
 					{
 						expand: true,
 						src: ['vendor/yoast/i18n-module/src/**']
-					}
-				]
-			},
-			namespace_cloudflare: {
-				options: {
-					patterns: [
-						{
-							match: "namespace Cloud",
-							replacement: "namespace WPCFG\\Vendor\\Cloud"
-						},
-						{
-							match: "use Cloud",
-							replacement: "use WPCFG\\Vendor\\Cloud"
-						}
-					],
-					usePrefix: false
-				},
-				files: [
-					{
-						expand: true,
-						src: [
-							'vendor/cloudflare/cf-ip-rewrite/src/**',
-							'vendor/jamesryanbell/cloudflare/src/**',
-							'vendor/typisttech/cloudflare-wp-api/src/**'
-						]
 					}
 				]
 			}

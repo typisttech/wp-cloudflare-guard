@@ -19,7 +19,7 @@ declare( strict_types = 1 );
 namespace WPCFG\Blacklist;
 
 use WPCFG\{
-	Loader, Option_Store, Vendor\Cloudflare\Zone\Firewall\AccessRules
+	Loader, OptionStore, Vendor\Cloudflare\Zone\Firewall\AccessRules
 };
 
 /**
@@ -31,7 +31,7 @@ final class Handler {
 	/**
 	 * The option store.
 	 *
-	 * @var Option_Store
+	 * @var OptionStore
 	 */
 	private $option_store;
 
@@ -45,10 +45,10 @@ final class Handler {
 	/**
 	 * Handler constructor.
 	 *
-	 * @param Option_Store $option_store The WPCFG option store.
-	 * @param AccessRules  $access_rules The api client.
+	 * @param OptionStore $option_store The WPCFG option store.
+	 * @param AccessRules $access_rules The api client.
 	 */
-	public function __construct( Option_Store $option_store, AccessRules $access_rules ) {
+	public function __construct( OptionStore $option_store, AccessRules $access_rules ) {
 		$this->option_store = $option_store;
 		$this->access_rules = $access_rules;
 	}
@@ -56,12 +56,12 @@ final class Handler {
 	/**
 	 * Register this class via WordPress action hooks and filters.
 	 *
-	 * @param Loader       $loader       The WPCFG loader.
-	 * @param Option_Store $option_store The WPCFG option store.
+	 * @param Loader      $loader       The WPCFG loader.
+	 * @param OptionStore $option_store The WPCFG option store.
 	 *
 	 * @return void
 	 */
-	public static function register( Loader $loader, Option_Store $option_store ) {
+	public static function register( Loader $loader, OptionStore $option_store ) {
 		$self = new self( $option_store, new AccessRules );
 		$loader->add_action( 'wpcfg_blacklist', $self, 'handle_blacklist' );
 	}

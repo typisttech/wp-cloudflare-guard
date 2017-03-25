@@ -2,12 +2,12 @@
 namespace WPCFG;
 
 /**
- * @coversDefaultClass \WPCFG\Option_Store
+ * @coversDefaultClass \WPCFG\OptionStore
  */
 class Option_Store_Test extends \Codeception\Test\Unit
 {
     /**
-     * @var Option_Store
+     * @var OptionStore
      */
     private $option_store;
 
@@ -46,7 +46,7 @@ class Option_Store_Test extends \Codeception\Test\Unit
             'zone_id' => 'two46o1',
         ]);
 
-        $this->option_store = new Option_Store;
+        $this->option_store = new OptionStore;
     }
 
     protected function _after()

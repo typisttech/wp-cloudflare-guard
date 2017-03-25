@@ -18,12 +18,14 @@ declare( strict_types = 1 );
 
 namespace WPCFG;
 
+use WPCFG\Vendor\TypistTech\WPBetterSettings\OptionStore as WPBSOptionStore;
+
 /**
  * Final class Option_Store
  *
  * The get_option functionality of the plugin.
  */
-class Option_Store extends Vendor\WP_Better_Settings\Option_Store {
+class OptionStore extends WPBSOptionStore {
 	/**
 	 * Cloudflare email getter.
 	 *

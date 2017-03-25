@@ -4,7 +4,7 @@ namespace WPCFG\Blacklist;
 use Mockery;
 use phpmock\phpunit\PHPMock;
 use WPCFG\Loader;
-use WPCFG\Option_Store;
+use WPCFG\OptionStore;
 use WPCFG\Vendor\Cloudflare\Zone\Firewall\AccessRules;
 
 /**
@@ -25,7 +25,7 @@ class Handler_Test extends \Codeception\Test\Unit
         $access_rules_mock->shouldReceive('setAuthKey')->never();
         $access_rules_mock->shouldReceive('create')->never();
 
-        $handler = new Handler(new Option_Store, $access_rules_mock);
+        $handler = new Handler(new OptionStore, $access_rules_mock);
 
         $handler->handle_blacklist();
         $handler->handle_blacklist(null);
@@ -74,7 +74,7 @@ class Handler_Test extends \Codeception\Test\Unit
                           ->once()
                           ->ordered();
 
-        $handler = new Handler(new Option_Store, $access_rules_mock);
+        $handler = new Handler(new OptionStore, $access_rules_mock);
         $handler->handle_blacklist($event);
     }
 
@@ -92,7 +92,7 @@ class Handler_Test extends \Codeception\Test\Unit
                    'handle_blacklist'
                )
                ->once();
-        Handler::register($loader, new Option_Store);
+        Handler::register($loader, new OptionStore);
     }
 
     protected function _after()
