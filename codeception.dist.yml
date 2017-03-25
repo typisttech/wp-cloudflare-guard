@@ -19,7 +19,7 @@ coverage:
 modules:
   config:
     WPDb:
-      dsn: 'mysql:host=localhost;dbname=wordpress'
+      dsn: 'mysql:host=127.0.0.1;dbname=wordpress'
       user: root
       password: ''
       dump: tests/_data/dump.sql
@@ -40,7 +40,7 @@ modules:
     WPLoader:
       wpRootFolder: /tmp/wordpress
       dbName: wordpress_int
-      dbHost: localhost
+      dbHost: 127.0.0.1
       dbUser: root
       dbPassword: ''
       tablePrefix: int_wp_

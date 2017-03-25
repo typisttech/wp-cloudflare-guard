@@ -56,21 +56,22 @@
 			"rm -fr vendor",
 			"composer install --no-dev --prefer-dist --no-suggest",
 			"composer dump-autoload -o",
-			"grunt addtextdomain",
+			"yarn grunt addtextdomain",
 			"composer archive --format=zip --dir=release --file=wp-cloudflare-guard"
 		],
 		"deploy": [
 			"rm -fr build",
 			"@build",
 			"unzip -qo release/wp-cloudflare-guard.zip -d build",
-			"grunt wp_deploy"
+			"yarn grunt wp_deploy"
 		],
 		"pre-tag": [
 			"composer update --no-suggest",
-			"grunt version",
-			"grunt addtextdomain",
-			"grunt makepot",
-			"doctoc README.md",
+			"yarn upgrade",
+			"yarn grunt version",
+			"yarn grunt addtextdomain",
+			"yarn grunt makepot",
+			"yarn doctoc README.md",
 			"github_changelog_generator --no-verbose"
 		],
 		"check-style": [
@@ -86,9 +87,9 @@
 			"phpcs --config-set installed_paths vendor/wp-coding-standards/wpcs"
 		],
 		"pre-autoload-dump": [
-			"npm update",
 			"cfwp build",
-			"grunt replace"
+			"yarn install",
+			"yarn grunt replace"
 		],
 		"test": [
 			"@test-unit",

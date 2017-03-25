@@ -1,6 +1,9 @@
 language: php
 
-sudo: false
+dist: trusty
+
+# Wait until travis bug fixes
+sudo: require
 
 branches:
   only:
@@ -12,10 +15,9 @@ services:
 
 cache:
   apt: true
+  yarn: true
   directories:
     - $HOME/.composer/cache/files
-    - $HOME/node_modules
-    - node_modules
 
 addons:
   apt:
@@ -57,15 +59,11 @@ before_install:
   - if [[ "$WITH_COVERAGE" != "true" && $(phpenv version-name) != "nightly" ]]; then phpenv config-rm xdebug.ini; fi
 
   # Install helper scripts
-  - travis_retry composer global require --prefer-dist --no-suggest typisttech/travis-nginx-wordpress:"^1.2"
+  - travis_retry composer global require --prefer-dist --no-suggest typisttech/travis-nginx-wordpress
   - export PATH=$HOME/.composer/vendor/bin:$PATH
   - tnw-install-nginx
   - tnw-install-wordpress
   - tnw-prepare-codeception
-
-  # For grunt tasks
-  - nvm install stable
-  - npm update -g npm
 
   # Build the production plugin
   - travis_retry composer build
