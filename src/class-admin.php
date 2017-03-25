@@ -14,12 +14,12 @@
  * @see       https://wordpress.org/plugins/wp-cloudflare-guard/
  */
 
-declare( strict_types = 1 );
+declare(strict_types=1);
 
 namespace WPCFG;
 
-use WPCFG\Vendor\WP_Better_Settings\{
-	Menu_Page_Config, Menu_Pages, Settings
+use WPCFG\Vendor\TypistTech\WPBetterSettings\{
+    MenuPageConfig, MenuPages, Settings
 };
 
 /**
@@ -27,95 +27,101 @@ use WPCFG\Vendor\WP_Better_Settings\{
  *
  * The admin-specific functionality of the plugin.
  */
-final class Admin {
-	/**
-	 * Options store.
-	 *
-	 * @var Option_Store
-	 */
-	private $option_store;
+final class Admin
+{
+    /**
+     * Menu page configs.
+     *
+     * @var MenuPageConfig[]
+     */
+    private $menu_page_configs;
 
-	/**
-	 * Menu pages.
-	 *
-	 * @var Menu_Pages
-	 */
-	private $menu_pages;
+    /**
+     * Menu pages.
+     *
+     * @var MenuPages
+     */
+    private $menu_pages;
 
-	/**
-	 * Settings.
-	 *
-	 * @var \WPCFG\Vendor\WP_Better_Settings\Settings
-	 */
-	private $settings;
+    /**
+     * Options store.
+     *
+     * @var OptionStore
+     */
+    private $option_store;
 
-	/**
-	 * Menu page configs.
-	 *
-	 * @var Menu_Page_Config[]
-	 */
-	private $menu_page_configs;
+    /**
+     * Settings.
+     *
+     * @var \WPCFG\Vendor\TypistTech\WPBetterSettings\Settings
+     */
+    private $settings;
 
-	/**
-	 * Setting constructor.
-	 *
-	 * @param Option_Store $option_store The WPCFG option store.
-	 */
-	public function __construct( Option_Store $option_store ) {
-		$this->option_store = $option_store;
-	}
+    /**
+     * Setting constructor.
+     *
+     * @param OptionStore $option_store The WPCFG option store.
+     */
+    public function __construct(OptionStore $option_store)
+    {
+        $this->option_store = $option_store;
+    }
 
-	/**
-	 * Register this class via WordPress action hooks and filters.
-	 *
-	 * @param Loader       $loader       The WPCFG loader.
-	 * @param Option_Store $option_store The WPCFG option store.
-	 *
-	 * @return Admin
-	 */
-	public static function register( Loader $loader, Option_Store $option_store ) {
-		$self = new self( $option_store );
+    /**
+     * Register this class via WordPress action hooks and filters.
+     *
+     * @param Loader      $loader       The WPCFG loader.
+     * @param OptionStore $option_store The WPCFG option store.
+     *
+     * @return Admin
+     */
+    public static function register(Loader $loader, OptionStore $option_store)
+    {
+        $self = new self($option_store);
 
-		// Adds the plugin admin menu.
-		$loader->add_action( 'admin_menu', $self, 'admin_menu' );
-		// Initialize the settings class on admin_init.
-		$loader->add_action( 'admin_init', $self, 'admin_init' );
+        // Adds the plugin admin menu.
+        $loader->add_action('admin_menu', $self, 'admin_menu');
+        // Initialize the settings class on admin_init.
+        $loader->add_action('admin_init', $self, 'admin_init');
 
-		return $self;
-	}
+        return $self;
+    }
 
-	/**
-	 * Register WPCFG settings.
-	 *
-	 * @return void
-	 */
-	public function admin_init() {
-		$setting_configs = apply_filters( 'wpcfg_setting_configs', [] );
-		$this->settings  = new Settings( $setting_configs, $this->option_store );
-		$this->settings->admin_init();
-	}
+    /**
+     * Register WPCFG settings.
+     *
+     * @return void
+     */
+    public function admin_init()
+    {
+        $setting_configs = apply_filters('wpcfg_setting_configs', []);
+        $this->settings  = new Settings($setting_configs, $this->option_store);
+        $this->settings->adminInit();
+    }
 
-	/**
-	 * Add menus and submenus.
-	 *
-	 * @return void
-	 */
-	public function admin_menu() {
-		$menu_page_configs = $this->get_menu_page_configs();
-		$this->menu_pages  = new Menu_Pages( $menu_page_configs );
-		$this->menu_pages->admin_menu();
-	}
+    /**
+     * Add menus and submenus.
+     *
+     * @return void
+     */
+    public function admin_menu()
+    {
+        $menu_page_configs = $this->get_menu_page_configs();
+        $this->menu_pages  = new MenuPages($menu_page_configs);
+        $this->menu_pages->adminMenu();
+    }
 
-	/**
-	 * Menu page configs getter.
-	 *
-	 * @return Menu_Page_Config[]
-	 */
-	public function get_menu_page_configs() {
-		if ( empty( $this->menu_page_configs ) ) {
-			$this->menu_page_configs = apply_filters( 'wpcfg_menu_page_configs', [] );
-		}
+    /**
+     * Menu page configs getter.
+     *
+     * @return MenuPageConfig[]
+     */
+    public function get_menu_page_configs()
+    {
+        if (empty($this->menu_page_configs)) {
+            $this->menu_page_configs = apply_filters('wpcfg_menu_page_configs', []);
+        }
 
-		return $this->menu_page_configs;
-	}
+        return $this->menu_page_configs;
+    }
 }

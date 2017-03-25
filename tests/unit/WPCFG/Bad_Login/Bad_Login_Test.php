@@ -6,7 +6,7 @@ use Mockery;
 use phpmock\phpunit\PHPMock;
 use WPCFG\Blacklist\Event;
 use WPCFG\Loader;
-use WPCFG\Option_Store;
+use WPCFG\OptionStore;
 
 /**
  * @coversDefaultClass \WPCFG\Bad_Login\Bad_Login
@@ -159,12 +159,12 @@ class Bad_Login_Test extends \Codeception\Test\Unit
                    'emit_blacklist_event_if_bad_username'
                )
                ->once();
-        Bad_Login::register($loader, new Option_Store);
+        Bad_Login::register($loader, new OptionStore);
     }
 
     protected function _before()
     {
-        $this->bad_login      = new Bad_Login(new Option_Store);
+        $this->bad_login      = new Bad_Login(new OptionStore);
         $this->do_action_mock = $this->getFunctionMock(__NAMESPACE__, 'do_action');
     }
 

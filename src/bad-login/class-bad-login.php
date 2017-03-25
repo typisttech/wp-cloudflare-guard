@@ -19,7 +19,7 @@ declare( strict_types = 1 );
 namespace WPCFG\Bad_Login;
 
 use WPCFG\{
-	Blacklist\Event, Cloudflare\Ip_Util, Loader, Option_Store
+	Blacklist\Event, Cloudflare\Ip_Util, Loader, OptionStore
 };
 
 /**
@@ -31,16 +31,16 @@ final class Bad_Login {
 	/**
 	 * Holds the option store.
 	 *
-	 * @var Option_Store
+	 * @var OptionStore
 	 */
 	private $option_store;
 
 	/**
 	 * Bad_Login constructor.
 	 *
-	 * @param Option_Store $option_store The WPCFG option store.
+	 * @param OptionStore $option_store The WPCFG option store.
 	 */
-	public function __construct( Option_Store $option_store ) {
+	public function __construct( OptionStore $option_store ) {
 		$this->option_store = $option_store;
 	}
 
@@ -48,11 +48,11 @@ final class Bad_Login {
 	 * Register this class via WordPress action hooks and filters.
 	 *
 	 * @param Loader       $loader       The WPCFG loader.
-	 * @param Option_Store $option_store The WPCFG option store.
+	 * @param OptionStore $option_store The WPCFG option store.
 	 *
 	 * @return void
 	 */
-	public static function register( Loader $loader, Option_Store $option_store ) {
+	public static function register( Loader $loader, OptionStore $option_store ) {
 		$self = new self( $option_store );
 		$loader->add_action( 'wp_authenticate', $self, 'emit_blacklist_event_if_bad_username' );
 	}

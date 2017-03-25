@@ -4,7 +4,7 @@ namespace WPCFG\Ads;
 use Mockery;
 use WPCFG\Admin;
 use WPCFG\Loader;
-use WPCFG\Option_Store;
+use WPCFG\OptionStore;
 
 /**
  * @coversDefaultClass \WPCFG\Ads\I18n_Promoter
@@ -27,7 +27,7 @@ class I18n_Promoter_Test extends \Codeception\Test\Unit
                )
                ->once();
 
-        $option_store = new Option_Store;
+        $option_store = new OptionStore;
         $admin = new Admin($option_store);
 
         I18n_Promoter::register($loader, $option_store, $admin);

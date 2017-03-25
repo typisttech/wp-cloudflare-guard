@@ -20,7 +20,7 @@ namespace WPCFG\Ads;
 
 use WPCFG\Admin;
 use WPCFG\Loader;
-use WPCFG\Option_Store;
+use WPCFG\OptionStore;
 use WPCFG\Vendor\Yoast_I18n_WordPressOrg_v2;
 
 /**
@@ -46,13 +46,13 @@ final class I18n_Promoter {
 	/**
 	 * Register this class via WordPress action hooks and filters.
 	 *
-	 * @param Loader       $loader       The WPCFG loader.
-	 * @param Option_Store $option_store The WPCFG option store.
-	 * @param Admin        $admin        The WPCFG admin.
+	 * @param Loader      $loader       The WPCFG loader.
+	 * @param OptionStore $option_store The WPCFG option store.
+	 * @param Admin       $admin        The WPCFG admin.
 	 *
 	 * @return void
 	 */
-	public static function register( Loader $loader, Option_Store $option_store, Admin $admin ) {
+	public static function register( Loader $loader, OptionStore $option_store, Admin $admin ) {
 		$self = new self( $admin );
 		$loader->add_action( 'admin_menu', $self, 'add_yoast_i18n_module_to_all_wpcfg_menu_pages', 20 );
 	}

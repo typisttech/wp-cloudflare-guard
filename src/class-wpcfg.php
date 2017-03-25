@@ -39,7 +39,7 @@ final class WPCFG {
 	/**
 	 * The WPCFG option store.
 	 *
-	 * @var Option_Store
+	 * @var OptionStore
 	 */
 	private $option_store;
 
@@ -55,7 +55,7 @@ final class WPCFG {
 	 */
 	public function __construct() {
 		$this->loader       = new Loader;
-		$this->option_store = new Option_Store;
+		$this->option_store = new OptionStore;
 		$this->admin        = Admin::register( $this->loader, $this->option_store );
 
 		$this->register_dependencies();
