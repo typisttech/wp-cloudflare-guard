@@ -19,9 +19,12 @@ declare(strict_types=1);
 namespace WPCFG\Cloudflare;
 
 use WPCFG\Loader;
-use WPCFG\Vendor\TypistTech\WPBetterSettings\{
-    FieldConfig, MenuPageConfig, Sanitizer, SectionConfig, SettingConfig, ViewFactory
-};
+use WPCFG\Vendor\TypistTech\WPBetterSettings\FieldConfig;
+use WPCFG\Vendor\TypistTech\WPBetterSettings\MenuPageConfig;
+use WPCFG\Vendor\TypistTech\WPBetterSettings\Sanitizer;
+use WPCFG\Vendor\TypistTech\WPBetterSettings\SectionConfig;
+use WPCFG\Vendor\TypistTech\WPBetterSettings\SettingConfig;
+use WPCFG\Vendor\TypistTech\WPBetterSettings\ViewFactory;
 
 /**
  * Final class Admin.
@@ -40,20 +43,20 @@ final class Admin
     public static function register(Loader $loader)
     {
         $self = new self;
-        $loader->add_filter('wpcfg_menu_page_configs', $self, 'add_menu_page_config');
-        $loader->add_filter('wpcfg_setting_configs', $self, 'add_setting_config');
+        $loader->addFilter('wpcfg_menu_page_configs', $self, 'addMenuPageConfig');
+        $loader->addFilter('wpcfg_setting_configs', $self, 'addSettingConfig');
     }
 
     /**
      * Add the menu page config.
      *
-     * @param MenuPageConfig[] $menu_page_configs Menu page configurations.
+     * @param MenuPageConfig[] $menuPageConfigs Menu page configurations.
      *
      * @return MenuPageConfig[]
      */
-    public function add_menu_page_config(array $menu_page_configs) : array
+    public function addMenuPageConfig(array $menuPageConfigs) : array
     {
-        $menu_page_configs[] = new MenuPageConfig([
+        $menuPageConfigs[] = new MenuPageConfig([
             'menu_slug'    => 'wpcfg_cloudflare',
             'page_title'   => 'WP Cloudflare Guard',
             'menu_title'   => 'WP Cloudflare Guard',
@@ -62,58 +65,67 @@ final class Admin
             'icon_url'     => 'dashicons-shield',
         ]);
 
-        return $menu_page_configs;
+        return $menuPageConfigs;
     }
 
     /**
      * Add settings config.
      *
-     * @param SettingConfig[] $setting_config Setting configurations.
+     * @param SettingConfig[] $settingConfig Setting configurations.
      *
      * @return SettingConfig[]
      */
-    public function add_setting_config(array $setting_config) : array
+    public function addSettingConfig(array $settingConfig) : array
     {
-        $email_field = new FieldConfig([
+        $emailField = new FieldConfig([
             'id'                => 'email',
             'title'             => __('Cloudflare Email', 'wp-cloudflare-guard'),
             'view'              => ViewFactory::build('email-field'),
-            'desc'              => __('The email address associated with your Cloudflare account.',
-                'wp-cloudflare-guard'),
-            'sanitize_callback' => [ Sanitizer::class, 'sanitize_email' ],
+            'desc'              => __(
+                'The email address associated with your Cloudflare account.',
+                'wp-cloudflare-guard'
+            ),
+            'sanitize_callback' => [ Sanitizer::class, 'sanitizeEmail' ],
         ]);
 
-        $api_key_desc  = sprintf(
-            __('Help: <a href="%1$s">Where do I find my Cloudflare API key?</a>', 'wp-cloudflare-guard'),
-            esc_url_raw('https://support.cloudflare.com/hc/en-us/articles/200167836-Where-do-I-find-my-CloudFlare-API-key-')
+        $apiKeyDesc  = sprintf(
+            // Translators: %1$s is the url to Cloudflare document.
+            _x(
+                'Help: <a href="%1$s">Where do I find my Cloudflare API key?</a>',
+                '%1$s is the url to Cloudflare document',
+                'wp-cloudflare-guard'
+            ),
+            esc_url_raw(
+                'https://support.cloudflare.com/hc/en-us/articles/200167836-Where-do-I-find-my-CloudFlare-API-key-'
+            )
         );
-        $api_key_field = new FieldConfig([
+        $apiKeyField = new FieldConfig([
             'id'    => 'api_key',
             'title' => __('Global API Key', 'wp-cloudflare-guard'),
             'view'  => ViewFactory::build('text-field'),
-            'desc'  => $api_key_desc,
+            'desc'  => $apiKeyDesc,
         ]);
 
-        $zone_id_field = new FieldConfig([
+        $zoneIdField = new FieldConfig([
             'id'    => 'zone_id',
             'title' => __('Zone ID', 'wp-cloudflare-guard'),
             'view'  => ViewFactory::build('text-field'),
             'desc'  => __('Zone identifier for this domain', 'wp-cloudflare-guard'),
         ]);
 
-        $cloudflare_section = new SectionConfig([
+        $cloudflareSection = new SectionConfig([
             'id'     => 'wpcfg_cloudflare',
             'page'   => 'wpcfg_cloudflare',
             'title'  => __('Cloudflare Settings', 'wp-cloudflare-guard'),
-            'fields' => [ $email_field, $api_key_field, $zone_id_field ],
+            'fields' => [ $emailField, $apiKeyField, $zoneIdField ],
         ]);
 
-        $setting_config[] = new SettingConfig([
+        $settingConfig[] = new SettingConfig([
             'option_group' => 'wpcfg_cloudflare',
             'option_name'  => 'wpcfg_cloudflare',
-            'sections'     => [ $cloudflare_section ],
+            'sections'     => [ $cloudflareSection ],
         ]);
 
-        return $setting_config;
+        return $settingConfig;
     }
 }

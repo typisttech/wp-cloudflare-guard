@@ -1,20 +1,20 @@
 {
-	"name": "wp-cloudflare-guard",
-	"version": "0.1.3",
-	"main": "Gruntfile.js",
-	"private": true,
-	"pot": {
-		"languageteam": "Typist Tech <wp-cloudflare-guard@typist.tech>",
-		"lasttranslator": "Typist Tech <wp-cloudflare-guard@typist.tech>",
-		"reportmsgidbugsto": "https://wordpress.org/support/plugin/wp-cloudflare-guard"
-	},
-	"devDependencies": {
-		"doctoc": "^1.3.0",
-		"grunt": "^1.0.1",
-		"grunt-replace": "^1.0.1",
-		"grunt-version": "^1.1.1",
-		"grunt-wp-deploy": "^1.2.1",
-		"grunt-wp-i18n": "^1.0.0",
-		"load-grunt-tasks": "^3.5.2"
-	}
+    "name": "wp-cloudflare-guard",
+    "version": "0.1.3",
+    "main": "Gruntfile.js",
+    "private": true,
+    "pot": {
+        "languageteam": "Typist Tech <wp-cloudflare-guard@typist.tech>",
+        "lasttranslator": "Typist Tech <wp-cloudflare-guard@typist.tech>",
+        "reportmsgidbugsto": "https://wordpress.org/support/plugin/wp-cloudflare-guard"
+    },
+    "devDependencies": {
+        "doctoc": "^1.3.0",
+        "grunt": "^1.0.1",
+        "grunt-replace": "^1.0.1",
+        "grunt-version": "^1.1.1",
+        "grunt-wp-deploy": "^1.2.1",
+        "grunt-wp-i18n": "^1.0.0",
+        "load-grunt-tasks": "^3.5.2"
+    }
 }

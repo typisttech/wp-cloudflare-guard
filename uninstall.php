@@ -34,18 +34,18 @@
  * https://github.com/tommcfarlin/WordPress-Plugin-Boilerplate/pull/123#issuecomment-28541913
  */
 
-declare( strict_types = 1 );
+declare(strict_types=1);
 
 // If uninstall not called from WordPress, then exit.
-if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
-	exit;
+if (! defined('WP_UNINSTALL_PLUGIN')) {
+    exit;
 }
 
 $keys = [
-	'wpcfg_cloudflare',
-	'wpcfg_bad_login',
+    'wpcfg_cloudflare',
+    'wpcfg_bad_login',
 ];
 
-foreach ( $keys as $key ) {
-	delete_option( $key );
+foreach ($keys as $key) {
+    delete_option($key);
 }
