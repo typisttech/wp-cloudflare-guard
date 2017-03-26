@@ -1,5 +1,7 @@
-<?php
+<?php use WPCFG\AcceptanceTester;
+
 $I = new AcceptanceTester($scenario);
+$I->wantTo('setting page has tab links');
 
 $I->amOnWPCFGSettingPage();
 

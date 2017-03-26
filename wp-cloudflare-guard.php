@@ -27,26 +27,26 @@
  * Domain Path:     /languages
  */
 
-declare( strict_types = 1 );
+declare(strict_types=1);
 
 namespace WPCFG;
 
 // If this file is called directly, abort.
-if ( ! defined( 'WPINC' ) ) {
-	die;
+if (! defined('WPINC')) {
+    die;
 }
 
-require_once plugin_dir_path( __FILE__ ) . 'vendor/autoload.php';
+require_once plugin_dir_path(__FILE__) . 'vendor/autoload.php';
 
 /**
  * The code that runs during plugin activation.
  */
-register_activation_hook( __FILE__, [ Activator::class, 'activate' ] );
+register_activation_hook(__FILE__, [ Activator::class, 'activate' ]);
 
 /**
  * The code that runs during plugin deactivation.
  */
-register_deactivation_hook( __FILE__, [ Deactivator::class, 'deactivate' ] );
+register_deactivation_hook(__FILE__, [ Deactivator::class, 'deactivate' ]);
 
 /**
  * Begins execution of the plugin.
@@ -56,9 +56,10 @@ register_deactivation_hook( __FILE__, [ Deactivator::class, 'deactivate' ] );
  *
  * @return void
  */
-function run_wpcfg() {
-	$plugin = new WPCFG;
-	$plugin->run();
+function run()
+{
+    $plugin = new WPCFG;
+    $plugin->run();
 }
 
-run_wpcfg();
+run();

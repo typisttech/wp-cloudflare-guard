@@ -16,12 +16,14 @@
 
 declare(strict_types=1);
 
-namespace WPCFG\Bad_Login;
+namespace WPCFG\BadLogin;
 
 use WPCFG\Loader;
-use WPCFG\Vendor\TypistTech\WPBetterSettings\{
-    FieldConfig, MenuPageConfig, SectionConfig, SettingConfig, ViewFactory
-};
+use WPCFG\Vendor\TypistTech\WPBetterSettings\FieldConfig;
+use WPCFG\Vendor\TypistTech\WPBetterSettings\MenuPageConfig;
+use WPCFG\Vendor\TypistTech\WPBetterSettings\SectionConfig;
+use WPCFG\Vendor\TypistTech\WPBetterSettings\SettingConfig;
+use WPCFG\Vendor\TypistTech\WPBetterSettings\ViewFactory;
 
 /**
  * Final class Admin.
@@ -40,21 +42,21 @@ final class Admin
     public static function register(Loader $loader)
     {
         $self = new self;
-        $loader->add_filter('wpcfg_menu_page_configs', $self, 'add_menu_page_config');
-        $loader->add_filter('wpcfg_setting_configs', $self, 'add_setting_config');
+        $loader->addFilter('wpcfg_menu_page_configs', $self, 'addMenuPageConfig');
+        $loader->addFilter('wpcfg_setting_configs', $self, 'addSettingConfig');
     }
 
     /**
      * Add the menu page config.
      *
-     * @param MenuPageConfig[] $MenuPageConfigs Menu page configurations.
+     * @param MenuPageConfig[] $menuPageConfigs Menu page configurations.
      *
-     * @return MenuPageConfig[]
+     * @return array|MenuPageConfig[]
      */
-    public function add_menu_page_config(array $menu_page_configs) : array
+    public function addMenuPageConfig(array $menuPageConfigs) : array
     {
         // Create the admin settings page in wp-admin > WP Cloudflare Guard (admin.php?page=wpcfg).
-        $menu_page_configs[] = new MenuPageConfig([
+        $menuPageConfigs[] = new MenuPageConfig([
             'menu_slug'    => 'wpcfg_bad_login',
             'page_title'   => 'WP Cloudflare Guard - Bad Login',
             'menu_title'   => 'Bad Login',
@@ -63,47 +65,49 @@ final class Admin
             'view'         => ViewFactory::build('tabbed-options-page'),
         ]);
 
-        return $menu_page_configs;
+        return $menuPageConfigs;
     }
 
     /**
      * Add settings config.
      *
-     * @param SettingConfig[] $setting_config Setting configurations.
+     * @param SettingConfig[] $settingConfig Setting configurations.
      *
      * @return SettingConfig[]
      */
-    public function add_setting_config(array $setting_config) : array
+    public function addSettingConfig(array $settingConfig) : array
     {
-        $enabled_field = new FieldConfig([
+        $enabledField = new FieldConfig([
             'id'    => 'disabled',
             'title' => 'Bad Login',
             'view'  => ViewFactory::build('checkbox-field'),
-            'desc'  => __('<b>Disable</b> blacklisting IPs which attempt to login with bad usernames',
-                'wp-cloudflare-guard'),
+            'desc'  => __(
+                '<b>Disable</b> blacklisting IPs which attempt to login with bad usernames',
+                'wp-cloudflare-guard'
+            ),
             'label' => __('Disable Bad Login', 'wp-cloudflare-guard'),
         ]);
 
-        $bad_usernames_field = new FieldConfig([
+        $badUsernamesField = new FieldConfig([
             'id'    => 'bad_usernames',
             'title' => __('Bad Usernames', 'wp-cloudflare-guard'),
             'view'  => ViewFactory::build('textarea-field'),
             'desc'  => __('You can define your own bad usernames here, separated by commas.', 'wp-cloudflare-guard'),
         ]);
 
-        $bad_login_section = new SectionConfig([
+        $badLoginSection = new SectionConfig([
             'id'     => 'wpcfg_bad_login',
             'page'   => 'wpcfg_bad_login',
             'title'  => __('Cloudflare Settings', 'wp-cloudflare-guard'),
-            'fields' => [ $enabled_field, $bad_usernames_field ],
+            'fields' => [ $enabledField, $badUsernamesField ],
         ]);
 
-        $setting_config[] = new SettingConfig([
+        $settingConfig[] = new SettingConfig([
             'option_group' => 'wpcfg_bad_login',
             'option_name'  => 'wpcfg_bad_login',
-            'sections'     => [ $bad_login_section ],
+            'sections'     => [ $badLoginSection ],
         ]);
 
-        return $setting_config;
+        return $settingConfig;
     }
 }

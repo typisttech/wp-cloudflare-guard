@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "d07caf5b7e981c454392d3c39b4cf1d2",
+    "content-hash": "8c2a9e0ae790ee8cbbccb76c3a2174fd",
     "packages": [
         {
             "name": "cloudflare/cf-ip-rewrite",
@@ -212,16 +212,16 @@
         },
         {
             "name": "typisttech/imposter-plugin",
-            "version": "0.2.4",
+            "version": "0.2.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/TypistTech/imposter-plugin.git",
-                "reference": "73ed924006c79510009ebdfe1b5271199805379e"
+                "reference": "251b3c8c892be9b2a9c8528d78b6d36641479bea"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/TypistTech/imposter-plugin/zipball/73ed924006c79510009ebdfe1b5271199805379e",
-                "reference": "73ed924006c79510009ebdfe1b5271199805379e",
+                "url": "https://api.github.com/repos/TypistTech/imposter-plugin/zipball/251b3c8c892be9b2a9c8528d78b6d36641479bea",
+                "reference": "251b3c8c892be9b2a9c8528d78b6d36641479bea",
                 "shasum": ""
             },
             "require": {
@@ -271,7 +271,7 @@
                 "namespace",
                 "wordpress"
             ],
-            "time": "2017-03-25T11:23:44+00:00"
+            "time": "2017-03-26T20:02:56+00:00"
         },
         {
             "name": "typisttech/wp-better-settings",

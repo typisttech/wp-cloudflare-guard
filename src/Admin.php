@@ -18,9 +18,9 @@ declare(strict_types=1);
 
 namespace WPCFG;
 
-use WPCFG\Vendor\TypistTech\WPBetterSettings\{
-    MenuPageConfig, MenuPages, Settings
-};
+use WPCFG\Vendor\TypistTech\WPBetterSettings\MenuPageConfig;
+use WPCFG\Vendor\TypistTech\WPBetterSettings\MenuPages;
+use WPCFG\Vendor\TypistTech\WPBetterSettings\Settings;
 
 /**
  * Final class Admin.
@@ -34,21 +34,21 @@ final class Admin
      *
      * @var MenuPageConfig[]
      */
-    private $menu_page_configs;
+    private $menuPageConfigs;
 
     /**
      * Menu pages.
      *
      * @var MenuPages
      */
-    private $menu_pages;
+    private $menuPages;
 
     /**
      * Options store.
      *
      * @var OptionStore
      */
-    private $option_store;
+    private $optionStore;
 
     /**
      * Settings.
@@ -60,29 +60,29 @@ final class Admin
     /**
      * Setting constructor.
      *
-     * @param OptionStore $option_store The WPCFG option store.
+     * @param OptionStore $optionStore The WPCFG option store.
      */
-    public function __construct(OptionStore $option_store)
+    public function __construct(OptionStore $optionStore)
     {
-        $this->option_store = $option_store;
+        $this->optionStore = $optionStore;
     }
 
     /**
      * Register this class via WordPress action hooks and filters.
      *
-     * @param Loader      $loader       The WPCFG loader.
-     * @param OptionStore $option_store The WPCFG option store.
+     * @param Loader      $loader      The WPCFG loader.
+     * @param OptionStore $optionStore The WPCFG option store.
      *
      * @return Admin
      */
-    public static function register(Loader $loader, OptionStore $option_store)
+    public static function register(Loader $loader, OptionStore $optionStore)
     {
-        $self = new self($option_store);
+        $self = new self($optionStore);
 
         // Adds the plugin admin menu.
-        $loader->add_action('admin_menu', $self, 'admin_menu');
+        $loader->addAction('admin_menu', $self, 'adminMenu');
         // Initialize the settings class on admin_init.
-        $loader->add_action('admin_init', $self, 'admin_init');
+        $loader->addAction('admin_init', $self, 'adminInit');
 
         return $self;
     }
@@ -92,10 +92,10 @@ final class Admin
      *
      * @return void
      */
-    public function admin_init()
+    public function adminInit()
     {
-        $setting_configs = apply_filters('wpcfg_setting_configs', []);
-        $this->settings  = new Settings($setting_configs, $this->option_store);
+        $settingConfigs = apply_filters('wpcfg_setting_configs', []);
+        $this->settings = new Settings($settingConfigs, $this->optionStore);
         $this->settings->adminInit();
     }
 
@@ -104,11 +104,11 @@ final class Admin
      *
      * @return void
      */
-    public function admin_menu()
+    public function adminMenu()
     {
-        $menu_page_configs = $this->get_menu_page_configs();
-        $this->menu_pages  = new MenuPages($menu_page_configs);
-        $this->menu_pages->adminMenu();
+        $menuPageConfigs = $this->getMenuPageConfigs();
+        $this->menuPages = new MenuPages($menuPageConfigs);
+        $this->menuPages->adminMenu();
     }
 
     /**
@@ -116,12 +116,12 @@ final class Admin
      *
      * @return MenuPageConfig[]
      */
-    public function get_menu_page_configs()
+    public function getMenuPageConfigs()
     {
-        if (empty($this->menu_page_configs)) {
-            $this->menu_page_configs = apply_filters('wpcfg_menu_page_configs', []);
+        if (empty($this->menuPageConfigs)) {
+            $this->menuPageConfigs = apply_filters('wpcfg_menu_page_configs', []);
         }
 
-        return $this->menu_page_configs;
+        return $this->menuPageConfigs;
     }
 }

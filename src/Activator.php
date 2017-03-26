@@ -14,21 +14,23 @@
  * @see       https://wordpress.org/plugins/wp-cloudflare-guard/
  */
 
-declare( strict_types = 1 );
+declare(strict_types=1);
 
 namespace WPCFG;
 
 /**
- * Fired during plugin deactivation.
+ * Fired during plugin activation.
  *
- * This class defines all code necessary to run during the plugin's deactivation.
+ * This class defines all code necessary to run during the plugin's activation.
  */
-final class Deactivator {
-	/**
-	 * Short Description. (use period)
-	 *
-	 * Long Description.
-	 */
-	public static function deactivate() {
-	}
+final class Activator
+{
+    /**
+     * Short Description. (use period)
+     *
+     * Long Description.
+     */
+    public static function activate()
+    {
+    }
 }

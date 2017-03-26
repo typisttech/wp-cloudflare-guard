@@ -1,139 +1,137 @@
 {
-	"name": "typisttech/wp-cloudflare-guard",
-	"description": "Connecting WordPress with Cloudflare firewall, protect your WordPress site at DNS level. Automatically create firewall rules to block dangerous IPs",
-	"keywords": [
-		"wordpress",
-		"wp",
-		"cloudflare",
-		"firewall",
-		"security"
-	],
-	"homepage": "https://github.com/TypistTech/wp-cloudflare-guard",
-	"license": "GPL-2.0+",
-	"authors": [
-		{
-			"name": "Typist Tech",
-			"email": "wp-cloudflare-guard@typist.tech",
-			"homepage": "https://www.typist.tech/"
-		},
-		{
-			"name": "Tang Rufus",
-			"email": "tangrufus@gmail.com",
-			"homepage": "https://www.typist.tech/",
-			"role": "Developer"
-		}
-	],
-	"support": {
-		"email": "wp-cloudflare-guard@typist.tech",
-		"issues": "https://github.com/TypistTech/wp-cloudflare-guard/issues",
-		"forum": "https://wordpress.org/support/plugin/wp-cloudflare-guard",
-		"source": "https://github.com/TypistTech/wp-cloudflare-guard"
-	},
-	"require": {
-		"php": "^7.0",
-		"cloudflare/cf-ip-rewrite": "^1.0",
-		"typisttech/cloudflare-wp-api": "^0.3.0",
-		"typisttech/imposter-plugin": "^0.2.4",
-		"typisttech/wp-better-settings": "^0.9.0",
-		"yoast/i18n-module": "^2.0"
-	},
-	"require-dev": {
-		"codeception/mockery-module": "^0.2.2",
-		"jakoch/phantomjs-installer": "^2.1",
-		"lucatume/wp-browser": "^1.19",
-		"neronmoon/scriptsdev": "^0.1.1",
-		"php-mock/php-mock-phpunit": "^1.1.2",
-		"site5/phantoman": "^1.1",
-		"wp-coding-standards/wpcs": "^0.11.0"
-	},
-	"autoload": {
-		"classmap": [
-			"src/"
-		]
-	},
-	"scripts": {
-		"build": [
-			"rm -fr vendor",
-			"composer install --no-dev --prefer-dist --no-suggest",
-			"composer dump-autoload -o",
-			"yarn grunt addtextdomain",
-			"composer archive --format=zip --dir=release --file=wp-cloudflare-guard"
-		],
-		"deploy": [
-			"rm -fr build",
-			"@build",
-			"unzip -qo release/wp-cloudflare-guard.zip -d build",
-			"yarn grunt wp_deploy"
-		],
-		"pre-tag": [
-			"composer update --no-suggest",
-			"yarn upgrade",
-			"yarn grunt version",
-			"yarn grunt addtextdomain",
-			"yarn grunt makepot",
-			"yarn doctoc README.md",
-			"github_changelog_generator --no-verbose"
-		],
-		"check-style": [
-			"phpcs --standard=ruleset.xml --colors -p -s .",
-			"phpcs --standard=tests/ruleset.xml --colors -p -s tests"
-		],
-		"fix-style": [
-			"phpcbf --standard=ruleset.xml -p --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1 .",
-			"phpcbf --standard=tests/ruleset.xml -p --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1 tests"
-		],
-		"install-dev-extra": [
-			"PhantomInstaller\\Installer::installPhantomJS",
-			"phpcs --config-set installed_paths vendor/wp-coding-standards/wpcs"
-		],
-		"pre-autoload-dump": [
-			"cfwp build",
-			"yarn install",
-			"yarn grunt replace"
-		],
-		"test": [
-			"@test-unit",
-			"@test-functional",
-			"@test-acceptance"
-		],
-		"test-acceptance": "codecept run acceptance",
-		"test-functional": "codecept run functional",
-		"test-unit": "codecept run unit",
-		"test-with-coverage": [
-			"codecept run unit --coverage --coverage-xml --coverage-html",
-			"@test-functional",
-			"@test-acceptance"
-		]
-	},
-	"config": {
-		"sort-packages": true
-	},
-	"extra": {
-		"imposter": {
-			"namespace": "WPCFG\\Vendor",
-			"excludes": [
-				"yoast/i18n-module"
-			]
-		},
-		"scripts-dev": {
-			"post-install-cmd": [
-				"@install-dev-extra"
-			],
-			"post-update-cmd": [
-				"@install-dev-extra"
-			]
-		}
-	},
-	"archive": {
-		"exclude": [
-			"/*",
-			".*",
-			"!/languages",
-			"!/src",
-			"!/vendor",
-			"!/LICENSE",
-			"!/README.txt",
-			"!/*.php"
-		]
-	}
+    "name": "typisttech/wp-cloudflare-guard",
+    "description": "Connecting WordPress with Cloudflare firewall, protect your WordPress site at DNS level. Automatically create firewall rules to block dangerous IPs",
+    "keywords": [
+        "wordpress",
+        "wp",
+        "cloudflare",
+        "firewall",
+        "security"
+    ],
+    "homepage": "https://github.com/TypistTech/wp-cloudflare-guard",
+    "license": "GPL-2.0+",
+    "authors": [
+        {
+            "name": "Typist Tech",
+            "email": "wp-cloudflare-guard@typist.tech",
+            "homepage": "https://www.typist.tech/"
+        },
+        {
+            "name": "Tang Rufus",
+            "email": "tangrufus@gmail.com",
+            "homepage": "https://www.typist.tech/",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+        "email": "wp-cloudflare-guard@typist.tech",
+        "issues": "https://github.com/TypistTech/wp-cloudflare-guard/issues",
+        "forum": "https://wordpress.org/support/plugin/wp-cloudflare-guard",
+        "source": "https://github.com/TypistTech/wp-cloudflare-guard"
+    },
+    "require": {
+        "php": "^7.0",
+        "cloudflare/cf-ip-rewrite": "^1.0",
+        "typisttech/cloudflare-wp-api": "^0.3.0",
+        "typisttech/imposter-plugin": "^0.2.5",
+        "typisttech/wp-better-settings": "^0.9.0",
+        "yoast/i18n-module": "^2.0"
+    },
+    "require-dev": {
+        "codeception/mockery-module": "^0.2.2",
+        "jakoch/phantomjs-installer": "^2.1",
+        "lucatume/wp-browser": "^1.19",
+        "neronmoon/scriptsdev": "^0.1.1",
+        "php-mock/php-mock-phpunit": "^1.1.2",
+        "site5/phantoman": "^1.1",
+        "wp-coding-standards/wpcs": "^0.11.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "WPCFG\\": "src/"
+        }
+    },
+    "scripts": {
+        "build": [
+            "rm -fr vendor",
+            "composer install --no-dev --prefer-dist --no-suggest",
+            "yarn grunt addtextdomain",
+            "composer archive --format=zip --dir=release --file=wp-cloudflare-guard"
+        ],
+        "deploy": [
+            "rm -fr build",
+            "@build",
+            "unzip -qo release/wp-cloudflare-guard.zip -d build",
+            "yarn grunt wp_deploy"
+        ],
+        "pre-tag": [
+            "composer update --no-suggest",
+            "yarn upgrade",
+            "yarn grunt version",
+            "yarn grunt addtextdomain",
+            "yarn grunt makepot",
+            "yarn doctoc README.md",
+            "github_changelog_generator --no-verbose"
+        ],
+        "check-style": [
+            "phpcs --standard=ruleset.xml --colors -p -s ."
+        ],
+        "fix-style": [
+            "phpcbf --standard=ruleset.xml -p --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1 ."
+        ],
+        "install-dev-extra": [
+            "PhantomInstaller\\Installer::installPhantomJS",
+            "phpcs --config-set installed_paths vendor/wp-coding-standards/wpcs"
+        ],
+        "pre-autoload-dump": [
+            "cfwp build",
+            "yarn install",
+            "yarn grunt replace"
+        ],
+        "test": [
+            "@test-unit",
+            "@test-functional",
+            "@test-acceptance"
+        ],
+        "test-acceptance": "codecept run acceptance",
+        "test-functional": "codecept run functional",
+        "test-unit": "codecept run unit",
+        "test-with-coverage": [
+            "codecept run unit --coverage --coverage-xml --coverage-html",
+            "@test-functional",
+            "@test-acceptance"
+        ]
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "sort-packages": true
+    },
+    "extra": {
+        "imposter": {
+            "namespace": "WPCFG\\Vendor",
+            "excludes": [
+                "yoast/i18n-module"
+            ]
+        },
+        "scripts-dev": {
+            "post-install-cmd": [
+                "@install-dev-extra"
+            ],
+            "post-update-cmd": [
+                "@install-dev-extra"
+            ]
+        }
+    },
+    "archive": {
+        "exclude": [
+            "/*",
+            ".*",
+            "!/languages",
+            "!/src",
+            "!/vendor",
+            "!/LICENSE",
+            "!/README.txt",
+            "!/*.php"
+        ]
+    }
 }
