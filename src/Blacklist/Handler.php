@@ -18,7 +18,8 @@ declare(strict_types=1);
 
 namespace WPCFG\Blacklist;
 
-use WPCFG\Loader;
+use WPCFG\AbstractLoadable;
+use WPCFG\Action;
 use WPCFG\OptionStore;
 use WPCFG\Vendor\Cloudflare\Zone\Firewall\AccessRules;
 
@@ -27,7 +28,7 @@ use WPCFG\Vendor\Cloudflare\Zone\Firewall\AccessRules;
  *
  * This class handle the blacklist event.
  */
-final class Handler
+final class Handler extends AbstractLoadable
 {
     /**
      * The api client.
@@ -56,17 +57,13 @@ final class Handler
     }
 
     /**
-     * Register this class via WordPress action hooks and filters.
-     *
-     * @param Loader      $loader      The WPCFG loader.
-     * @param OptionStore $optionStore The WPCFG option store.
-     *
-     * @return void
+     * {@inheritdoc}
      */
-    public static function register(Loader $loader, OptionStore $optionStore)
+    public static function getActions(): array
     {
-        $self = new self($optionStore, new AccessRules);
-        $loader->addAction('wpcfg_blacklist', $self, 'handleBlacklist');
+        return [
+            new Action('wpcfg_blacklist', 'handleBlacklist'),
+        ];
     }
 
     /**

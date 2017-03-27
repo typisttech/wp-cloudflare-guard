@@ -45,7 +45,7 @@ final class IpUtil
      *
      * @return string
      */
-    public static function getCurrentIp() : string
+    public static function getCurrentIp(): string
     {
         $ipRewrite  = new IpRewrite;
         $originalIP = $ipRewrite->getOriginalIP();

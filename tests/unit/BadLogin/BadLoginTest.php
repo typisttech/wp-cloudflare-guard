@@ -2,10 +2,9 @@
 
 namespace WPCFG\BadLogin;
 
-use Mockery;
 use phpmock\phpunit\PHPMock;
+use WPCFG\Action;
 use WPCFG\Blacklist\Event;
-use WPCFG\Loader;
 use WPCFG\OptionStore;
 
 /**
@@ -166,15 +165,13 @@ class BadLoginTest extends \Codeception\Test\Unit
      */
     public function testsHookedIntoWpAuthenticate()
     {
-        $loader = Mockery::mock(Loader::class, [ 'addAction' ]);
-        $loader->shouldReceive('addAction')
-               ->with(
-                   'wp_authenticate',
-                   anInstanceOf(BadLogin::class),
-                   'emitBlacklistEventIfBadUsername'
-               )
-               ->once();
-        BadLogin::register($loader, new OptionStore);
+        $actual = BadLogin::getActions();
+
+        $expected = [
+            new Action('wp_authenticate', 'emitBlacklistEventIfBadUsername'),
+        ];
+
+        $this->assertEquals($expected, $actual);
     }
 
     protected function _after()

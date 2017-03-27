@@ -19,10 +19,15 @@ declare(strict_types=1);
 namespace WPCFG;
 
 use WPCFG\Ads\I18nPromoter;
-use WPCFG\BadLogin\Admin as Bad_Login_Admin;
+use WPCFG\BadLogin\Admin as BadLoginAdmin;
 use WPCFG\BadLogin\BadLogin;
+use WPCFG\Blacklist\Event;
 use WPCFG\Blacklist\Handler;
-use WPCFG\Cloudflare\Admin as Cloudflare_Admin;
+use WPCFG\Cloudflare\Admin as CloudflareAdmin;
+use WPCFG\Cloudflare\IpUtil;
+use WPCFG\Vendor\Cloudflare\Zone\Firewall\AccessRules;
+use WPCFG\Vendor\League\Container\Container;
+use WPCFG\Vendor\League\Container\ReflectionContainer;
 
 /**
  * Final class WPCFG
@@ -32,11 +37,11 @@ use WPCFG\Cloudflare\Admin as Cloudflare_Admin;
 final class WPCFG
 {
     /**
-     * The WPCFG admin.
+     * The dependency injection container.
      *
-     * @var Admin
+     * @var Container
      */
-    private $admin;
+    private $container;
 
     /**
      * The loader that's responsible for maintaining and registering all hooks that power
@@ -47,41 +52,76 @@ final class WPCFG
     private $loader;
 
     /**
-     * The WPCFG option store.
-     *
-     * @var OptionStore
-     */
-    private $optionStore;
-
-    /**
      * WPCFG constructor.
      */
     public function __construct()
     {
-        $this->loader      = new Loader;
-        $this->optionStore = new OptionStore;
-        $this->admin       = Admin::register($this->loader, $this->optionStore);
+        $this->loader = new Loader;
 
-        $this->registerDependencies();
+        $this->container = new Container;
+        $this->container->delegate(new ReflectionContainer);
+
+        $this->initializeContainer();
+        $this->initializeLoadables();
     }
 
     /**
-     * Register the required dependencies for this plugin.
+     * Initialize container.
      *
      * @return void
      */
-    private function registerDependencies()
+    private function initializeContainer()
     {
-        $modules = [
+        $shares = [
+            OptionStore::class,
+            Admin::class,
             BadLogin::class,
-            Bad_Login_Admin::class,
+            BadLoginAdmin::class,
             Handler::class,
-            Cloudflare_Admin::class,
+            CloudflareAdmin::class,
+            I18n::class,
+            I18nPromoter::class,
+        ];
+        foreach ($shares as $share) {
+            $this->container->share('\\' . $share);
+        }
+
+        $addes = [
+            Event::class,
+            IpUtil::class,
+            AccessRules::class,
+        ];
+        foreach ($addes as $add) {
+            $this->container->add('\\' . $add);
+        }
+    }
+
+    /**
+     * Initialize Loadables.
+     *
+     * Add loadables to container and register their action and filter hooks.
+     *
+     * @return void
+     */
+    private function initializeLoadables()
+    {
+        $loadables = [
+            Admin::class,
+            BadLogin::class,
+            BadLoginAdmin::class,
+            Handler::class,
+            CloudflareAdmin::class,
             I18n::class,
             I18nPromoter::class,
         ];
 
-        array_walk($modules, [ $this, 'registerModule' ]);
+        foreach ($loadables as $loadable) {
+            $actions = $loadable::getActions();
+            array_walk($actions, [ $this, 'addActions' ], $loadable);
+
+            $filters = $loadable::getFilters();
+            array_walk($filters, [ $this, 'addFilters' ], $loadable);
+        }
     }
 
     /**
@@ -95,14 +135,39 @@ final class WPCFG
     }
 
     /**
-     * Register core module
+     * Register action hooks.
      *
-     * @param mixed $module The module class name.
+     * @param string $loadable Identifier of the entry to look for inside container.
+     * @param Action $action   Data transfer object that holds action hook information.
      *
      * @return void
      */
-    private function registerModule($module)
+    private function addActions(Action $action, $key, string $loadable)
     {
-        $module::register($this->loader, $this->optionStore, $this->admin);
+        $callbackClosure = function (...$args) use ($loadable, $action) {
+            $instance = $this->container->get($loadable);
+            $instance->{$action->getCallbackMethod()}(...$args);
+        };
+        $action->setCallbackClosure($callbackClosure);
+        $this->loader->addAction($action);
+    }
+
+    /**
+     * Register filter hooks.
+     *
+     * @param string $loadable Identifier of the entry to look for inside container.
+     * @param Filter $filter   Data transfer object that holds filter hook information.
+     *
+     * @return void
+     */
+    private function addFilters(Filter $filter, $key, string $loadable)
+    {
+        $callbackClosure = function (...$args) use ($loadable, $filter) {
+            $instance = $this->container->get($loadable);
+
+            return $instance->{$filter->getCallbackMethod()}(...$args);
+        };
+        $filter->setCallbackClosure($callbackClosure);
+        $this->loader->addFilter($filter);
     }
 }

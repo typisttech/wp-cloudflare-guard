@@ -18,15 +18,15 @@ declare(strict_types=1);
 
 namespace WPCFG\Ads;
 
+use WPCFG\AbstractLoadable;
+use WPCFG\Action;
 use WPCFG\Admin;
-use WPCFG\Loader;
-use WPCFG\OptionStore;
 use WPCFG\Vendor\Yoast_I18n_WordPressOrg_v2;
 
 /**
  * Final class I18nPromoter
  */
-final class I18nPromoter
+final class I18nPromoter extends AbstractLoadable
 {
     /**
      * The WPCFG admin.
@@ -46,18 +46,13 @@ final class I18nPromoter
     }
 
     /**
-     * Register this class via WordPress action hooks and filters.
-     *
-     * @param Loader      $loader      The WPCFG loader.
-     * @param OptionStore $optionStore The WPCFG option store.
-     * @param Admin       $admin       The WPCFG admin.
-     *
-     * @return void
+     * {@inheritdoc}
      */
-    public static function register(Loader $loader, OptionStore $optionStore, Admin $admin)
+    public static function getActions(): array
     {
-        $self = new self($admin);
-        $loader->addAction('admin_menu', $self, 'addYoastI18nModuleToMenuPages', 20);
+        return [
+            new Action('admin_menu', 'addYoastI18nModuleToMenuPages', 20),
+        ];
     }
 
     /**

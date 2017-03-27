@@ -56,7 +56,7 @@ final class Event
      *
      * @return string
      */
-    public function getIpAddress() : string
+    public function getIpAddress(): string
     {
         return $this->ipAddress;
     }
@@ -66,7 +66,7 @@ final class Event
      *
      * @return string
      */
-    public function getNote() : string
+    public function getNote(): string
     {
         return $this->note;
     }

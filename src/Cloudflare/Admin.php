@@ -18,6 +18,8 @@ declare(strict_types=1);
 
 namespace WPCFG\Cloudflare;
 
+use WPCFG\AbstractLoadable;
+use WPCFG\Filter;
 use WPCFG\Loader;
 use WPCFG\Vendor\TypistTech\WPBetterSettings\FieldConfig;
 use WPCFG\Vendor\TypistTech\WPBetterSettings\MenuPageConfig;
@@ -31,20 +33,17 @@ use WPCFG\Vendor\TypistTech\WPBetterSettings\ViewFactory;
  *
  * The admin-specific functionality of Cloudflare settings.
  */
-final class Admin
+final class Admin extends AbstractLoadable
 {
     /**
-     * Register this class via WordPress action hooks and filters.
-     *
-     * @param Loader $loader The WPCFG loader.
-     *
-     * @return void
+     * {@inheritdoc}
      */
-    public static function register(Loader $loader)
+    public static function getFilters(): array
     {
-        $self = new self;
-        $loader->addFilter('wpcfg_menu_page_configs', $self, 'addMenuPageConfig');
-        $loader->addFilter('wpcfg_setting_configs', $self, 'addSettingConfig');
+        return [
+            new Filter('wpcfg_menu_page_configs', 'addMenuPageConfig'),
+            new Filter('wpcfg_setting_configs', 'addSettingConfig'),
+        ];
     }
 
     /**
@@ -54,7 +53,7 @@ final class Admin
      *
      * @return MenuPageConfig[]
      */
-    public function addMenuPageConfig(array $menuPageConfigs) : array
+    public function addMenuPageConfig(array $menuPageConfigs): array
     {
         $menuPageConfigs[] = new MenuPageConfig([
             'menu_slug'    => 'wpcfg_cloudflare',
@@ -75,7 +74,7 @@ final class Admin
      *
      * @return SettingConfig[]
      */
-    public function addSettingConfig(array $settingConfig) : array
+    public function addSettingConfig(array $settingConfig): array
     {
         $emailField = new FieldConfig([
             'id'                => 'email',

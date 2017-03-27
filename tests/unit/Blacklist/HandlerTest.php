@@ -4,7 +4,7 @@ namespace WPCFG\Blacklist;
 
 use Mockery;
 use phpmock\phpunit\PHPMock;
-use WPCFG\Loader;
+use WPCFG\Action;
 use WPCFG\OptionStore;
 use WPCFG\Vendor\Cloudflare\Zone\Firewall\AccessRules;
 
@@ -62,15 +62,13 @@ class HandlerTest extends \Codeception\Test\Unit
      */
     public function testHookedIntoWpcfgBlacklist()
     {
-        $loader = Mockery::mock(Loader::class, [ 'addAction' ]);
-        $loader->shouldReceive('addAction')
-               ->with(
-                   'wpcfg_blacklist',
-                   anInstanceOf(Handler::class),
-                   'handleBlacklist'
-               )
-               ->once();
-        Handler::register($loader, new OptionStore);
+        $actual = Handler::getActions();
+
+        $expected = [
+            new Action('wpcfg_blacklist', 'handleBlacklist'),
+        ];
+
+        $this->assertEquals($expected, $actual);
     }
 
     /**
