@@ -47,6 +47,8 @@ final class Admin extends AbstractLoadable
     /**
      * Add the menu page config.
      *
+     * @todo Test via acceptance test.
+     *
      * @param MenuPageConfig[] $menuPageConfigs Menu page configurations.
      *
      * @return array|MenuPageConfig[]
@@ -68,6 +70,8 @@ final class Admin extends AbstractLoadable
 
     /**
      * Add settings config.
+     *
+     * @todo Test via acceptance test.
      *
      * @param SettingConfig[] $settingConfig Setting configurations.
      *

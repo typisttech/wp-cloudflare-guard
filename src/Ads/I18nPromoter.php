@@ -58,24 +58,21 @@ final class I18nPromoter extends AbstractLoadable
     /**
      * Add Yoast i18n module to all WPCFG menu pages.
      *
+     * @todo Test via acceptance test.
      * @return void
      */
     public function addYoastI18nModuleToMenuPages()
     {
-        $menuPageConfigs = $this->admin->getMenuPageConfigs();
+        $hooks = array_map(function (string $menuSlug) {
+            return str_replace('-', '_', $menuSlug . '_after_option_form');
+        }, $this->admin->getMenuSlugs());
 
-        $hooks = array_map(function ($menuPageConfig) {
-            return str_replace('-', '_', $menuPageConfig->menu_slug) . '_after_option_form';
-        }, $menuPageConfigs);
-
-        array_walk($hooks, function ($hook) {
-            new Yoast_I18n_WordPressOrg_v2(
-                [
-                    'textdomain'  => 'wp-cloudflare-guard',
-                    'plugin_name' => 'WP Cloudflare Guard',
-                    'hook'        => $hook,
-                ]
-            );
+        array_walk($hooks, function (string $hook) {
+            return new Yoast_I18n_WordPressOrg_v2([
+                'textdomain'  => 'wp-cloudflare-guard',
+                'plugin_name' => 'WP Cloudflare Guard',
+                'hook'        => $hook,
+            ]);
         });
     }
 }

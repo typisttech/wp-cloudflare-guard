@@ -2,11 +2,7 @@
 
 namespace WPCFG\Ads;
 
-use Mockery;
 use WPCFG\Action;
-use WPCFG\Admin;
-use WPCFG\Loader;
-use WPCFG\OptionStore;
 
 /**
  * @coversDefaultClass \WPCFG\Ads\I18nPromoter

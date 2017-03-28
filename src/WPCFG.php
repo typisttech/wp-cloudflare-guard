@@ -28,6 +28,7 @@ use WPCFG\Cloudflare\IpUtil;
 use WPCFG\Vendor\Cloudflare\Zone\Firewall\AccessRules;
 use WPCFG\Vendor\League\Container\Container;
 use WPCFG\Vendor\League\Container\ReflectionContainer;
+use WPCFG\Vendor\Yoast_I18n_WordPressOrg_v2;
 
 /**
  * Final class WPCFG
@@ -59,7 +60,6 @@ final class WPCFG
         $this->loader = new Loader;
 
         $this->container = new Container;
-        $this->container->delegate(new ReflectionContainer);
 
         $this->initializeContainer();
         $this->initializeLoadables();
@@ -72,6 +72,9 @@ final class WPCFG
      */
     private function initializeContainer()
     {
+        $this->container->delegate(new ReflectionContainer);
+        $this->container->share('\\' . Container::class, $this->container);
+
         $shares = [
             OptionStore::class,
             Admin::class,
@@ -94,6 +97,16 @@ final class WPCFG
         foreach ($addes as $add) {
             $this->container->add('\\' . $add);
         }
+
+        $this->container->add('\\' . Yoast_I18n_WordPressOrg_v2::class, function (string $hook) {
+            new Yoast_I18n_WordPressOrg_v2(
+                [
+                    'textdomain'  => 'wp-cloudflare-guard',
+                    'plugin_name' => 'WP Cloudflare Guard',
+                    'hook'        => $hook,
+                ]
+            );
+        });
     }
 
     /**
@@ -137,8 +150,9 @@ final class WPCFG
     /**
      * Register action hooks.
      *
-     * @param string $loadable Identifier of the entry to look for inside container.
      * @param Action $action   Data transfer object that holds action hook information.
+     * @param mixed  $key      Unused.
+     * @param string $loadable Identifier of the entry to look for inside container.
      *
      * @return void
      */
@@ -155,8 +169,9 @@ final class WPCFG
     /**
      * Register filter hooks.
      *
-     * @param string $loadable Identifier of the entry to look for inside container.
      * @param Filter $filter   Data transfer object that holds filter hook information.
+     * @param mixed  $key      Unused.
+     * @param string $loadable Identifier of the entry to look for inside container.
      *
      * @return void
      */
@@ -169,5 +184,15 @@ final class WPCFG
         };
         $filter->setCallbackClosure($callbackClosure);
         $this->loader->addFilter($filter);
+    }
+
+    /**
+     * Container getter.
+     *
+     * @return Container
+     */
+    public function getContainer(): Container
+    {
+        return $this->container;
     }
 }

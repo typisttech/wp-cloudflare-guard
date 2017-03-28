@@ -2,8 +2,7 @@
 
 namespace WPCFG\Blacklist;
 
-use Mockery;
-use phpmock\phpunit\PHPMock;
+use AspectMock\Test;
 use WPCFG\Action;
 use WPCFG\OptionStore;
 use WPCFG\Vendor\Cloudflare\Zone\Firewall\AccessRules;
@@ -13,48 +12,36 @@ use WPCFG\Vendor\Cloudflare\Zone\Firewall\AccessRules;
  */
 class HandlerTest extends \Codeception\Test\Unit
 {
-    use PHPMock;
-
     /**
      * @covers \WPCFG\Blacklist\Handler
      */
     public function testHandleBlacklistEvent()
     {
-        update_option('wpcfg_cloudflare', [
-            'email'   => 'email@example.com',
-            'api_key' => 'API_KEY_123',
-            'zone_id' => 'abc123',
-        ]);
-        $event = new Event('127.0.0.1', 'some note');
+        $accessRulesMock = Test::double(new AccessRules);
+        $event           = new Event('127.0.0.1', 'some note');
+        $handler         = new Handler(new OptionStore, $accessRulesMock->getObject());
 
-        $configuration = (object) [
-            'target' => 'ip',
-            'value'  => '127.0.0.1',
+        $handler->handleBlacklist($event);
+
+        $expectedCreate = [
+            'abc123',
+            'block',
+            (object) [
+                'target' => 'ip',
+                'value'  => '127.0.0.1',
+            ],
+            'some note',
         ];
 
-        $accessRulesMock = Mockery::mock(AccessRules::class);
-        $accessRulesMock->shouldReceive('setEmail')
-                        ->with('email@example.com')
-                        ->once()
-                        ->ordered();
+        $accessRulesMock->verifyInvokedMultipleTimes('create', 1);
+        $actualCreate = $accessRulesMock->getCallsForMethod('create')[0];
+        $this->assertEquals($expectedCreate, $actualCreate);
 
-        $accessRulesMock->shouldReceive('setAuthKey')
-                        ->with('API_KEY_123')
-                        ->once()
-                        ->ordered();
+        $accessRulesMock->verifyInvokedMultipleTimes('setEmail', 1);
+        $accessRulesMock->verifyInvokedOnce('setEmail', [ 'email@example.com' ]);
 
-        $accessRulesMock->shouldReceive('create')
-                        ->with(
-                            'abc123',
-                            'block',
-                            equalTo($configuration),
-                            'some note'
-                        )
-                        ->once()
-                        ->ordered();
-
-        $handler = new Handler(new OptionStore, $accessRulesMock);
-        $handler->handleBlacklist($event);
+        $accessRulesMock->verifyInvokedMultipleTimes('setAuthKey', 1);
+        $accessRulesMock->verifyInvokedOnce('setAuthKey', [ 'API_KEY_123' ]);
     }
 
     /**
@@ -76,12 +63,8 @@ class HandlerTest extends \Codeception\Test\Unit
      */
     public function testSkipsForNonBlacklistEvents()
     {
-        $accessRulesMock = Mockery::mock(AccessRules::class);
-        $accessRulesMock->shouldReceive('setEmail')->never();
-        $accessRulesMock->shouldReceive('setAuthKey')->never();
-        $accessRulesMock->shouldReceive('create')->never();
-
-        $handler = new Handler(new OptionStore, $accessRulesMock);
+        $accessRulesMock = Test::double(new AccessRules);
+        $handler         = new Handler(new OptionStore, $accessRulesMock->getObject());
 
         $handler->handleBlacklist();
         $handler->handleBlacklist(null);
@@ -89,6 +72,19 @@ class HandlerTest extends \Codeception\Test\Unit
         $handler->handleBlacklist([]);
         $handler->handleBlacklist('');
         $handler->handleBlacklist(123);
+
+        $accessRulesMock->verifyNeverInvoked('setEmail');
+        $accessRulesMock->verifyNeverInvoked('setAuthKey');
+        $accessRulesMock->verifyNeverInvoked('create');
+    }
+
+    protected function _before()
+    {
+        update_option('wpcfg_cloudflare', [
+            'email'   => 'email@example.com',
+            'api_key' => 'API_KEY_123',
+            'zone_id' => 'abc123',
+        ]);
     }
 
     protected function _after()

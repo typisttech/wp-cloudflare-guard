@@ -116,4 +116,16 @@ final class Admin extends AbstractLoadable
 
         return $this->menuPageConfigs;
     }
+
+    /**
+     * Menu slugs getter.
+     *
+     * @return string[]
+     */
+    public function getMenuSlugs(): array
+    {
+        return array_map(function (MenuPageConfig $menuPageConfig) {
+            return $menuPageConfig->menu_slug;
+        }, $this->getMenuPageConfigs());
+    }
 }
