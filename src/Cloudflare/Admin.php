@@ -20,7 +20,6 @@ namespace WPCFG\Cloudflare;
 
 use WPCFG\AbstractLoadable;
 use WPCFG\Filter;
-use WPCFG\Loader;
 use WPCFG\Vendor\TypistTech\WPBetterSettings\FieldConfig;
 use WPCFG\Vendor\TypistTech\WPBetterSettings\MenuPageConfig;
 use WPCFG\Vendor\TypistTech\WPBetterSettings\Sanitizer;

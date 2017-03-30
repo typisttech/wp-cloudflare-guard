@@ -78,6 +78,11 @@ class HandlerTest extends \Codeception\Test\Unit
         $accessRulesMock->verifyNeverInvoked('create');
     }
 
+    protected function _after()
+    {
+        delete_option('wpcfg_cloudflare');
+    }
+
     protected function _before()
     {
         update_option('wpcfg_cloudflare', [
@@ -85,10 +90,5 @@ class HandlerTest extends \Codeception\Test\Unit
             'api_key' => 'API_KEY_123',
             'zone_id' => 'abc123',
         ]);
-    }
-
-    protected function _after()
-    {
-        delete_option('wpcfg_cloudflare');
     }
 }

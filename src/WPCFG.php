@@ -80,7 +80,7 @@ final class WPCFG
             I18n::class,
         ];
         foreach ($shares as $share) {
-            $this->container->share('\\' .$share);
+            $this->container->share('\\' . $share);
         }
 
         $addes = [
@@ -89,7 +89,7 @@ final class WPCFG
             AccessRules::class,
         ];
         foreach ($addes as $add) {
-            $this->container->add('\\' .$add);
+            $this->container->add('\\' . $add);
         }
     }
 
@@ -119,6 +119,16 @@ final class WPCFG
             $filters = $loadable::getFilters();
             array_walk($filters, [ $this, 'addFilters' ], $loadable);
         }
+    }
+
+    /**
+     * Container getter.
+     *
+     * @return Container
+     */
+    public function getContainer(): Container
+    {
+        return $this->container;
     }
 
     /**
@@ -168,15 +178,5 @@ final class WPCFG
         };
         $filter->setCallbackClosure($callbackClosure);
         $this->loader->addFilter($filter);
-    }
-
-    /**
-     * Container getter.
-     *
-     * @return Container
-     */
-    public function getContainer(): Container
-    {
-        return $this->container;
     }
 }
