@@ -21,11 +21,8 @@ namespace WPCFG;
 use WPCFG\Ads\I18nPromoter;
 use WPCFG\BadLogin\Admin as BadLoginAdmin;
 use WPCFG\BadLogin\BadLogin;
-use WPCFG\Blacklist\Event;
 use WPCFG\Blacklist\Handler;
 use WPCFG\Cloudflare\Admin as CloudflareAdmin;
-use WPCFG\Cloudflare\IpUtil;
-use WPCFG\Vendor\Cloudflare\Zone\Firewall\AccessRules;
 
 /**
  * Final class WPCFG
@@ -74,19 +71,11 @@ final class WPCFG
             OptionStore::class,
             Admin::class,
             BadLoginAdmin::class,
-            Handler::class,
             CloudflareAdmin::class,
             I18n::class,
         ];
         foreach ($shares as $share) {
             $this->container->share('\\' . $share);
-        }
-
-        $addes = [
-            AccessRules::class,
-        ];
-        foreach ($addes as $add) {
-            $this->container->add('\\' . $add);
         }
     }
 

@@ -21,6 +21,8 @@ namespace WPCFG;
 use WPCFG\Ads\I18nPromoter;
 use WPCFG\BadLogin\BadLogin;
 use WPCFG\Blacklist\Event;
+use WPCFG\Blacklist\Handler;
+use WPCFG\Cloudflare\AccessRules;
 use WPCFG\Cloudflare\IpUtil;
 use WPCFG\Vendor\League\Container\Container as LeagueContainer;
 use WPCFG\Vendor\League\Container\ReflectionContainer;
@@ -39,12 +41,14 @@ class Container extends LeagueContainer
     public function initialize()
     {
         $this->delegate(new ReflectionContainer);
-        $this->share(Container::class, $this);
+        $this->add(Container::class, $this);
 
         $keys = [
+            AccessRules::class,
             BadLogin::class,
             I18nPromoter::class,
             IpUtil::class,
+            Handler::class,
         ];
         foreach ($keys as $key) {
             $this->add('\\' . $key);
@@ -60,6 +64,7 @@ class Container extends LeagueContainer
 
         $this->add('blacklist-event-for-current-ip', function (string $note) {
             $ip = $this->call([ IpUtil::class, 'getCurrentIp' ]);
+
             return $this->get(Event::class, [ $ip, $note ]);
         });
     }

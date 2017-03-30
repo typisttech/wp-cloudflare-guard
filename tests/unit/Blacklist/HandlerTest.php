@@ -4,8 +4,7 @@ namespace WPCFG\Blacklist;
 
 use AspectMock\Test;
 use WPCFG\Action;
-use WPCFG\OptionStore;
-use WPCFG\Vendor\Cloudflare\Zone\Firewall\AccessRules;
+use WPCFG\Cloudflare\AccessRules;
 
 /**
  * @coversDefaultClass \WPCFG\Blacklist\Handler
@@ -13,15 +12,28 @@ use WPCFG\Vendor\Cloudflare\Zone\Firewall\AccessRules;
 class HandlerTest extends \Codeception\Test\Unit
 {
     /**
+     * @var \WPCFG\UnitTester;
+     */
+    protected $tester;
+
+    /**
+     * @var \AspectMock\Proxy\InstanceProxy
+     */
+    private $accessRules;
+
+    /**
+     * @var Handler
+     */
+    private $handler;
+
+    /**
      * @covers \WPCFG\Blacklist\Handler
      */
     public function testHandleBlacklistEvent()
     {
-        $accessRulesMock = Test::double(new AccessRules);
-        $event           = new Event('127.0.0.1', 'some note');
-        $handler         = new Handler(new OptionStore, $accessRulesMock->getObject());
+        $event = new Event('127.0.0.1', 'some note');
 
-        $handler->handleBlacklist($event);
+        $this->handler->handleBlacklist($event);
 
         $expectedCreate = [
             'abc123',
@@ -33,15 +45,15 @@ class HandlerTest extends \Codeception\Test\Unit
             'some note',
         ];
 
-        $accessRulesMock->verifyInvokedMultipleTimes('create', 1);
-        $actualCreate = $accessRulesMock->getCallsForMethod('create')[0];
+        $this->accessRules->verifyInvokedMultipleTimes('create', 1);
+        $actualCreate = $this->accessRules->getCallsForMethod('create')[0];
         $this->assertEquals($expectedCreate, $actualCreate);
 
-        $accessRulesMock->verifyInvokedMultipleTimes('setEmail', 1);
-        $accessRulesMock->verifyInvokedOnce('setEmail', [ 'email@example.com' ]);
+        $this->accessRules->verifyInvokedMultipleTimes('setEmail', 1);
+        $this->accessRules->verifyInvokedOnce('setEmail', [ 'email@example.com' ]);
 
-        $accessRulesMock->verifyInvokedMultipleTimes('setAuthKey', 1);
-        $accessRulesMock->verifyInvokedOnce('setAuthKey', [ 'API_KEY_123' ]);
+        $this->accessRules->verifyInvokedMultipleTimes('setAuthKey', 1);
+        $this->accessRules->verifyInvokedOnce('setAuthKey', [ 'API_KEY_123' ]);
     }
 
     /**
@@ -63,19 +75,16 @@ class HandlerTest extends \Codeception\Test\Unit
      */
     public function testSkipsForNonBlacklistEvents()
     {
-        $accessRulesMock = Test::double(new AccessRules);
-        $handler         = new Handler(new OptionStore, $accessRulesMock->getObject());
+        $this->handler->handleBlacklist();
+        $this->handler->handleBlacklist(null);
+        $this->handler->handleBlacklist(false);
+        $this->handler->handleBlacklist([]);
+        $this->handler->handleBlacklist('');
+        $this->handler->handleBlacklist(123);
 
-        $handler->handleBlacklist();
-        $handler->handleBlacklist(null);
-        $handler->handleBlacklist(false);
-        $handler->handleBlacklist([]);
-        $handler->handleBlacklist('');
-        $handler->handleBlacklist(123);
-
-        $accessRulesMock->verifyNeverInvoked('setEmail');
-        $accessRulesMock->verifyNeverInvoked('setAuthKey');
-        $accessRulesMock->verifyNeverInvoked('create');
+        $this->accessRules->verifyNeverInvoked('setEmail');
+        $this->accessRules->verifyNeverInvoked('setAuthKey');
+        $this->accessRules->verifyNeverInvoked('create');
     }
 
     protected function _after()
@@ -90,5 +99,17 @@ class HandlerTest extends \Codeception\Test\Unit
             'api_key' => 'API_KEY_123',
             'zone_id' => 'abc123',
         ]);
+
+        $container = $this->tester->getContainer();
+
+        $this->accessRules = Test::double(
+            $container->get(AccessRules::class),
+            [
+                'create' => null,
+            ]
+        );
+        $container->add(AccessRules::class, $this->accessRules->getObject());
+
+        $this->handler = $container->get(Handler::class);
     }
 }

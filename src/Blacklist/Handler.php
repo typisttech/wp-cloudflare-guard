@@ -20,8 +20,8 @@ namespace WPCFG\Blacklist;
 
 use WPCFG\AbstractLoadable;
 use WPCFG\Action;
+use WPCFG\Cloudflare\AccessRules;
 use WPCFG\OptionStore;
-use WPCFG\Vendor\Cloudflare\Zone\Firewall\AccessRules;
 
 /**
  * Final class Handler.
@@ -69,7 +69,7 @@ final class Handler extends AbstractLoadable
     /**
      * Handle blacklist events.
      *
-     * @param Event $event The event expected to be Blacklist\Event.
+     * @param mixed $event The event expected to be \WPCFG\Blacklist\Event.
      *
      * @return void
      */
