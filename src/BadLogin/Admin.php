@@ -51,11 +51,10 @@ final class Admin extends AbstractLoadable
      *
      * @param MenuPageConfig[] $menuPageConfigs Menu page configurations.
      *
-     * @return array|MenuPageConfig[]
+     * @return MenuPageConfig[]
      */
     public function addMenuPageConfig(array $menuPageConfigs): array
     {
-        // Create the admin settings page in wp-admin > WP Cloudflare Guard (admin.php?page=wpcfg).
         $menuPageConfigs[] = new MenuPageConfig([
             'menu_slug'    => 'wpcfg_bad_login',
             'page_title'   => 'WP Cloudflare Guard - Bad Login',
@@ -79,17 +78,6 @@ final class Admin extends AbstractLoadable
      */
     public function addSettingConfig(array $settingConfig): array
     {
-        $enabledField = new FieldConfig([
-            'id'    => 'disabled',
-            'title' => 'Bad Login',
-            'view'  => ViewFactory::build('checkbox-field'),
-            'desc'  => __(
-                '<b>Disable</b> blacklisting IPs which attempt to login with bad usernames',
-                'wp-cloudflare-guard'
-            ),
-            'label' => __('Disable Bad Login', 'wp-cloudflare-guard'),
-        ]);
-
         $badUsernamesField = new FieldConfig([
             'id'    => 'bad_usernames',
             'title' => __('Bad Usernames', 'wp-cloudflare-guard'),
@@ -101,7 +89,7 @@ final class Admin extends AbstractLoadable
             'id'     => 'wpcfg_bad_login',
             'page'   => 'wpcfg_bad_login',
             'title'  => __('Cloudflare Settings', 'wp-cloudflare-guard'),
-            'fields' => [ $enabledField, $badUsernamesField ],
+            'fields' => [ $badUsernamesField ],
         ]);
 
         $settingConfig[] = new SettingConfig([

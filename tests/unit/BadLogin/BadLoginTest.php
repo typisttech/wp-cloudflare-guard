@@ -5,13 +5,17 @@ namespace WPCFG\BadLogin;
 use AspectMock\Test;
 use WPCFG\Action;
 use WPCFG\Blacklist\Event;
-use WPCFG\OptionStore;
 
 /**
  * @coversDefaultClass \WPCFG\BadLogin\BadLogin
  */
 class BadLoginTest extends \Codeception\Test\Unit
 {
+    /**
+     * @var \WPCFG\UnitTester;
+     */
+    protected $tester;
+
     /**
      * @var BadLogin
      */
@@ -113,7 +117,7 @@ class BadLoginTest extends \Codeception\Test\Unit
     /**
      * @covers \WPCFG\BadLogin\BadLogin
      */
-    public function testSkipsForEmptyUsername()
+    public function testSkipsEmptyUsername()
     {
         update_option('wpcfg_bad_login', [
             'bad_usernames' => '',
@@ -179,21 +183,6 @@ class BadLoginTest extends \Codeception\Test\Unit
     /**
      * @covers \WPCFG\BadLogin\BadLogin
      */
-    public function testSkipsWhenDisabled()
-    {
-        update_option('wpcfg_bad_login', [
-            'bad_usernames' => 'bad-boy',
-            'disabled'      => '1',
-        ]);
-
-        $this->badLogin->emitBlacklistEventIfBadUsername('bad-boy');
-
-        $this->doActionMock->verifyNeverInvoked();
-    }
-
-    /**
-     * @covers \WPCFG\BadLogin\BadLogin
-     */
     public function testsHookedIntoWpAuthenticate()
     {
         $actual = BadLogin::getActions();
@@ -212,7 +201,8 @@ class BadLoginTest extends \Codeception\Test\Unit
 
     protected function _before()
     {
-        $this->badLogin     = new BadLogin(new OptionStore);
+        $container = $this->tester->getContainer();
+        $this->badLogin     = $container->get(BadLogin::class);
         $this->doActionMock = Test::func(__NAMESPACE__, 'do_action', 'done');
     }
 }

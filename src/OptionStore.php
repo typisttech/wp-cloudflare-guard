@@ -56,4 +56,19 @@ class OptionStore extends WPBSOptionStore
     {
         return $this->get('wpcfg_cloudflare', 'zone_id');
     }
+
+    /**
+     * Bad usernames getter.
+     *
+     * @return array
+     */
+    public function getBadUsernames(): array
+    {
+        $badUsernames = $this->get('wpcfg_bad_login', 'bad_usernames');
+        if (empty($badUsernames)) {
+            return [];
+        }
+
+        return explode(',', $badUsernames);
+    }
 }

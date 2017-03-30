@@ -73,7 +73,6 @@ final class WPCFG
         $shares = [
             OptionStore::class,
             Admin::class,
-            BadLogin::class,
             BadLoginAdmin::class,
             Handler::class,
             CloudflareAdmin::class,
@@ -84,8 +83,6 @@ final class WPCFG
         }
 
         $addes = [
-            Event::class,
-            IpUtil::class,
             AccessRules::class,
         ];
         foreach ($addes as $add) {

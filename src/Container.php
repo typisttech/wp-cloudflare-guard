@@ -19,6 +19,9 @@ declare(strict_types=1);
 namespace WPCFG;
 
 use WPCFG\Ads\I18nPromoter;
+use WPCFG\BadLogin\BadLogin;
+use WPCFG\Blacklist\Event;
+use WPCFG\Cloudflare\IpUtil;
 use WPCFG\Vendor\League\Container\Container as LeagueContainer;
 use WPCFG\Vendor\League\Container\ReflectionContainer;
 use WPCFG\Vendor\Yoast_I18n_WordPressOrg_v2;
@@ -36,18 +39,28 @@ class Container extends LeagueContainer
     public function initialize()
     {
         $this->delegate(new ReflectionContainer);
-
         $this->share(Container::class, $this);
 
         $keys = [
+            BadLogin::class,
             I18nPromoter::class,
+            IpUtil::class,
         ];
         foreach ($keys as $key) {
             $this->add('\\' . $key);
         }
 
         $this->add(Yoast_I18n_WordPressOrg_v2::class, function (array $args) {
-            new Yoast_I18n_WordPressOrg_v2($args);
+            return new Yoast_I18n_WordPressOrg_v2($args);
+        });
+
+        $this->add(Event::class, function (string $ip, string $note) {
+            return new Event($ip, $note);
+        });
+
+        $this->add('blacklist-event-for-current-ip', function (string $note) {
+            $ip = $this->call([ IpUtil::class, 'getCurrentIp' ]);
+            return $this->get(Event::class, [ $ip, $note ]);
         });
     }
 }

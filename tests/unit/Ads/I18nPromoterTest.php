@@ -5,7 +5,6 @@ namespace WPCFG\Ads;
 use AspectMock\Test;
 use WPCFG\Action;
 use WPCFG\Admin;
-use WPCFG\UnitTester;
 use WPCFG\Vendor\Yoast_I18n_WordPressOrg_v2;
 
 /**
@@ -14,7 +13,7 @@ use WPCFG\Vendor\Yoast_I18n_WordPressOrg_v2;
 class I18nPromoterTest extends \Codeception\Test\Unit
 {
     /**
-     * @var UnitTester
+     * @var \WPCFG\UnitTester;
      */
     protected $tester;
 
