@@ -18,7 +18,8 @@ declare(strict_types=1);
 
 namespace WPCFG\BadLogin;
 
-use WPCFG\Loader;
+use WPCFG\AbstractLoadable;
+use WPCFG\Filter;
 use WPCFG\Vendor\TypistTech\WPBetterSettings\FieldConfig;
 use WPCFG\Vendor\TypistTech\WPBetterSettings\MenuPageConfig;
 use WPCFG\Vendor\TypistTech\WPBetterSettings\SectionConfig;
@@ -30,30 +31,29 @@ use WPCFG\Vendor\TypistTech\WPBetterSettings\ViewFactory;
  *
  * The admin-specific functionality of the Bad Login module.
  */
-final class Admin
+final class Admin extends AbstractLoadable
 {
     /**
-     * Register this class via WordPress action hooks and filters.
-     *
-     * @param Loader $loader The WPCFG loader.
-     *
-     * @return void
+     * {@inheritdoc}
      */
-    public static function register(Loader $loader)
+    public static function getFilters(): array
     {
-        $self = new self;
-        $loader->addFilter('wpcfg_menu_page_configs', $self, 'addMenuPageConfig');
-        $loader->addFilter('wpcfg_setting_configs', $self, 'addSettingConfig');
+        return [
+            new Filter('wpcfg_menu_page_configs', 'addMenuPageConfig'),
+            new Filter('wpcfg_setting_configs', 'addSettingConfig'),
+        ];
     }
 
     /**
      * Add the menu page config.
      *
+     * @todo Test via acceptance test.
+     *
      * @param MenuPageConfig[] $menuPageConfigs Menu page configurations.
      *
      * @return array|MenuPageConfig[]
      */
-    public function addMenuPageConfig(array $menuPageConfigs) : array
+    public function addMenuPageConfig(array $menuPageConfigs): array
     {
         // Create the admin settings page in wp-admin > WP Cloudflare Guard (admin.php?page=wpcfg).
         $menuPageConfigs[] = new MenuPageConfig([
@@ -71,11 +71,13 @@ final class Admin
     /**
      * Add settings config.
      *
+     * @todo Test via acceptance test.
+     *
      * @param SettingConfig[] $settingConfig Setting configurations.
      *
      * @return SettingConfig[]
      */
-    public function addSettingConfig(array $settingConfig) : array
+    public function addSettingConfig(array $settingConfig): array
     {
         $enabledField = new FieldConfig([
             'id'    => 'disabled',

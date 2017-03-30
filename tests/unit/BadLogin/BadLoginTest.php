@@ -2,10 +2,9 @@
 
 namespace WPCFG\BadLogin;
 
-use Mockery;
-use phpmock\phpunit\PHPMock;
+use AspectMock\Test;
+use WPCFG\Action;
 use WPCFG\Blacklist\Event;
-use WPCFG\Loader;
 use WPCFG\OptionStore;
 
 /**
@@ -13,17 +12,15 @@ use WPCFG\OptionStore;
  */
 class BadLoginTest extends \Codeception\Test\Unit
 {
-    use PHPMock;
-
     /**
      * @var BadLogin
      */
     private $badLogin;
 
-    // @codingStandardsIgnoreStart
+    /**
+     * @var \AspectMock\Proxy\FuncProxy
+     */
     private $doActionMock;
-
-    // @codingStandardsIgnoreEnd
 
     /**
      * @covers \WPCFG\BadLogin\BadLogin
@@ -33,13 +30,19 @@ class BadLoginTest extends \Codeception\Test\Unit
         update_option('wpcfg_bad_login', [
             'bad_usernames' => 'bad-boy, bad-girl',
         ]);
-        $this->doActionMock->expects($this->exactly(2))
-                           ->with(
-                               'wpcfg_blacklist',
-                               $this->isInstanceOf(Event::class)
-                           );
+
         $this->badLogin->emitBlacklistEventIfBadUsername('bad-boy');
         $this->badLogin->emitBlacklistEventIfBadUsername('bad-girl');
+
+        $actual = $this->doActionMock->getCallsForMethod('do_action');
+
+        $expected = [
+            [ 'wpcfg_blacklist', new Event('127.0.0.1', 'WPCFG: Try to login with bad username: bad-boy') ],
+            [ 'wpcfg_blacklist', new Event('127.0.0.1', 'WPCFG: Try to login with bad username: bad-girl') ],
+        ];
+
+        $this->assertEquals($expected, $actual);
+        $this->doActionMock->verifyInvokedMultipleTimes(2);
     }
 
     /**
@@ -50,12 +53,17 @@ class BadLoginTest extends \Codeception\Test\Unit
         update_option('wpcfg_bad_login', [
             'bad_usernames' => 'bad-boy',
         ]);
-        $this->doActionMock->expects($this->once())
-                           ->with(
-                               'wpcfg_blacklist',
-                               $this->isInstanceOf(Event::class)
-                           );
+
         $this->badLogin->emitBlacklistEventIfBadUsername('bad-boy');
+
+        $actual = $this->doActionMock->getCallsForMethod('do_action');
+
+        $expected = [
+            [ 'wpcfg_blacklist', new Event('127.0.0.1', 'WPCFG: Try to login with bad username: bad-boy') ],
+        ];
+
+        $this->assertEquals($expected, $actual);
+        $this->doActionMock->verifyInvokedMultipleTimes(1);
     }
 
     /**
@@ -66,12 +74,17 @@ class BadLoginTest extends \Codeception\Test\Unit
         update_option('wpcfg_bad_login', [
             'bad_usernames' => 'bad-boy, bad-girl',
         ]);
-        $this->doActionMock->expects($this->once())
-                           ->with(
-                               'wpcfg_blacklist',
-                               $this->isInstanceOf(Event::class)
-                           );
+
         $this->badLogin->emitBlacklistEventIfBadUsername('#b!{a}d;-b>oy<?');
+
+        $actual = $this->doActionMock->getCallsForMethod('do_action');
+
+        $expected = [
+            [ 'wpcfg_blacklist', new Event('127.0.0.1', 'WPCFG: Try to login with bad username: #b!{a}d;-b>oy<?') ],
+        ];
+
+        $this->assertEquals($expected, $actual);
+        $this->doActionMock->verifyInvokedMultipleTimes(1);
     }
 
     /**
@@ -82,13 +95,19 @@ class BadLoginTest extends \Codeception\Test\Unit
         update_option('wpcfg_bad_login', [
             'bad_usernames' => ' #b!{a}d;-b>oy<?, ?>b}!a{d->>gir!>##l<?girl ',
         ]);
-        $this->doActionMock->expects($this->exactly(2))
-                           ->with(
-                               'wpcfg_blacklist',
-                               $this->isInstanceOf(Event::class)
-                           );
+
         $this->badLogin->emitBlacklistEventIfBadUsername('bad-boy');
         $this->badLogin->emitBlacklistEventIfBadUsername('bad-girl');
+
+        $actual = $this->doActionMock->getCallsForMethod('do_action');
+
+        $expected = [
+            [ 'wpcfg_blacklist', new Event('127.0.0.1', 'WPCFG: Try to login with bad username: bad-boy') ],
+            [ 'wpcfg_blacklist', new Event('127.0.0.1', 'WPCFG: Try to login with bad username: bad-girl') ],
+        ];
+
+        $this->assertEquals($expected, $actual);
+        $this->doActionMock->verifyInvokedMultipleTimes(2);
     }
 
     /**
@@ -99,8 +118,10 @@ class BadLoginTest extends \Codeception\Test\Unit
         update_option('wpcfg_bad_login', [
             'bad_usernames' => '',
         ]);
-        $this->doActionMock->expects($this->never());
+
         $this->badLogin->emitBlacklistEventIfBadUsername('');
+
+        $this->doActionMock->verifyNeverInvoked();
     }
 
     /**
@@ -111,8 +132,10 @@ class BadLoginTest extends \Codeception\Test\Unit
         update_option('wpcfg_bad_login', [
             'bad_usernames' => false,
         ]);
-        $this->doActionMock->expects($this->never());
+
         $this->badLogin->emitBlacklistEventIfBadUsername(false);
+
+        $this->doActionMock->verifyNeverInvoked();
     }
 
     /**
@@ -123,8 +146,10 @@ class BadLoginTest extends \Codeception\Test\Unit
         update_option('wpcfg_bad_login', [
             'bad_usernames' => 'bad-boy, bad-girl',
         ]);
-        $this->doActionMock->expects($this->never());
+
         $this->badLogin->emitBlacklistEventIfBadUsername('good-boy');
+
+        $this->doActionMock->verifyNeverInvoked();
     }
 
     /**
@@ -135,8 +160,10 @@ class BadLoginTest extends \Codeception\Test\Unit
         update_option('wpcfg_bad_login', [
             'bad_usernames' => null,
         ]);
-        $this->doActionMock->expects($this->never());
+
         $this->badLogin->emitBlacklistEventIfBadUsername(null);
+
+        $this->doActionMock->verifyNeverInvoked();
     }
 
     /**
@@ -144,8 +171,9 @@ class BadLoginTest extends \Codeception\Test\Unit
      */
     public function testSkipsIfNoBadUsernameIsSaved()
     {
-        $this->doActionMock->expects($this->never());
         $this->badLogin->emitBlacklistEventIfBadUsername('bad-boy');
+
+        $this->doActionMock->verifyNeverInvoked();
     }
 
     /**
@@ -157,8 +185,10 @@ class BadLoginTest extends \Codeception\Test\Unit
             'bad_usernames' => 'bad-boy',
             'disabled'      => '1',
         ]);
-        $this->doActionMock->expects($this->never());
+
         $this->badLogin->emitBlacklistEventIfBadUsername('bad-boy');
+
+        $this->doActionMock->verifyNeverInvoked();
     }
 
     /**
@@ -166,15 +196,13 @@ class BadLoginTest extends \Codeception\Test\Unit
      */
     public function testsHookedIntoWpAuthenticate()
     {
-        $loader = Mockery::mock(Loader::class, [ 'addAction' ]);
-        $loader->shouldReceive('addAction')
-               ->with(
-                   'wp_authenticate',
-                   anInstanceOf(BadLogin::class),
-                   'emitBlacklistEventIfBadUsername'
-               )
-               ->once();
-        BadLogin::register($loader, new OptionStore);
+        $actual = BadLogin::getActions();
+
+        $expected = [
+            new Action('wp_authenticate', 'emitBlacklistEventIfBadUsername'),
+        ];
+
+        $this->assertEquals($expected, $actual);
     }
 
     protected function _after()
@@ -185,6 +213,6 @@ class BadLoginTest extends \Codeception\Test\Unit
     protected function _before()
     {
         $this->badLogin     = new BadLogin(new OptionStore);
-        $this->doActionMock = $this->getFunctionMock(__NAMESPACE__, 'do_action');
+        $this->doActionMock = Test::func(__NAMESPACE__, 'do_action', 'done');
     }
 }

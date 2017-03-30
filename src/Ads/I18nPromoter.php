@@ -18,15 +18,15 @@ declare(strict_types=1);
 
 namespace WPCFG\Ads;
 
+use WPCFG\AbstractLoadable;
+use WPCFG\Action;
 use WPCFG\Admin;
-use WPCFG\Loader;
-use WPCFG\OptionStore;
 use WPCFG\Vendor\Yoast_I18n_WordPressOrg_v2;
 
 /**
  * Final class I18nPromoter
  */
-final class I18nPromoter
+final class I18nPromoter extends AbstractLoadable
 {
     /**
      * The WPCFG admin.
@@ -46,41 +46,33 @@ final class I18nPromoter
     }
 
     /**
-     * Register this class via WordPress action hooks and filters.
-     *
-     * @param Loader      $loader      The WPCFG loader.
-     * @param OptionStore $optionStore The WPCFG option store.
-     * @param Admin       $admin       The WPCFG admin.
-     *
-     * @return void
+     * {@inheritdoc}
      */
-    public static function register(Loader $loader, OptionStore $optionStore, Admin $admin)
+    public static function getActions(): array
     {
-        $self = new self($admin);
-        $loader->addAction('admin_menu', $self, 'addYoastI18nModuleToMenuPages', 20);
+        return [
+            new Action('admin_menu', 'addYoastI18nModuleToMenuPages', 20),
+        ];
     }
 
     /**
      * Add Yoast i18n module to all WPCFG menu pages.
      *
+     * @todo Test via acceptance test.
      * @return void
      */
     public function addYoastI18nModuleToMenuPages()
     {
-        $menuPageConfigs = $this->admin->getMenuPageConfigs();
+        $hooks = array_map(function (string $menuSlug) {
+            return str_replace('-', '_', $menuSlug . '_after_option_form');
+        }, $this->admin->getMenuSlugs());
 
-        $hooks = array_map(function ($menuPageConfig) {
-            return str_replace('-', '_', $menuPageConfig->menu_slug) . '_after_option_form';
-        }, $menuPageConfigs);
-
-        array_walk($hooks, function ($hook) {
-            new Yoast_I18n_WordPressOrg_v2(
-                [
-                    'textdomain'  => 'wp-cloudflare-guard',
-                    'plugin_name' => 'WP Cloudflare Guard',
-                    'hook'        => $hook,
-                ]
-            );
+        array_walk($hooks, function (string $hook) {
+            return new Yoast_I18n_WordPressOrg_v2([
+                'textdomain'  => 'wp-cloudflare-guard',
+                'plugin_name' => 'WP Cloudflare Guard',
+                'hook'        => $hook,
+            ]);
         });
     }
 }

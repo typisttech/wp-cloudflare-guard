@@ -18,9 +18,10 @@ declare(strict_types=1);
 
 namespace WPCFG\BadLogin;
 
+use WPCFG\AbstractLoadable;
+use WPCFG\Action;
 use WPCFG\Blacklist\Event;
 use WPCFG\Cloudflare\IpUtil;
-use WPCFG\Loader;
 use WPCFG\OptionStore;
 
 /**
@@ -28,7 +29,7 @@ use WPCFG\OptionStore;
  *
  * This class blacklist login with bad username.
  */
-final class BadLogin
+final class BadLogin extends AbstractLoadable
 {
     /**
      * Holds the option store.
@@ -48,17 +49,13 @@ final class BadLogin
     }
 
     /**
-     * Register this class via WordPress action hooks and filters.
-     *
-     * @param Loader      $loader      The WPCFG loader.
-     * @param OptionStore $optionStore The WPCFG option store.
-     *
-     * @return void
+     * {@inheritdoc}
      */
-    public static function register(Loader $loader, OptionStore $optionStore)
+    public static function getActions(): array
     {
-        $self = new self($optionStore);
-        $loader->addAction('wp_authenticate', $self, 'emitBlacklistEventIfBadUsername');
+        return [
+            new Action('wp_authenticate', 'emitBlacklistEventIfBadUsername'),
+        ];
     }
 
     /**
@@ -92,7 +89,7 @@ final class BadLogin
      *
      * @return bool
      */
-    private function shouldBlacklist($username) : bool
+    private function shouldBlacklist($username): bool
     {
         if (empty($username)) {
             return false;
@@ -110,7 +107,7 @@ final class BadLogin
      *
      * @return bool
      */
-    private function isDisabled() : bool
+    private function isDisabled(): bool
     {
         $disabled = $this->optionStore->get('wpcfg_bad_login', 'disabled');
 
@@ -124,7 +121,7 @@ final class BadLogin
      *
      * @return bool
      */
-    private function isBadUsername(string $inputUsername) : bool
+    private function isBadUsername(string $inputUsername): bool
     {
         $badUsernames  = $this->getNormalizedBadUsernames();
         $inputUsername = $this->normalize($inputUsername);
@@ -137,7 +134,7 @@ final class BadLogin
      *
      * @return array
      */
-    private function getNormalizedBadUsernames() : array
+    private function getNormalizedBadUsernames(): array
     {
         $badUsernames = $this->getBadUsernames();
         $normalized   = array_map([ $this, 'normalize' ], $badUsernames);
@@ -152,7 +149,7 @@ final class BadLogin
      *
      * @return array
      */
-    private function getBadUsernames() : array
+    private function getBadUsernames(): array
     {
         $badUsernames = $this->optionStore->get('wpcfg_bad_login', 'bad_usernames');
         if (empty($badUsernames)) {
@@ -169,7 +166,7 @@ final class BadLogin
      *
      * @return string
      */
-    private function normalize(string $username) : string
+    private function normalize(string $username): string
     {
         return strtolower(trim(sanitize_user($username, true)));
     }

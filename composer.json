@@ -32,12 +32,14 @@
     "require": {
         "php": "^7.0",
         "cloudflare/cf-ip-rewrite": "^1.0",
+        "league/container": "^2.4",
         "typisttech/cloudflare-wp-api": "^0.3.0",
         "typisttech/imposter-plugin": "^0.2.5",
-        "typisttech/wp-better-settings": "^0.9.0",
+        "typisttech/wp-better-settings": "^0.9.1",
         "yoast/i18n-module": "^2.0"
     },
     "require-dev": {
+        "codeception/aspect-mock": "^2.0",
         "codeception/mockery-module": "^0.2.2",
         "jakoch/phantomjs-installer": "^2.1",
         "lucatume/wp-browser": "^1.19",

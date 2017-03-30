@@ -2,6 +2,8 @@
 
 namespace WPCFG;
 
+use WPCFG\Vendor\League\Container\Container;
+
 /**
  * Inherited Methods
  *
@@ -23,6 +25,17 @@ class UnitTester extends \Codeception\Actor
     use _generated\UnitTesterActions;
 
     /**
+     * @var Container
+     */
+    private $container;
+
+    /**
      * Define custom actions here
      */
+    public function getContainer(): Container
+    {
+        $wpcfg = new WPCFG;
+        $this->container = $wpcfg->getContainer();
+        return $this->container;
+    }
 }

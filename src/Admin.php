@@ -27,7 +27,7 @@ use WPCFG\Vendor\TypistTech\WPBetterSettings\Settings;
  *
  * The admin-specific functionality of the plugin.
  */
-final class Admin
+final class Admin extends AbstractLoadable
 {
     /**
      * Menu page configs.
@@ -58,7 +58,7 @@ final class Admin
     private $settings;
 
     /**
-     * Setting constructor.
+     * Admin constructor.
      *
      * @param OptionStore $optionStore The WPCFG option store.
      */
@@ -68,23 +68,14 @@ final class Admin
     }
 
     /**
-     * Register this class via WordPress action hooks and filters.
-     *
-     * @param Loader      $loader      The WPCFG loader.
-     * @param OptionStore $optionStore The WPCFG option store.
-     *
-     * @return Admin
+     * {@inheritdoc}
      */
-    public static function register(Loader $loader, OptionStore $optionStore)
+    public static function getActions(): array
     {
-        $self = new self($optionStore);
-
-        // Adds the plugin admin menu.
-        $loader->addAction('admin_menu', $self, 'adminMenu');
-        // Initialize the settings class on admin_init.
-        $loader->addAction('admin_init', $self, 'adminInit');
-
-        return $self;
+        return [
+            new Action('admin_menu', 'adminMenu'),
+            new Action('admin_init', 'adminInit'),
+        ];
     }
 
     /**
@@ -106,8 +97,9 @@ final class Admin
      */
     public function adminMenu()
     {
-        $menuPageConfigs = $this->getMenuPageConfigs();
-        $this->menuPages = new MenuPages($menuPageConfigs);
+        $this->menuPages = new MenuPages(
+            $this->getMenuPageConfigs()
+        );
         $this->menuPages->adminMenu();
     }
 
@@ -123,5 +115,17 @@ final class Admin
         }
 
         return $this->menuPageConfigs;
+    }
+
+    /**
+     * Menu slugs getter.
+     *
+     * @return string[]
+     */
+    public function getMenuSlugs(): array
+    {
+        return array_map(function (MenuPageConfig $menuPageConfig) {
+            return $menuPageConfig->menu_slug;
+        }, $this->getMenuPageConfigs());
     }
 }

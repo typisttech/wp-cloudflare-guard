@@ -2,10 +2,7 @@
 
 namespace WPCFG\Ads;
 
-use Mockery;
-use WPCFG\Admin;
-use WPCFG\Loader;
-use WPCFG\OptionStore;
+use WPCFG\Action;
 
 /**
  * @coversDefaultClass \WPCFG\Ads\I18nPromoter
@@ -17,19 +14,12 @@ class I18nPromoterTest extends \Codeception\Test\Unit
      */
     public function testHookedIntoAdminMenu()
     {
-        $loader = Mockery::mock(Loader::class, [ 'add_action' ]);
-        $loader->shouldReceive('addAction')
-               ->with(
-                   'admin_menu',
-                   anInstanceOf(I18nPromoter::class),
-                   'addYoastI18nModuleToMenuPages',
-                   20
-               )
-               ->once();
+        $actual = I18nPromoter::getActions();
 
-        $optionStore = new OptionStore;
-        $admin       = new Admin($optionStore);
+        $expected = [
+            new Action('admin_menu', 'addYoastI18nModuleToMenuPages', 20),
+        ];
 
-        I18nPromoter::register($loader, $optionStore, $admin);
+        $this->assertEquals($expected, $actual);
     }
 }

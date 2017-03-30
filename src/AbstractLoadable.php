@@ -19,34 +19,27 @@ declare(strict_types=1);
 namespace WPCFG;
 
 /**
- * Define the internationalization functionality.
- *
- * Loads and defines the internationalization files for this plugin
- * so that it is ready for translation.
+ * Abstract Class AbstractLoadable
  */
-final class I18n extends AbstractLoadable
+abstract class AbstractLoadable
 {
     /**
-     * {@inheritdoc}
+     * Actions getter.
+     *
+     * @return Action[]
      */
     public static function getActions(): array
     {
-        return [
-            new Action('plugins_loaded', 'loadPluginTextdomain'),
-        ];
+        return [];
     }
 
     /**
-     * Load the plugin text domain for translation.
+     * Filters getter.
      *
-     * @return void
+     * @return Filter[]
      */
-    public function loadPluginTextdomain()
+    public static function getFilters(): array
     {
-        load_plugin_textdomain(
-            'wp-cloudflare-guard',
-            false,
-            dirname(plugin_basename(__FILE__), 2) . '/languages/'
-        );
+        return [];
     }
 }
