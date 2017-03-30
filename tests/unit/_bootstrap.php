@@ -10,5 +10,6 @@ $kernel->init([
     'includePaths' => [
         codecept_root_dir('src/'),
         codecept_root_dir('vendor/jamesryanbell/cloudflare/src/'),
+        codecept_root_dir('vendor/yoast/i18n-module/src/'),
     ],
 ]);

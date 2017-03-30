@@ -26,9 +26,6 @@ use WPCFG\Blacklist\Handler;
 use WPCFG\Cloudflare\Admin as CloudflareAdmin;
 use WPCFG\Cloudflare\IpUtil;
 use WPCFG\Vendor\Cloudflare\Zone\Firewall\AccessRules;
-use WPCFG\Vendor\League\Container\Container;
-use WPCFG\Vendor\League\Container\ReflectionContainer;
-use WPCFG\Vendor\Yoast_I18n_WordPressOrg_v2;
 
 /**
  * Final class WPCFG
@@ -57,8 +54,7 @@ final class WPCFG
      */
     public function __construct()
     {
-        $this->loader = new Loader;
-
+        $this->loader    = new Loader;
         $this->container = new Container;
 
         $this->initializeContainer();
@@ -72,8 +68,7 @@ final class WPCFG
      */
     private function initializeContainer()
     {
-        $this->container->delegate(new ReflectionContainer);
-        $this->container->share('\\' . Container::class, $this->container);
+        $this->container->initialize();
 
         $shares = [
             OptionStore::class,
@@ -83,10 +78,9 @@ final class WPCFG
             Handler::class,
             CloudflareAdmin::class,
             I18n::class,
-            I18nPromoter::class,
         ];
         foreach ($shares as $share) {
-            $this->container->share('\\' . $share);
+            $this->container->share('\\' .$share);
         }
 
         $addes = [
@@ -95,18 +89,8 @@ final class WPCFG
             AccessRules::class,
         ];
         foreach ($addes as $add) {
-            $this->container->add('\\' . $add);
+            $this->container->add('\\' .$add);
         }
-
-        $this->container->add('\\' . Yoast_I18n_WordPressOrg_v2::class, function (string $hook) {
-            new Yoast_I18n_WordPressOrg_v2(
-                [
-                    'textdomain'  => 'wp-cloudflare-guard',
-                    'plugin_name' => 'WP Cloudflare Guard',
-                    'hook'        => $hook,
-                ]
-            );
-        });
     }
 
     /**
