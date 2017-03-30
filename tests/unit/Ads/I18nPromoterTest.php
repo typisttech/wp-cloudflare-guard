@@ -36,6 +36,9 @@ class I18nPromoterTest extends \Codeception\Test\Unit
         $this->assertEquals($expected, $actual);
     }
 
+    /**
+     * @covers \WPCFG\Ads\I18nPromoter
+     */
     public function testYoastI18nWordPressOrgV2Initialized()
     {
         $yoastI18nWordPressOrgV2 = Test::double(Yoast_I18n_WordPressOrg_v2::class);
