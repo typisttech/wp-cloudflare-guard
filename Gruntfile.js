@@ -124,21 +124,7 @@ module.exports = function (grunt) {
                     }
                 ]
             }
-        },
-
-        wp_deploy: {
-            deploy: {
-                options: {
-                    plugin_slug: '<%= pkg.name %>',
-                    plugin_main_file: '<%= pkg.name %>.php',
-                    svn_user: 'tangrufus',
-                    build_dir: 'build',
-                    assets_dir: 'assets',
-                    skip_confirmation: true
-                }
-            }
         }
-
     });
 
     require('load-grunt-tasks')(grunt);
