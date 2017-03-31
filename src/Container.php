@@ -43,7 +43,7 @@ class Container extends LeagueContainer
     public function initialize()
     {
         $this->delegate(new ReflectionContainer);
-        $this->add(Container::class, $this);
+        $this->add(self::class, $this);
 
         $this->share('\\' . Admin::class);
 

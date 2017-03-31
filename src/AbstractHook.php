@@ -65,12 +65,12 @@ abstract class AbstractHook
     /**
      * Filter constructor.
      *
-     * @param string  $classIdentifier Identifier of the entry to look for from container.
-     * @param string  $hook            The name of the WordPress hook that is being registered.
-     * @param string  $callbackMethod  The callback method name.
-     * @param integer $priority        The priority at which the function should be fired. Default is 10.
-     * @param integer $acceptedArgs    Optional. The number of arguments that should be passed to the $callback.
-     *                                 Default is 1.
+     * @param string       $classIdentifier Identifier of the entry to look for from container.
+     * @param string       $hook            The name of the WordPress hook that is being registered.
+     * @param string       $callbackMethod  The callback method name.
+     * @param integer|null $priority        Optional.The priority at which the function should be fired. Default is 10.
+     * @param integer|null $acceptedArgs    Optional. The number of arguments that should be passed to the $callback.
+     *                                      Default is 1.
      */
     public function __construct(
         string $classIdentifier,
