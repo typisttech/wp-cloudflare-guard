@@ -70,49 +70,49 @@ final class BadLogin implements LoadableInterface
     /**
      * Emit blacklist event if username is bad.
      *
-     * @param string|null $username User input.
+     * @param string|null $inputUsername User input.
      *
      * @void
      */
-    public function emitBlacklistEventIfBadUsername($username)
+    public function emitBlacklistEventIfBadUsername($inputUsername)
     {
-        if (! $this->shouldBlacklist($username)) {
+        if (! $this->shouldBlacklist($inputUsername)) {
             return;
         }
 
         do_action(
             'wpcfg_blacklist',
-            $this->getBlacklistEventForCurrentIp($username)
+            $this->getBlacklistEventForCurrentIp($inputUsername)
         );
     }
 
     /**
      * Check whether blacklist should be performed.
      *
-     * @param string|null $username User input.
+     * @param string|null $inputUsername User input.
      *
      * @return bool
      */
-    private function shouldBlacklist($username): bool
+    private function shouldBlacklist(string $inputUsername = null): bool
     {
-        if (empty($username)) {
+        if (empty($inputUsername)) {
             return false;
         }
 
-        return $this->isBadUsername($username);
+        return $this->isBadUsername($inputUsername);
     }
 
     /**
      * Check whether username input is a bad username.
      *
-     * @param string $normalizedInput User input.
+     * @param string $inputUsername User input.
      *
      * @return bool
      */
-    private function isBadUsername(string $normalizedInput): bool
+    private function isBadUsername(string $inputUsername): bool
     {
         $badUsernames    = $this->getNormalizedBadUsernames();
-        $normalizedInput = $this->normalize($normalizedInput);
+        $normalizedInput = $this->normalize($inputUsername);
 
         return in_array($normalizedInput, $badUsernames, true);
     }
