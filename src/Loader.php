@@ -68,7 +68,7 @@ class Loader
      *
      * @todo Check for LoadableInterface.
      *
-     * @param array|string[] ...$classes Array of Loadable classes.
+     * @param string[]|array ...$classes Array of Loadable classes.
      *
      * @return void
      */
@@ -85,7 +85,7 @@ class Loader
      *
      * @todo Refactor.
      *
-     * @param array|AbstractHook[] ...$hooks Hooks to be registered.
+     * @param AbstractHook[]|array ...$hooks Hooks to be registered.
      *                                       Expecting Filters or Actions.
      *
      * @return void

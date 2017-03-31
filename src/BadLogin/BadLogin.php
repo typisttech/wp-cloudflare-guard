@@ -105,16 +105,16 @@ final class BadLogin implements LoadableInterface
     /**
      * Check whether username input is a bad username.
      *
-     * @param string $inputUsername User input.
+     * @param string $normalizedInput User input.
      *
      * @return bool
      */
-    private function isBadUsername(string $inputUsername): bool
+    private function isBadUsername(string $normalizedInput): bool
     {
-        $badUsernames  = $this->getNormalizedBadUsernames();
-        $inputUsername = $this->normalize($inputUsername);
+        $badUsernames    = $this->getNormalizedBadUsernames();
+        $normalizedInput = $this->normalize($normalizedInput);
 
-        return in_array($inputUsername, $badUsernames, true);
+        return in_array($normalizedInput, $badUsernames, true);
     }
 
     /**

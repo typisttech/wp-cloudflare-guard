@@ -86,7 +86,7 @@ final class Admin implements LoadableInterface
             'sanitize_callback' => [ Sanitizer::class, 'sanitizeEmail' ],
         ]);
 
-        $apiKeyDesc  = sprintf(
+        $apiKeyDesc = sprintf(
             // Translators: %1$s is the url to Cloudflare document.
             _x(
                 'Help: <a href="%1$s">Where do I find my Cloudflare API key?</a>',
@@ -97,6 +97,7 @@ final class Admin implements LoadableInterface
                 'https://support.cloudflare.com/hc/en-us/articles/200167836-Where-do-I-find-my-CloudFlare-API-key-'
             )
         );
+
         $apiKeyField = new FieldConfig([
             'id'    => 'api_key',
             'title' => __('Global API Key', 'wp-cloudflare-guard'),
