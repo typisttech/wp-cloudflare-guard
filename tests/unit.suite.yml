@@ -5,7 +5,6 @@
 class_name: UnitTester
 modules:
     enabled:
-        - Asserts
         - \WPCFG\Helper\Unit
-        - Mockery
+        - Asserts
         - WPLoader
