@@ -103,4 +103,16 @@
         <exclude-pattern>/tests/*</exclude-pattern>
     </rule>
 
+    <rule ref="WordPress.VIP.RestrictedVariables">
+        <exclude-pattern>/tests/*</exclude-pattern>
+    </rule>
+
+    <rule ref="WordPress.VIP.SuperGlobalInputUsage">
+        <exclude-pattern>/tests/*</exclude-pattern>
+    </rule>
+
+    <rule ref="WordPress.VIP.ValidatedSanitizedInput">
+        <exclude-pattern>/tests/*</exclude-pattern>
+    </rule>
+
 </ruleset>

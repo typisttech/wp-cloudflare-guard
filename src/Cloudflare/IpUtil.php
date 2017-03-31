@@ -35,8 +35,9 @@ final class IpUtil
     /**
      * Retrieve the real ip address of the user in the current request.
      *
-     * IpRewrite::getOriginalIP returns $_SERVER['REMOTE_ADDR']
-     * without sanitization, so treat it as superglobal usage
+     * IpRewrite::getOriginalIP and IpRewrite::getRewrittenIP returns
+     * $_SERVER['REMOTE_ADDR'] and $_SERVER['HTTP_CF_CONNECTING_IP']
+     * without sanitization, so treat them as superglobal usage
      * as per WordPress coding standard principle.
      *
      * Side effect: If current request is coming through Cloudflare,
@@ -47,8 +48,10 @@ final class IpUtil
      */
     public static function getCurrentIp(): string
     {
-        $ipRewrite  = new IpRewrite;
-        $originalIP = $ipRewrite->getOriginalIP();
+        $ipRewrite = new IpRewrite;
+
+        $rewrittenIp = $ipRewrite->getRewrittenIP();
+        $originalIP  = $rewrittenIp ?: $ipRewrite->getOriginalIP();
 
         return sanitize_text_field(wp_unslash($originalIP));
     }
