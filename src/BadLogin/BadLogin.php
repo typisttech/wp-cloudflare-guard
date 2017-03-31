@@ -89,13 +89,13 @@ final class BadLogin implements LoadableInterface
     /**
      * Check whether blacklist should be performed.
      *
-     * @param string|null $inputUsername User input.
+     * @param mixed $inputUsername User input.
      *
      * @return bool
      */
-    private function shouldBlacklist(string $inputUsername = null): bool
+    private function shouldBlacklist($inputUsername): bool
     {
-        if (empty($inputUsername)) {
+        if (! is_string($inputUsername) || empty($inputUsername)) {
             return false;
         }
 
