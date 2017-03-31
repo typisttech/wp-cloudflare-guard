@@ -18,16 +18,16 @@ declare(strict_types=1);
 
 namespace WPCFG\Ads;
 
-use WPCFG\AbstractLoadable;
 use WPCFG\Action;
 use WPCFG\Admin;
 use WPCFG\Container;
+use WPCFG\LoadableInterface;
 use WPCFG\Vendor\Yoast_I18n_WordPressOrg_v2;
 
 /**
  * Final class I18nPromoter
  */
-final class I18nPromoter extends AbstractLoadable
+final class I18nPromoter implements LoadableInterface
 {
     /**
      * The WPCFG admin.
@@ -58,10 +58,10 @@ final class I18nPromoter extends AbstractLoadable
     /**
      * {@inheritdoc}
      */
-    public static function getActions(): array
+    public static function getHooks(): array
     {
         return [
-            new Action('admin_menu', 'addYoastI18nModuleToMenuPages', 20),
+            new Action(__CLASS__, 'admin_menu', 'addYoastI18nModuleToMenuPages', 20),
         ];
     }
 

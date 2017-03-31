@@ -27,10 +27,10 @@ class I18nPromoterTest extends \Codeception\Test\Unit
      */
     public function testHookedIntoAdminMenu()
     {
-        $actual = I18nPromoter::getActions();
+        $actual = I18nPromoter::getHooks();
 
         $expected = [
-            new Action('admin_menu', 'addYoastI18nModuleToMenuPages', 20),
+            new Action(I18nPromoter::class, 'admin_menu', 'addYoastI18nModuleToMenuPages', 20),
         ];
 
         $this->assertEquals($expected, $actual);

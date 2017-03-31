@@ -185,10 +185,10 @@ class BadLoginTest extends \Codeception\Test\Unit
      */
     public function testsHookedIntoWpAuthenticate()
     {
-        $actual = BadLogin::getActions();
+        $actual = BadLogin::getHooks();
 
         $expected = [
-            new Action('wp_authenticate', 'emitBlacklistEventIfBadUsername'),
+            new Action(BadLogin::class, 'wp_authenticate', 'emitBlacklistEventIfBadUsername'),
         ];
 
         $this->assertEquals($expected, $actual);
@@ -201,7 +201,7 @@ class BadLoginTest extends \Codeception\Test\Unit
 
     protected function _before()
     {
-        $container = $this->tester->getContainer();
+        $container          = $this->tester->getContainer();
         $this->badLogin     = $container->get(BadLogin::class);
         $this->doActionMock = Test::func(__NAMESPACE__, 'do_action', 'done');
     }

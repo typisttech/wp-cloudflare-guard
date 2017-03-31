@@ -18,9 +18,9 @@ declare(strict_types=1);
 
 namespace WPCFG\Blacklist;
 
-use WPCFG\AbstractLoadable;
 use WPCFG\Action;
 use WPCFG\Cloudflare\AccessRules;
+use WPCFG\LoadableInterface;
 use WPCFG\OptionStore;
 
 /**
@@ -28,7 +28,7 @@ use WPCFG\OptionStore;
  *
  * This class handle the blacklist event.
  */
-final class Handler extends AbstractLoadable
+final class Handler implements LoadableInterface
 {
     /**
      * The api client.
@@ -59,10 +59,10 @@ final class Handler extends AbstractLoadable
     /**
      * {@inheritdoc}
      */
-    public static function getActions(): array
+    public static function getHooks(): array
     {
         return [
-            new Action('wpcfg_blacklist', 'handleBlacklist'),
+            new Action(__CLASS__, 'wpcfg_blacklist', 'handleBlacklist'),
         ];
     }
 

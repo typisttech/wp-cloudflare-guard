@@ -61,10 +61,10 @@ class HandlerTest extends \Codeception\Test\Unit
      */
     public function testHookedIntoWpcfgBlacklist()
     {
-        $actual = Handler::getActions();
+        $actual = Handler::getHooks();
 
         $expected = [
-            new Action('wpcfg_blacklist', 'handleBlacklist'),
+            new Action(Handler::class, 'wpcfg_blacklist', 'handleBlacklist'),
         ];
 
         $this->assertEquals($expected, $actual);

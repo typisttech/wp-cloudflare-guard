@@ -27,7 +27,7 @@ use WPCFG\Vendor\TypistTech\WPBetterSettings\Settings;
  *
  * The admin-specific functionality of the plugin.
  */
-final class Admin extends AbstractLoadable
+final class Admin implements LoadableInterface
 {
     /**
      * Menu page configs.
@@ -70,11 +70,11 @@ final class Admin extends AbstractLoadable
     /**
      * {@inheritdoc}
      */
-    public static function getActions(): array
+    public static function getHooks(): array
     {
         return [
-            new Action('admin_menu', 'adminMenu'),
-            new Action('admin_init', 'adminInit'),
+            new Action(__CLASS__, 'admin_menu', 'adminMenu'),
+            new Action(__CLASS__, 'admin_init', 'adminInit'),
         ];
     }
 
@@ -108,7 +108,7 @@ final class Admin extends AbstractLoadable
      *
      * @return MenuPageConfig[]
      */
-    public function getMenuPageConfigs()
+    private function getMenuPageConfigs()
     {
         if (empty($this->menuPageConfigs)) {
             $this->menuPageConfigs = apply_filters('wpcfg_menu_page_configs', []);

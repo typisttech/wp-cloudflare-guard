@@ -18,6 +18,9 @@ declare(strict_types=1);
 
 namespace WPCFG;
 
+use InvalidArgumentException;
+use WPCFG\Vendor\Psr\Container\ContainerInterface;
+
 /**
  * Register all actions and filters for the plugin.
  *
@@ -35,6 +38,13 @@ class Loader
     private $actions;
 
     /**
+     * The WPCFG container.
+     *
+     * @var ContainerInterface
+     */
+    private $container;
+
+    /**
      * The array of filters registered with WordPress.
      *
      * @var Filter[] $filters The filters registered with WordPress to fire when the plugin loads.
@@ -43,35 +53,65 @@ class Loader
 
     /**
      * Initialize the collections used to maintain the actions and filters.
+     *
+     * @param ContainerInterface $container The plugin container.
      */
-    public function __construct()
+    public function __construct(ContainerInterface $container)
     {
-        $this->actions = [];
-        $this->filters = [];
+        $this->container = $container;
+        $this->actions   = [];
+        $this->filters   = [];
     }
 
     /**
-     * Add a new action to the collection to be registered with WordPress.
+     * Add hooks from LoadableInterface[].
      *
-     * @param Action $action The action data that is being registered.
+     * @todo Check for LoadableInterface.
+     *
+     * @param array|string[] ...$classes Array of Loadable classes.
      *
      * @return void
      */
-    public function addAction(Action $action)
+    public function load(string ...$classes)
     {
-        $this->actions[] = $action;
+        foreach ($classes as $loadable) {
+            $hooks = $loadable::getHooks();
+            $this->add(...$hooks);
+        }
     }
 
     /**
-     * Add a new filter to the collection to be registered with WordPress.
+     * Add new hook to the collection to be registered with WordPress.
      *
-     * @param Filter $filter The filter data that is being registered.
+     * @todo Refactor.
+     *
+     * @param array|AbstractHook[] ...$hooks Hooks to be registered.
+     *                                       Expecting Filters or Actions.
      *
      * @return void
+     * @throws InvalidArgumentException If $hooks are not made of Filters or Actions.
      */
-    public function addFilter(Filter $filter)
+    private function add(AbstractHook ...$hooks)
     {
-        $this->filters[] = $filter;
+        foreach ($hooks as $hook) {
+            if ($hook instanceof Filter) {
+                $this->filters[] = $hook;
+                continue;
+            }
+
+            if ($hook instanceof Action) {
+                $this->actions[] = $hook;
+                continue;
+            }
+
+            $errorMessage = sprintf(
+                'Hook must be one of %1$s or %2$s. However, %3$s is given',
+                Filter::class,
+                Action::class,
+                get_class($hook)
+            );
+            throw new InvalidArgumentException($errorMessage);
+        }
     }
 
     /**
@@ -84,7 +124,7 @@ class Loader
         foreach ($this->filters as $filter) {
             add_filter(
                 $filter->getHook(),
-                $filter->getCallbackClosure(),
+                $filter->getCallbackClosure($this->container),
                 $filter->getPriority(),
                 $filter->getAcceptedArgs()
             );
@@ -93,7 +133,7 @@ class Loader
         foreach ($this->actions as $action) {
             add_action(
                 $action->getHook(),
-                $action->getCallbackClosure(),
+                $action->getCallbackClosure($this->container),
                 $action->getPriority(),
                 $action->getAcceptedArgs()
             );

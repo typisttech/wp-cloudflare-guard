@@ -51,60 +51,19 @@ final class WPCFG
      */
     public function __construct()
     {
-        $this->loader    = new Loader;
         $this->container = new Container;
+        $this->loader    = new Loader($this->container);
 
-        $this->initializeContainer();
-        $this->initializeLoadables();
-    }
-
-    /**
-     * Initialize container.
-     *
-     * @return void
-     */
-    private function initializeContainer()
-    {
         $this->container->initialize();
-
-        $shares = [
-            OptionStore::class,
-            Admin::class,
-            BadLoginAdmin::class,
-            CloudflareAdmin::class,
-            I18n::class,
-        ];
-        foreach ($shares as $share) {
-            $this->container->share('\\' . $share);
-        }
-    }
-
-    /**
-     * Initialize Loadables.
-     *
-     * Add loadables to container and register their action and filter hooks.
-     *
-     * @return void
-     */
-    private function initializeLoadables()
-    {
-        $loadables = [
+        $this->loader->load(
             Admin::class,
             BadLogin::class,
             BadLoginAdmin::class,
             Handler::class,
             CloudflareAdmin::class,
             I18n::class,
-            I18nPromoter::class,
-        ];
-
-        foreach ($loadables as $loadable) {
-            $actions = $loadable::getActions();
-            array_walk($actions, [ $this, 'addActions' ], $loadable);
-
-            $filters = $loadable::getFilters();
-            array_walk($filters, [ $this, 'addFilters' ], $loadable);
-        }
+            I18nPromoter::class
+        );
     }
 
     /**
@@ -125,44 +84,5 @@ final class WPCFG
     public function run()
     {
         $this->loader->run();
-    }
-
-    /**
-     * Register action hooks.
-     *
-     * @param Action $action   Data transfer object that holds action hook information.
-     * @param mixed  $key      Unused.
-     * @param string $loadable Identifier of the entry to look for inside container.
-     *
-     * @return void
-     */
-    private function addActions(Action $action, $key, string $loadable)
-    {
-        $callbackClosure = function (...$args) use ($loadable, $action) {
-            $instance = $this->container->get($loadable);
-            $instance->{$action->getCallbackMethod()}(...$args);
-        };
-        $action->setCallbackClosure($callbackClosure);
-        $this->loader->addAction($action);
-    }
-
-    /**
-     * Register filter hooks.
-     *
-     * @param Filter $filter   Data transfer object that holds filter hook information.
-     * @param mixed  $key      Unused.
-     * @param string $loadable Identifier of the entry to look for inside container.
-     *
-     * @return void
-     */
-    private function addFilters(Filter $filter, $key, string $loadable)
-    {
-        $callbackClosure = function (...$args) use ($loadable, $filter) {
-            $instance = $this->container->get($loadable);
-
-            return $instance->{$filter->getCallbackMethod()}(...$args);
-        };
-        $filter->setCallbackClosure($callbackClosure);
-        $this->loader->addFilter($filter);
     }
 }

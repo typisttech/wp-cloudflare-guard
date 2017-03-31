@@ -18,10 +18,10 @@ declare(strict_types=1);
 
 namespace WPCFG\BadLogin;
 
-use WPCFG\AbstractLoadable;
 use WPCFG\Action;
 use WPCFG\Blacklist\Event;
 use WPCFG\Container;
+use WPCFG\LoadableInterface;
 use WPCFG\OptionStore;
 
 /**
@@ -29,21 +29,21 @@ use WPCFG\OptionStore;
  *
  * This class blacklist login with bad username.
  */
-final class BadLogin extends AbstractLoadable
+final class BadLogin implements LoadableInterface
 {
-    /**
-     * Holds the option store.
-     *
-     * @var OptionStore
-     */
-    private $optionStore;
-
     /**
      * The WPCFG container.
      *
      * @var Container
      */
     private $container;
+
+    /**
+     * Holds the option store.
+     *
+     * @var OptionStore
+     */
+    private $optionStore;
 
     /**
      * BadLogin constructor.
@@ -60,10 +60,10 @@ final class BadLogin extends AbstractLoadable
     /**
      * {@inheritdoc}
      */
-    public static function getActions(): array
+    public static function getHooks(): array
     {
         return [
-            new Action('wp_authenticate', 'emitBlacklistEventIfBadUsername'),
+            new Action(__CLASS__, 'wp_authenticate', 'emitBlacklistEventIfBadUsername'),
         ];
     }
 
@@ -155,7 +155,7 @@ final class BadLogin extends AbstractLoadable
      */
     private function getBlacklistEventForCurrentIp(string $username): Event
     {
-        $note      = sprintf(
+        $note = sprintf(
             // Translators: %1$s is the bad username.
             _x('WPCFG: Try to login with bad username: %1$s', '%1$s is the bad username', 'wp-cloudflare-guard'),
             $username

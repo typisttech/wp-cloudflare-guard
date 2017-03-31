@@ -18,11 +18,30 @@ declare(strict_types=1);
 
 namespace WPCFG;
 
+use Closure;
+use WPCFG\Vendor\Psr\Container\ContainerInterface;
+
 /**
- * Class Action
+ * Final class Action
  *
  * Data transfer object that holds WordPress action information.
  */
-final class Action extends Filter
+final class Action extends AbstractHook
 {
+    /**
+     * Callback closure getter.
+     *
+     * The actual callback that WordPress going to fire.
+     *
+     * @param ContainerInterface $container The container.
+     *
+     * @return Closure
+     */
+    public function getCallbackClosure(ContainerInterface $container): Closure
+    {
+        return function (...$args) use ($container) {
+            $instance = $container->get($this->classIdentifier);
+            $instance->{$this->callbackMethod}(...$args);
+        };
+    }
 }

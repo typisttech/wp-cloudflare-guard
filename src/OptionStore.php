@@ -38,6 +38,21 @@ class OptionStore extends WPBSOptionStore
     }
 
     /**
+     * Bad usernames getter.
+     *
+     * @return array
+     */
+    public function getBadUsernames(): array
+    {
+        $badUsernames = $this->get('wpcfg_bad_login', 'bad_usernames');
+        if (empty($badUsernames)) {
+            return [];
+        }
+
+        return explode(',', $badUsernames);
+    }
+
+    /**
      * Cloudflare email getter.
      *
      * @return mixed
@@ -55,20 +70,5 @@ class OptionStore extends WPBSOptionStore
     public function getZoneId()
     {
         return $this->get('wpcfg_cloudflare', 'zone_id');
-    }
-
-    /**
-     * Bad usernames getter.
-     *
-     * @return array
-     */
-    public function getBadUsernames(): array
-    {
-        $badUsernames = $this->get('wpcfg_bad_login', 'bad_usernames');
-        if (empty($badUsernames)) {
-            return [];
-        }
-
-        return explode(',', $badUsernames);
     }
 }
