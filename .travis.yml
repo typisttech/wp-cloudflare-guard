@@ -86,14 +86,31 @@ after_script:
   - if [[ "$WITH_COVERAGE" == "true" ]]; then travis_retry tnw-upload-coverage-to-scrutinizer; fi
   - if [[ "$WITH_COVERAGE" == "true" ]]; then travis_retry tnw-upload-coverage-to-codecov; fi
 
+before_deploy:
+  - unzip -qo release/wp-cloudflare-guard.zip -d build
+
 deploy:
-  provider: releases
-  api_key:
-    secure: tly7bTISmzfHEfn2UEGZKwZNZ+Ofz8b3si5Zw8WneIQfo6HhiTesMZUY1YcaOZDAxDZ7B4BqW20BsYhkUOIkBn3KlRImvxR2sZj+Ri8YtLeeJ85KholcioorgtYSdorRTf+cNNNV/31VfHk7y9eHXjmxBVeGsq+dTG/hl9TdNxT5NkYtMqgkC3wuB9fojDWTUzJFT0hKmG8w8VakhIGq7kg0/YRIEc9KsfmQ3Pkh7AxuzwzKcEN8M0AQBUj/OWu09ErHeJm2OAa/wYxjeuPh+HpKazsMJngzonV6hFp5brNiQXDGCEtx+Nxvo4m88yh+e8irGQKAgntRkUIZmBdw1O+9lwYx+HKsJdFqr8eaBRL+ce1qOAAGHqpFjxjKbdb/Y8gji18nE7N4QAjLke6ney46qL+S8WJfs8JUFdEpgpN3yz1FRMQzx5GLxICgFCqhh1kW64Bg7zHfEcJ7eup7SCOwhG2PlF24HcBaYPsQwDdHaX3CgVRG3VAY2FAA0klJwA46E0eYZb9IWgoadW2R3b1FMq3bTInQO9kJp2t/7PeLbFb+n6dxuX/QtabLW264bzxZcsg4KP2P6V0s77MMoHptsMnmjvbjg4SSVputXbAEj53ai/hYaIKpE+GWQhPtQ3lUxkomyjSeV32qV+CGqxC9sC0zgjfOMihb7ntt6zA=
-  file: release/wp-cloudflare-guard.zip
-  skip_cleanup: true
-  on:
-    condition: "$WP_VERSION = latest"
-    php: 7.0
-    tags: true
-    repo: TypistTech/wp-cloudflare-guard
+  - provider: releases
+    api_key:
+      secure: tly7bTISmzfHEfn2UEGZKwZNZ+Ofz8b3si5Zw8WneIQfo6HhiTesMZUY1YcaOZDAxDZ7B4BqW20BsYhkUOIkBn3KlRImvxR2sZj+Ri8YtLeeJ85KholcioorgtYSdorRTf+cNNNV/31VfHk7y9eHXjmxBVeGsq+dTG/hl9TdNxT5NkYtMqgkC3wuB9fojDWTUzJFT0hKmG8w8VakhIGq7kg0/YRIEc9KsfmQ3Pkh7AxuzwzKcEN8M0AQBUj/OWu09ErHeJm2OAa/wYxjeuPh+HpKazsMJngzonV6hFp5brNiQXDGCEtx+Nxvo4m88yh+e8irGQKAgntRkUIZmBdw1O+9lwYx+HKsJdFqr8eaBRL+ce1qOAAGHqpFjxjKbdb/Y8gji18nE7N4QAjLke6ney46qL+S8WJfs8JUFdEpgpN3yz1FRMQzx5GLxICgFCqhh1kW64Bg7zHfEcJ7eup7SCOwhG2PlF24HcBaYPsQwDdHaX3CgVRG3VAY2FAA0klJwA46E0eYZb9IWgoadW2R3b1FMq3bTInQO9kJp2t/7PeLbFb+n6dxuX/QtabLW264bzxZcsg4KP2P6V0s77MMoHptsMnmjvbjg4SSVputXbAEj53ai/hYaIKpE+GWQhPtQ3lUxkomyjSeV32qV+CGqxC9sC0zgjfOMihb7ntt6zA=
+    file: release/wp-cloudflare-guard.zip
+    skip_cleanup: true
+    on:
+      condition: "$WP_VERSION = latest"
+      php: 7.0
+      tags: true
+      repo: TypistTech/wp-cloudflare-guard
+  - provider: wordpress-plugin
+    edge:
+      source: TypistTech/dpl
+      branch: add-wordpress-plugin-deployment
+    slug: wp-cloudflare-guard
+    username: tangrufus
+    build_dir: build
+    assets_dir: assets
+    skip_cleanup: true
+    on:
+      condition: "$WP_VERSION = latest"
+      php: 7.1
+      tags: true
+      repo: TypistTech/wp-cloudflare-guard
