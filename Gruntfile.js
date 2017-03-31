@@ -91,6 +91,9 @@ module.exports = function (grunt) {
             ],
             "container-interop": [
                 'vendor/container-interop/container-interop/docs/**'
+            ],
+            "cf-ip-rewrite": [
+                'vendor/cloudflare/cf-ip-rewrite/tests/**'
             ]
         },
 
