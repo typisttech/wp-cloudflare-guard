@@ -82,6 +82,30 @@ module.exports = function (grunt) {
             }
         },
 
+        clean: {
+            cloudflare: [
+                'vendor/jamesryanbell/cloudflare/src/**/*.*',
+                '!vendor/jamesryanbell/cloudflare/src/CloudFlare/Exception/**',
+                '!vendor/jamesryanbell/cloudflare/src/CloudFlare/*Api.php',
+                '!vendor/jamesryanbell/cloudflare/src/CloudFlare/Zone/Firewall/AccessRules.php'
+            ],
+            "container-interop": [
+                'vendor/container-interop/container-interop/docs/**'
+            ],
+            "cf-ip-rewrite": [
+                'vendor/cloudflare/cf-ip-rewrite/tests/**'
+            ]
+        },
+
+        cleanempty: {
+            options: {
+                noJunk: true
+            },
+            root: {
+                src: ['vendor/jamesryanbell/**/*']
+            }
+        },
+
         replace: {
             namespace_yoast_i18n: {
                 options: {

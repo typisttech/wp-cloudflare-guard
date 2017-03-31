@@ -56,7 +56,7 @@
     "scripts": {
         "build": [
             "rm -fr vendor",
-            "composer install --no-dev --prefer-dist --no-suggest",
+            "composer install --no-dev --prefer-dist --optimize-autoloader --no-suggest",
             "yarn grunt addtextdomain",
             "composer archive --format=zip --dir=release --file=wp-cloudflare-guard"
         ],
@@ -85,10 +85,11 @@
             "PhantomInstaller\\Installer::installPhantomJS",
             "phpcs --config-set installed_paths vendor/wp-coding-standards/wpcs"
         ],
-        "pre-autoload-dump": [
-            "cfwp build",
-            "yarn install",
-            "yarn grunt replace"
+        "post-install-cmd": [
+            "@transform-vendor"
+        ],
+        "post-update-cmd": [
+            "@transform-vendor"
         ],
         "test": [
             "@test-unit",
@@ -102,10 +103,16 @@
             "codecept run unit --coverage --coverage-xml --coverage-html",
             "@test-functional",
             "@test-acceptance"
+        ],
+        "transform-vendor": [
+            "yarn install",
+            "yarn grunt clean",
+            "yarn grunt cleanempty",
+            "cfwp build",
+            "yarn grunt replace"
         ]
     },
     "config": {
-        "optimize-autoloader": true,
         "sort-packages": true
     },
     "extra": {
