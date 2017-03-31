@@ -19,27 +19,14 @@ declare(strict_types=1);
 namespace WPCFG;
 
 /**
- * Abstract Class AbstractLoadable
+ * Interface AbstractLoadable.
  */
-abstract class AbstractLoadable
+interface LoadableInterface
 {
     /**
-     * Actions getter.
+     * Hooks getter.
      *
-     * @return Action[]
+     * @return AbstractHook[]
      */
-    public static function getActions(): array
-    {
-        return [];
-    }
-
-    /**
-     * Filters getter.
-     *
-     * @return Filter[]
-     */
-    public static function getFilters(): array
-    {
-        return [];
-    }
+    public static function getHooks(): array;
 }

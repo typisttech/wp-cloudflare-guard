@@ -18,10 +18,10 @@ declare(strict_types=1);
 
 namespace WPCFG\BadLogin;
 
-use WPCFG\AbstractLoadable;
 use WPCFG\Action;
 use WPCFG\Blacklist\Event;
-use WPCFG\Cloudflare\IpUtil;
+use WPCFG\Container;
+use WPCFG\LoadableInterface;
 use WPCFG\OptionStore;
 
 /**
@@ -29,8 +29,15 @@ use WPCFG\OptionStore;
  *
  * This class blacklist login with bad username.
  */
-final class BadLogin extends AbstractLoadable
+final class BadLogin implements LoadableInterface
 {
+    /**
+     * The WPCFG container.
+     *
+     * @var Container
+     */
+    private $container;
+
     /**
      * Holds the option store.
      *
@@ -42,19 +49,21 @@ final class BadLogin extends AbstractLoadable
      * BadLogin constructor.
      *
      * @param OptionStore $optionStore The WPCFG option store.
+     * @param Container   $container   The WPCFG container.
      */
-    public function __construct(OptionStore $optionStore)
+    public function __construct(OptionStore $optionStore, Container $container)
     {
         $this->optionStore = $optionStore;
+        $this->container   = $container;
     }
 
     /**
      * {@inheritdoc}
      */
-    public static function getActions(): array
+    public static function getHooks(): array
     {
         return [
-            new Action('wp_authenticate', 'emitBlacklistEventIfBadUsername'),
+            new Action(__CLASS__, 'wp_authenticate', 'emitBlacklistEventIfBadUsername'),
         ];
     }
 
@@ -71,15 +80,10 @@ final class BadLogin extends AbstractLoadable
             return;
         }
 
-        $note      = sprintf(
-            // Translators: %1$s is the bad username.
-            _x('WPCFG: Try to login with bad username: %1$s', '%1$s is the bad username', 'wp-cloudflare-guard'),
-            $username
+        do_action(
+            'wpcfg_blacklist',
+            $this->getBlacklistEventForCurrentIp($username)
         );
-        $currentIp = IpUtil::getCurrentIp();
-        $event     = new Event($currentIp, $note);
-
-        do_action('wpcfg_blacklist', $event);
     }
 
     /**
@@ -95,23 +99,7 @@ final class BadLogin extends AbstractLoadable
             return false;
         }
 
-        if ($this->isDisabled()) {
-            return false;
-        }
-
         return $this->isBadUsername($username);
-    }
-
-    /**
-     * Check whether bad login is enabled.
-     *
-     * @return bool
-     */
-    private function isDisabled(): bool
-    {
-        $disabled = $this->optionStore->get('wpcfg_bad_login', 'disabled');
-
-        return ('1' === $disabled);
     }
 
     /**
@@ -136,27 +124,14 @@ final class BadLogin extends AbstractLoadable
      */
     private function getNormalizedBadUsernames(): array
     {
-        $badUsernames = $this->getBadUsernames();
-        $normalized   = array_map([ $this, 'normalize' ], $badUsernames);
+        $normalized = array_map(
+            [ $this, 'normalize' ],
+            $this->optionStore->getBadUsernames()
+        );
 
         return array_filter($normalized, function ($username) {
             return (! empty($username));
         });
-    }
-
-    /**
-     * Get bad usernames from database.
-     *
-     * @return array
-     */
-    private function getBadUsernames(): array
-    {
-        $badUsernames = $this->optionStore->get('wpcfg_bad_login', 'bad_usernames');
-        if (empty($badUsernames)) {
-            return [];
-        }
-
-        return explode(',', $badUsernames);
     }
 
     /**
@@ -169,5 +144,23 @@ final class BadLogin extends AbstractLoadable
     private function normalize(string $username): string
     {
         return strtolower(trim(sanitize_user($username, true)));
+    }
+
+    /**
+     * Make blacklist event for current ip and the given username.
+     *
+     * @param string $username The input username which is bad.
+     *
+     * @return Event
+     */
+    private function getBlacklistEventForCurrentIp(string $username): Event
+    {
+        $note = sprintf(
+            // Translators: %1$s is the bad username.
+            _x('WPCFG: Try to login with bad username: %1$s', '%1$s is the bad username', 'wp-cloudflare-guard'),
+            $username
+        );
+
+        return $this->container->get('blacklist-event-for-current-ip', [ $note ]);
     }
 }

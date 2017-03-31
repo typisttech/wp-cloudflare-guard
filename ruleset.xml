@@ -52,6 +52,7 @@
 
         <exclude name="WordPress.WhiteSpace.CastStructureSpacing.NoSpaceBeforeOpenParenthesis"/>
         <exclude name="WordPress.WhiteSpace.ControlStructureSpacing.OpenBraceNotSameLine"/>
+        <exclude name="WordPress.WhiteSpace.ControlStructureSpacing.NoSpaceAfterCloseParenthesis"/>
         <exclude name="WordPress.WhiteSpace.ControlStructureSpacing.NoSpaceAfterOpenParenthesis"/>
         <exclude name="WordPress.WhiteSpace.ControlStructureSpacing.NoSpaceBeforeCloseParenthesis"/>
         <exclude name="WordPress.WhiteSpace.OperatorSpacing.NoSpaceAfter"/>
@@ -99,6 +100,18 @@
     </rule>
 
     <rule ref="Squiz.Commenting.FunctionComment.Missing">
+        <exclude-pattern>/tests/*</exclude-pattern>
+    </rule>
+
+    <rule ref="WordPress.VIP.RestrictedVariables">
+        <exclude-pattern>/tests/*</exclude-pattern>
+    </rule>
+
+    <rule ref="WordPress.VIP.SuperGlobalInputUsage">
+        <exclude-pattern>/tests/*</exclude-pattern>
+    </rule>
+
+    <rule ref="WordPress.VIP.ValidatedSanitizedInput">
         <exclude-pattern>/tests/*</exclude-pattern>
     </rule>
 

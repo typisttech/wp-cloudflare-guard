@@ -18,9 +18,8 @@ declare(strict_types=1);
 
 namespace WPCFG\Cloudflare;
 
-use WPCFG\AbstractLoadable;
 use WPCFG\Filter;
-use WPCFG\Loader;
+use WPCFG\LoadableInterface;
 use WPCFG\Vendor\TypistTech\WPBetterSettings\FieldConfig;
 use WPCFG\Vendor\TypistTech\WPBetterSettings\MenuPageConfig;
 use WPCFG\Vendor\TypistTech\WPBetterSettings\Sanitizer;
@@ -33,16 +32,16 @@ use WPCFG\Vendor\TypistTech\WPBetterSettings\ViewFactory;
  *
  * The admin-specific functionality of Cloudflare settings.
  */
-final class Admin extends AbstractLoadable
+final class Admin implements LoadableInterface
 {
     /**
      * {@inheritdoc}
      */
-    public static function getFilters(): array
+    public static function getHooks(): array
     {
         return [
-            new Filter('wpcfg_menu_page_configs', 'addMenuPageConfig'),
-            new Filter('wpcfg_setting_configs', 'addSettingConfig'),
+            new Filter(__CLASS__, 'wpcfg_menu_page_configs', 'addMenuPageConfig'),
+            new Filter(__CLASS__, 'wpcfg_setting_configs', 'addSettingConfig'),
         ];
     }
 
