@@ -29,7 +29,7 @@ use WPCFG\Cloudflare\Admin as CloudflareAdmin;
  *
  * The core plugin class.
  */
-final class WPCFG
+final class WPCFG implements LoadableInterface
 {
     /**
      * The dependency injection container.
@@ -55,7 +55,10 @@ final class WPCFG
         $this->loader    = new Loader($this->container);
 
         $this->container->initialize();
+        $this->container->add('\\' . self::class, $this);
+
         $this->loader->load(
+            __CLASS__,
             Admin::class,
             BadLogin::class,
             BadLoginAdmin::class,
@@ -67,13 +70,23 @@ final class WPCFG
     }
 
     /**
-     * Container getter.
-     *
-     * @return Container
+     * {@inheritdoc}
      */
-    public function getContainer(): Container
+    public static function getHooks(): array
     {
-        return $this->container;
+        return [
+            new Action(__CLASS__, 'plugin_loaded', 'giveContainer'),
+        ];
+    }
+
+    /**
+     * Expose Container via WordPress action.
+     *
+     * @return void
+     */
+    public function giveContainer()
+    {
+        do_action('wpcfg_get_container', $this->container);
     }
 
     /**

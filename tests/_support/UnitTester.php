@@ -32,8 +32,8 @@ class UnitTester extends \Codeception\Actor
      */
     public function getContainer(): Container
     {
-        $wpcfg           = new WPCFG;
-        $this->container = $wpcfg->getContainer();
+        $this->container = new Container;
+        $this->container->initialize();
 
         return $this->container;
     }
