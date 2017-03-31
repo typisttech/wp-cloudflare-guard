@@ -83,14 +83,15 @@ module.exports = function (grunt) {
         },
 
         clean: {
-            cloudflare: {
-                src: [
-                    'vendor/jamesryanbell/cloudflare/src/**/*.*',
-                    '!vendor/jamesryanbell/cloudflare/src/CloudFlare/Exception/**',
-                    '!vendor/jamesryanbell/cloudflare/src/CloudFlare/*Api.php',
-                    '!vendor/jamesryanbell/cloudflare/src/CloudFlare/Zone/Firewall/AccessRules.php'
-                ]
-            }
+            cloudflare: [
+                'vendor/jamesryanbell/cloudflare/src/**/*.*',
+                '!vendor/jamesryanbell/cloudflare/src/CloudFlare/Exception/**',
+                '!vendor/jamesryanbell/cloudflare/src/CloudFlare/*Api.php',
+                '!vendor/jamesryanbell/cloudflare/src/CloudFlare/Zone/Firewall/AccessRules.php'
+            ],
+            "container-interop": [
+                'vendor/container-interop/container-interop/docs/**'
+            ]
         },
 
         cleanempty: {
