@@ -7,9 +7,11 @@
  * Automatically create firewall rules to block dangerous IPs.
  *
  * @package   WPCFG
+ *
  * @author    Typist Tech <wp-cloudflare-guard@typist.tech>
  * @copyright 2017 Typist Tech
  * @license   GPL-2.0+
+ *
  * @see       https://www.typist.tech/projects/wp-cloudflare-guard
  * @see       https://wordpress.org/plugins/wp-cloudflare-guard/
  */
@@ -38,12 +40,12 @@ if (! defined('WPINC')) {
 
 require_once plugin_dir_path(__FILE__) . 'vendor/autoload.php';
 
-/**
+/*
  * The code that runs during plugin activation.
  */
 register_activation_hook(__FILE__, [ Activator::class, 'activate' ]);
 
-/**
+/*
  * The code that runs during plugin deactivation.
  */
 register_deactivation_hook(__FILE__, [ Deactivator::class, 'deactivate' ]);

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace WPCFG\BadLogin;
 
 use AspectMock\Test;
@@ -201,8 +203,8 @@ class BadLoginTest extends \Codeception\Test\Unit
 
     protected function _before()
     {
-        $container          = $this->tester->getContainer();
-        $this->badLogin     = $container->get(BadLogin::class);
+        $container = $this->tester->getContainer();
+        $this->badLogin = $container->get(BadLogin::class);
         $this->doActionMock = Test::func(__NAMESPACE__, 'do_action', 'done');
     }
 }

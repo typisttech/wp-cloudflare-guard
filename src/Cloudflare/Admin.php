@@ -7,9 +7,11 @@
  * Automatically create firewall rules to block dangerous IPs.
  *
  * @package   WPCFG
+ *
  * @author    Typist Tech <wp-cloudflare-guard@typist.tech>
  * @copyright 2017 Typist Tech
  * @license   GPL-2.0+
+ *
  * @see       https://www.typist.tech/projects/wp-cloudflare-guard
  * @see       https://wordpress.org/plugins/wp-cloudflare-guard/
  */
@@ -55,12 +57,12 @@ final class Admin implements LoadableInterface
     public function addMenuPageConfig(array $menuPageConfigs): array
     {
         $menuPageConfigs[] = new MenuPageConfig([
-            'menu_slug'    => 'wpcfg_cloudflare',
-            'page_title'   => 'WP Cloudflare Guard',
-            'menu_title'   => 'WP Cloudflare Guard',
+            'menu_slug' => 'wpcfg_cloudflare',
+            'page_title' => 'WP Cloudflare Guard',
+            'menu_title' => 'WP Cloudflare Guard',
             'option_group' => 'wpcfg_cloudflare',
-            'view'         => ViewFactory::build('tabbed-options-page'),
-            'icon_url'     => 'dashicons-shield',
+            'view' => ViewFactory::build('tabbed-options-page'),
+            'icon_url' => 'dashicons-shield',
         ]);
 
         return $menuPageConfigs;
@@ -76,10 +78,10 @@ final class Admin implements LoadableInterface
     public function addSettingConfig(array $settingConfig): array
     {
         $emailField = new FieldConfig([
-            'id'                => 'email',
-            'title'             => __('Cloudflare Email', 'wp-cloudflare-guard'),
-            'view'              => ViewFactory::build('email-field'),
-            'desc'              => __(
+            'id' => 'email',
+            'title' => __('Cloudflare Email', 'wp-cloudflare-guard'),
+            'view' => ViewFactory::build('email-field'),
+            'desc' => __(
                 'The email address associated with your Cloudflare account.',
                 'wp-cloudflare-guard'
             ),
@@ -99,30 +101,30 @@ final class Admin implements LoadableInterface
         );
 
         $apiKeyField = new FieldConfig([
-            'id'    => 'api_key',
+            'id' => 'api_key',
             'title' => __('Global API Key', 'wp-cloudflare-guard'),
-            'view'  => ViewFactory::build('text-field'),
-            'desc'  => $apiKeyDesc,
+            'view' => ViewFactory::build('text-field'),
+            'desc' => $apiKeyDesc,
         ]);
 
         $zoneIdField = new FieldConfig([
-            'id'    => 'zone_id',
+            'id' => 'zone_id',
             'title' => __('Zone ID', 'wp-cloudflare-guard'),
-            'view'  => ViewFactory::build('text-field'),
-            'desc'  => __('Zone identifier for this domain', 'wp-cloudflare-guard'),
+            'view' => ViewFactory::build('text-field'),
+            'desc' => __('Zone identifier for this domain', 'wp-cloudflare-guard'),
         ]);
 
         $cloudflareSection = new SectionConfig([
-            'id'     => 'wpcfg_cloudflare',
-            'page'   => 'wpcfg_cloudflare',
-            'title'  => __('Cloudflare Settings', 'wp-cloudflare-guard'),
+            'id' => 'wpcfg_cloudflare',
+            'page' => 'wpcfg_cloudflare',
+            'title' => __('Cloudflare Settings', 'wp-cloudflare-guard'),
             'fields' => [ $emailField, $apiKeyField, $zoneIdField ],
         ]);
 
         $settingConfig[] = new SettingConfig([
             'option_group' => 'wpcfg_cloudflare',
-            'option_name'  => 'wpcfg_cloudflare',
-            'sections'     => [ $cloudflareSection ],
+            'option_name' => 'wpcfg_cloudflare',
+            'sections' => [ $cloudflareSection ],
         ]);
 
         return $settingConfig;

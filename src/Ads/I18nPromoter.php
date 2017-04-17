@@ -7,9 +7,11 @@
  * Automatically create firewall rules to block dangerous IPs.
  *
  * @package   WPCFG
+ *
  * @author    Typist Tech <wp-cloudflare-guard@typist.tech>
  * @copyright 2017 Typist Tech
  * @license   GPL-2.0+
+ *
  * @see       https://www.typist.tech/projects/wp-cloudflare-guard
  * @see       https://wordpress.org/plugins/wp-cloudflare-guard/
  */
@@ -51,7 +53,7 @@ final class I18nPromoter implements LoadableInterface
      */
     public function __construct(Admin $admin, Container $container)
     {
-        $this->admin     = $admin;
+        $this->admin = $admin;
         $this->container = $container;
     }
 
@@ -103,9 +105,9 @@ final class I18nPromoter implements LoadableInterface
     {
         $this->container->get(Yoast_I18n_WordPressOrg_v2::class, [
             [
-                'textdomain'  => 'wp-cloudflare-guard',
+                'textdomain' => 'wp-cloudflare-guard',
                 'plugin_name' => 'WP Cloudflare Guard',
-                'hook'        => $hook,
+                'hook' => $hook,
             ],
         ]);
     }

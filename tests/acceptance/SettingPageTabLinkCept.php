@@ -1,4 +1,8 @@
-<?php use WPCFG\AcceptanceTester;
+<?php
+
+declare(strict_types=1);
+
+namespace WPCFG;
 
 $I = new AcceptanceTester($scenario);
 $I->wantTo('setting page has tab links');

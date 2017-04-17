@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace WPCFG\Ads;
 
 use AspectMock\Test;
@@ -48,16 +50,16 @@ class I18nPromoterTest extends \Codeception\Test\Unit
         $yoastI18nWordPressOrgV2->verifyInvokedMultipleTimes('__construct', 2);
         $yoastI18nWordPressOrgV2->verifyInvokedOnce('__construct', [
             [
-                'textdomain'  => 'wp-cloudflare-guard',
+                'textdomain' => 'wp-cloudflare-guard',
                 'plugin_name' => 'WP Cloudflare Guard',
-                'hook'        => 'wpcfg_cloudflare_after_option_form',
+                'hook' => 'wpcfg_cloudflare_after_option_form',
             ],
         ]);
         $yoastI18nWordPressOrgV2->verifyInvokedOnce('__construct', [
             [
-                'textdomain'  => 'wp-cloudflare-guard',
+                'textdomain' => 'wp-cloudflare-guard',
                 'plugin_name' => 'WP Cloudflare Guard',
-                'hook'        => 'wpcfg_bad_login_after_option_form',
+                'hook' => 'wpcfg_bad_login_after_option_form',
             ],
         ]);
     }
