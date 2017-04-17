@@ -7,9 +7,11 @@
  * Automatically create firewall rules to block dangerous IPs.
  *
  * @package   WPCFG
+ *
  * @author    Typist Tech <wp-cloudflare-guard@typist.tech>
  * @copyright 2017 Typist Tech
  * @license   GPL-2.0+
+ *
  * @see       https://www.typist.tech/projects/wp-cloudflare-guard
  * @see       https://wordpress.org/plugins/wp-cloudflare-guard/
  */
@@ -56,12 +58,12 @@ final class Admin implements LoadableInterface
     public function addMenuPageConfig(array $menuPageConfigs): array
     {
         $menuPageConfigs[] = new MenuPageConfig([
-            'menu_slug'    => 'wpcfg_bad_login',
-            'page_title'   => 'WP Cloudflare Guard - Bad Login',
-            'menu_title'   => 'Bad Login',
+            'menu_slug' => 'wpcfg_bad_login',
+            'page_title' => 'WP Cloudflare Guard - Bad Login',
+            'menu_title' => 'Bad Login',
             'option_group' => 'wpcfg_bad_login',
-            'parent_slug'  => 'wpcfg_cloudflare',
-            'view'         => ViewFactory::build('tabbed-options-page'),
+            'parent_slug' => 'wpcfg_cloudflare',
+            'view' => ViewFactory::build('tabbed-options-page'),
         ]);
 
         return $menuPageConfigs;
@@ -79,23 +81,23 @@ final class Admin implements LoadableInterface
     public function addSettingConfig(array $settingConfig): array
     {
         $badUsernamesField = new FieldConfig([
-            'id'    => 'bad_usernames',
+            'id' => 'bad_usernames',
             'title' => __('Bad Usernames', 'wp-cloudflare-guard'),
-            'view'  => ViewFactory::build('textarea-field'),
-            'desc'  => __('You can define your own bad usernames here, separated by commas.', 'wp-cloudflare-guard'),
+            'view' => ViewFactory::build('textarea-field'),
+            'desc' => __('You can define your own bad usernames here, separated by commas.', 'wp-cloudflare-guard'),
         ]);
 
         $badLoginSection = new SectionConfig([
-            'id'     => 'wpcfg_bad_login',
-            'page'   => 'wpcfg_bad_login',
-            'title'  => __('Cloudflare Settings', 'wp-cloudflare-guard'),
+            'id' => 'wpcfg_bad_login',
+            'page' => 'wpcfg_bad_login',
+            'title' => __('Cloudflare Settings', 'wp-cloudflare-guard'),
             'fields' => [ $badUsernamesField ],
         ]);
 
         $settingConfig[] = new SettingConfig([
             'option_group' => 'wpcfg_bad_login',
-            'option_name'  => 'wpcfg_bad_login',
-            'sections'     => [ $badLoginSection ],
+            'option_name' => 'wpcfg_bad_login',
+            'sections' => [ $badLoginSection ],
         ]);
 
         return $settingConfig;

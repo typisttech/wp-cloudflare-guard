@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace WPCFG;
 
 /**
@@ -47,7 +49,7 @@ class OptionStoreTest extends \Codeception\Test\Unit
     protected function _before()
     {
         update_option('wpcfg_cloudflare', [
-            'email'   => 'tester@example.com',
+            'email' => 'tester@example.com',
             'api_key' => 'passkey123',
             'zone_id' => 'two46o1',
         ]);

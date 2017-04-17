@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace WPCFG\Blacklist;
 
 use AspectMock\Test;
@@ -40,7 +42,7 @@ class HandlerTest extends \Codeception\Test\Unit
             'block',
             (object) [
                 'target' => 'ip',
-                'value'  => '127.0.0.1',
+                'value' => '127.0.0.1',
             ],
             'some note',
         ];
@@ -95,7 +97,7 @@ class HandlerTest extends \Codeception\Test\Unit
     protected function _before()
     {
         update_option('wpcfg_cloudflare', [
-            'email'   => 'email@example.com',
+            'email' => 'email@example.com',
             'api_key' => 'API_KEY_123',
             'zone_id' => 'abc123',
         ]);

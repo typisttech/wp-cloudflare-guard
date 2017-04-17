@@ -7,9 +7,11 @@
  * Automatically create firewall rules to block dangerous IPs.
  *
  * @package   WPCFG
+ *
  * @author    Typist Tech <wp-cloudflare-guard@typist.tech>
  * @copyright 2017 Typist Tech
  * @license   GPL-2.0+
+ *
  * @see       https://www.typist.tech/projects/wp-cloudflare-guard
  * @see       https://wordpress.org/plugins/wp-cloudflare-guard/
  */
@@ -30,7 +32,7 @@ abstract class AbstractHook
     /**
      * The number of arguments that should be passed to the $callback.
      *
-     * @var integer
+     * @var int
      */
     protected $acceptedArgs;
 
@@ -58,19 +60,19 @@ abstract class AbstractHook
     /**
      * The priority at which the function should be fired.
      *
-     * @var integer
+     * @var int
      */
     protected $priority;
 
     /**
      * Filter constructor.
      *
-     * @param string       $classIdentifier Identifier of the entry to look for from container.
-     * @param string       $hook            The name of the WordPress hook that is being registered.
-     * @param string       $callbackMethod  The callback method name.
-     * @param integer|null $priority        Optional.The priority at which the function should be fired. Default is 10.
-     * @param integer|null $acceptedArgs    Optional. The number of arguments that should be passed to the $callback.
-     *                                      Default is 1.
+     * @param string   $classIdentifier Identifier of the entry to look for from container.
+     * @param string   $hook            The name of the WordPress hook that is being registered.
+     * @param string   $callbackMethod  The callback method name.
+     * @param int|null $priority        Optional.The priority at which the function should be fired. Default is 10.
+     * @param int|null $acceptedArgs    Optional. The number of arguments that should be passed to the $callback.
+     *                                  Default is 1.
      */
     public function __construct(
         string $classIdentifier,
@@ -80,10 +82,10 @@ abstract class AbstractHook
         int $acceptedArgs = null
     ) {
         $this->classIdentifier = $classIdentifier;
-        $this->hook            = $hook;
-        $this->callbackMethod  = $callbackMethod;
-        $this->priority        = $priority ?? 10;
-        $this->acceptedArgs    = $acceptedArgs ?? 1;
+        $this->hook = $hook;
+        $this->callbackMethod = $callbackMethod;
+        $this->priority = $priority ?? 10;
+        $this->acceptedArgs = $acceptedArgs ?? 1;
     }
 
     /**

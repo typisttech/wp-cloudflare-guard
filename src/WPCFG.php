@@ -7,9 +7,11 @@
  * Automatically create firewall rules to block dangerous IPs.
  *
  * @package   WPCFG
+ *
  * @author    Typist Tech <wp-cloudflare-guard@typist.tech>
  * @copyright 2017 Typist Tech
  * @license   GPL-2.0+
+ *
  * @see       https://www.typist.tech/projects/wp-cloudflare-guard
  * @see       https://wordpress.org/plugins/wp-cloudflare-guard/
  */
@@ -42,7 +44,7 @@ final class WPCFG implements LoadableInterface
      * The loader that's responsible for maintaining and registering all hooks that power
      * the plugin.
      *
-     * @var Loader $loader Maintains and registers all hooks for the plugin.
+     * @var Loader Maintains and registers all hooks for the plugin.
      */
     private $loader;
 
@@ -52,7 +54,7 @@ final class WPCFG implements LoadableInterface
     public function __construct()
     {
         $this->container = new Container;
-        $this->loader    = new Loader($this->container);
+        $this->loader = new Loader($this->container);
 
         $this->container->initialize();
         $this->container->add('\\' . self::class, $this);
@@ -92,7 +94,7 @@ final class WPCFG implements LoadableInterface
     /**
      * Run the loader to execute all of the hooks with WordPress.
      *
-     * @return  void
+     * @return void
      */
     public function run()
     {

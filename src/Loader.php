@@ -7,9 +7,11 @@
  * Automatically create firewall rules to block dangerous IPs.
  *
  * @package   WPCFG
+ *
  * @author    Typist Tech <wp-cloudflare-guard@typist.tech>
  * @copyright 2017 Typist Tech
  * @license   GPL-2.0+
+ *
  * @see       https://www.typist.tech/projects/wp-cloudflare-guard
  * @see       https://wordpress.org/plugins/wp-cloudflare-guard/
  */
@@ -33,7 +35,7 @@ class Loader
     /**
      * The array of actions registered with WordPress.
      *
-     * @var Action[] $actions The actions registered with WordPress to fire when the plugin loads.
+     * @var Action[] The actions registered with WordPress to fire when the plugin loads.
      */
     private $actions;
 
@@ -47,7 +49,7 @@ class Loader
     /**
      * The array of filters registered with WordPress.
      *
-     * @var Filter[] $filters The filters registered with WordPress to fire when the plugin loads.
+     * @var Filter[] The filters registered with WordPress to fire when the plugin loads.
      */
     private $filters;
 
@@ -59,8 +61,8 @@ class Loader
     public function __construct(ContainerInterface $container)
     {
         $this->container = $container;
-        $this->actions   = [];
-        $this->filters   = [];
+        $this->actions = [];
+        $this->filters = [];
     }
 
     /**
@@ -88,8 +90,9 @@ class Loader
      * @param AbstractHook[]|array ...$hooks Hooks to be registered.
      *                                       Expecting Filters or Actions.
      *
-     * @return void
      * @throws InvalidArgumentException If $hooks are not made of Filters or Actions.
+     *
+     * @return void
      */
     private function add(AbstractHook ...$hooks)
     {

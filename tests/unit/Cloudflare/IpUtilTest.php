@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace WPCFG\Cloudflare;
 
 /**
@@ -17,10 +19,10 @@ class IpUtilTest extends \Codeception\Test\Unit
      */
     public function testGetCurrentIp()
     {
-        $remoteAddr   = '103.21.244.2';
+        $remoteAddr = '103.21.244.2';
         $connectingIp = '8.8.8.8';
 
-        $_SERVER['REMOTE_ADDR']           = $remoteAddr;
+        $_SERVER['REMOTE_ADDR'] = $remoteAddr;
         $_SERVER['HTTP_CF_CONNECTING_IP'] = $connectingIp;
 
         $actual = IpUtil::getCurrentIp();

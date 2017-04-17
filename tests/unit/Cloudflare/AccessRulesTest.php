@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace WPCFG\Cloudflare;
 
 use WPCFG\Vendor\Cloudflare\Zone\Firewall\AccessRules as CloudflareAccessRules;

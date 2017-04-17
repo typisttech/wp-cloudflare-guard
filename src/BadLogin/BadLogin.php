@@ -7,9 +7,11 @@
  * Automatically create firewall rules to block dangerous IPs.
  *
  * @package   WPCFG
+ *
  * @author    Typist Tech <wp-cloudflare-guard@typist.tech>
  * @copyright 2017 Typist Tech
  * @license   GPL-2.0+
+ *
  * @see       https://www.typist.tech/projects/wp-cloudflare-guard
  * @see       https://wordpress.org/plugins/wp-cloudflare-guard/
  */
@@ -54,7 +56,7 @@ final class BadLogin implements LoadableInterface
     public function __construct(OptionStore $optionStore, Container $container)
     {
         $this->optionStore = $optionStore;
-        $this->container   = $container;
+        $this->container = $container;
     }
 
     /**
@@ -111,7 +113,7 @@ final class BadLogin implements LoadableInterface
      */
     private function isBadUsername(string $inputUsername): bool
     {
-        $badUsernames    = $this->getNormalizedBadUsernames();
+        $badUsernames = $this->getNormalizedBadUsernames();
         $normalizedInput = $this->normalize($inputUsername);
 
         return in_array($normalizedInput, $badUsernames, true);
@@ -130,7 +132,7 @@ final class BadLogin implements LoadableInterface
         );
 
         return array_filter($normalized, function ($username) {
-            return (! empty($username));
+            return ! empty($username);
         });
     }
 
