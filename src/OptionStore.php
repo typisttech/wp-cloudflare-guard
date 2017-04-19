@@ -27,7 +27,7 @@ use WPCFG\Vendor\TypistTech\WPBetterSettings\OptionStore as WPBSOptionStore;
  *
  * The get_option functionality of the plugin.
  */
-class OptionStore extends WPBSOptionStore
+final class OptionStore extends WPBSOptionStore
 {
     /**
      * Cloudflare api key getter.
@@ -36,22 +36,24 @@ class OptionStore extends WPBSOptionStore
      */
     public function getApiKey()
     {
-        return $this->get('wpcfg_cloudflare', 'api_key');
+        return $this->get('wpcfg_cloudflare_api_key');
     }
 
     /**
      * Bad usernames getter.
      *
-     * @return array
+     * @return string[]
      */
     public function getBadUsernames(): array
     {
-        $badUsernames = $this->get('wpcfg_bad_login', 'bad_usernames');
-        if (empty($badUsernames)) {
+        $value = $this->get('wpcfg_bad_login_bad_usernames');
+        if (empty($value)) {
             return [];
         }
 
-        return explode(',', $badUsernames);
+        return array_map(function (string $username) {
+            return sanitize_user($username, true);
+        }, explode(',', $value));
     }
 
     /**
@@ -61,7 +63,7 @@ class OptionStore extends WPBSOptionStore
      */
     public function getEmail()
     {
-        return $this->get('wpcfg_cloudflare', 'email');
+        return $this->get('wpcfg_cloudflare_email');
     }
 
     /**
@@ -71,6 +73,6 @@ class OptionStore extends WPBSOptionStore
      */
     public function getZoneId()
     {
-        return $this->get('wpcfg_cloudflare', 'zone_id');
+        return $this->get('wpcfg_cloudflare_zone_id');
     }
 }

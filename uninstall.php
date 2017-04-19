@@ -44,6 +44,10 @@ if (! defined('WP_UNINSTALL_PLUGIN')) {
 }
 
 $keys = [
+    'wpcfg_cloudflare_email',
+    'wpcfg_cloudflare_api_key',
+    'wpcfg_cloudflare_zone_id',
+    'wpcfg_bad_login_bad_usernames',
     'wpcfg_cloudflare',
     'wpcfg_bad_login',
 ];

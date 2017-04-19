@@ -22,11 +22,9 @@ namespace WPCFG\BadLogin;
 
 use WPCFG\Filter;
 use WPCFG\LoadableInterface;
-use WPCFG\Vendor\TypistTech\WPBetterSettings\FieldConfig;
-use WPCFG\Vendor\TypistTech\WPBetterSettings\MenuPageConfig;
-use WPCFG\Vendor\TypistTech\WPBetterSettings\SectionConfig;
-use WPCFG\Vendor\TypistTech\WPBetterSettings\SettingConfig;
-use WPCFG\Vendor\TypistTech\WPBetterSettings\ViewFactory;
+use WPCFG\Vendor\TypistTech\WPBetterSettings\Fields\Textarea;
+use WPCFG\Vendor\TypistTech\WPBetterSettings\Pages\SubmenuPage;
+use WPCFG\Vendor\TypistTech\WPBetterSettings\Section;
 
 /**
  * Final class Admin.
@@ -41,8 +39,8 @@ final class Admin implements LoadableInterface
     public static function getHooks(): array
     {
         return [
-            new Filter(__CLASS__, 'wpcfg_menu_page_configs', 'addMenuPageConfig'),
-            new Filter(__CLASS__, 'wpcfg_setting_configs', 'addSettingConfig'),
+            new Filter(__CLASS__, 'wpcfg_pages', 'addPage'),
+            new Filter(__CLASS__, 'wpcfg_settings_sections', 'addSettingsSection'),
         ];
     }
 
@@ -51,55 +49,51 @@ final class Admin implements LoadableInterface
      *
      * @todo Test via acceptance test.
      *
-     * @param MenuPageConfig[] $menuPageConfigs Menu page configurations.
+     * @param (MenuPage|SubmenuPage)[] $pages Menu and submenu page configurations.
      *
-     * @return MenuPageConfig[]
+     * @return (MenuPage|SubmenuPage)[]
      */
-    public function addMenuPageConfig(array $menuPageConfigs): array
+    public function addPage(array $pages): array
     {
-        $menuPageConfigs[] = new MenuPageConfig([
-            'menu_slug' => 'wpcfg_bad_login',
-            'page_title' => 'WP Cloudflare Guard - Bad Login',
-            'menu_title' => 'Bad Login',
-            'option_group' => 'wpcfg_bad_login',
-            'parent_slug' => 'wpcfg_cloudflare',
-            'view' => ViewFactory::build('tabbed-options-page'),
-        ]);
+        $pages[] = new SubmenuPage(
+            'wpcfg-cloudflare',
+            'wpcfg-bad-login',
+            __('Bad Login', 'wp-cloudflare-guard'),
+            __('WP Cloudflare Guard - Bad Login', 'wp-cloudflare-guard')
+        );
 
-        return $menuPageConfigs;
+        return $pages;
     }
 
     /**
-     * Add settings config.
+     * Add settings section config.
      *
      * @todo Test via acceptance test.
      *
-     * @param SettingConfig[] $settingConfig Setting configurations.
+     * @param Section[] $sections Settings section configurations.
      *
-     * @return SettingConfig[]
+     * @return Section[]
      */
-    public function addSettingConfig(array $settingConfig): array
+    public function addSettingsSection(array $sections): array
     {
-        $badUsernamesField = new FieldConfig([
-            'id' => 'bad_usernames',
-            'title' => __('Bad Usernames', 'wp-cloudflare-guard'),
-            'view' => ViewFactory::build('textarea-field'),
-            'desc' => __('You can define your own bad usernames here, separated by commas.', 'wp-cloudflare-guard'),
-        ]);
+        $badUsernames = new Textarea(
+            'wpcfg_bad_login_bad_usernames',
+            __('Bad Usernames', 'wp-cloudflare-guard')
+        );
+        $badUsernames->getDecorator()
+                     ->setDescription(
+                         __(
+                             'You can define your own bad usernames here, separated by commas.',
+                             'wp-cloudflare-guard'
+                         )
+                     );
 
-        $badLoginSection = new SectionConfig([
-            'id' => 'wpcfg_bad_login',
-            'page' => 'wpcfg_bad_login',
-            'title' => __('Cloudflare Settings', 'wp-cloudflare-guard'),
-            'fields' => [ $badUsernamesField ],
-        ]);
+        $sections[] = new Section(
+            'wpcfg-bad-login',
+            __('Bad Login', 'wp-cloudflare-guard'),
+            $badUsernames
+        );
 
-        $settingConfig[] = new SettingConfig([
-            'option_group' => 'wpcfg_bad_login',
-            'option_name' => 'wpcfg_bad_login',
-            'sections' => [ $badLoginSection ],
-        ]);
-
-        return $settingConfig;
+        return $sections;
     }
 }
