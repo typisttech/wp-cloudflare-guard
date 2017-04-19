@@ -92,7 +92,9 @@ class HandlerTest extends WPTestCase
 
     protected function _after()
     {
-        delete_option('wpcfg_cloudflare');
+        delete_option('wpcfg_cloudflare_email');
+        delete_option('wpcfg_cloudflare_api_key');
+        delete_option('wpcfg_cloudflare_zone_id');
     }
 
     protected function _before()

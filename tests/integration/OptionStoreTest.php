@@ -60,7 +60,7 @@ class OptionStoreTest extends WPTestCase
         delete_option('wpcfg_cloudflare_email');
         delete_option('wpcfg_cloudflare_api_key');
         delete_option('wpcfg_cloudflare_zone_id');
-        delete_option('wpcfg_cloudflare_zone_id');
+        delete_option('wpcfg_bad_login_bad_usernames');
     }
 
     protected function _before()
