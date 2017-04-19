@@ -29,6 +29,27 @@ class HandlerTest extends WPTestCase
      */
     private $handler;
 
+    public function setUp()
+    {
+        parent::setUp();
+
+        update_option('wpcfg_cloudflare_email', 'email@example.com');
+        update_option('wpcfg_cloudflare_api_key', 'API_KEY_123');
+        update_option('wpcfg_cloudflare_zone_id', 'abc123');
+
+        $container = $this->tester->getContainer();
+
+        $this->accessRules = Test::double(
+            $container->get(AccessRules::class),
+            [
+                'create' => null,
+            ]
+        );
+        $container->add(AccessRules::class, $this->accessRules->getObject());
+
+        $this->handler = $container->get(Handler::class);
+    }
+
     /**
      * @covers \TypistTech\WPCFG\Blacklist\Handler
      */
@@ -88,26 +109,5 @@ class HandlerTest extends WPTestCase
         $this->accessRules->verifyNeverInvoked('setEmail');
         $this->accessRules->verifyNeverInvoked('setAuthKey');
         $this->accessRules->verifyNeverInvoked('create');
-    }
-
-    public function setUp()
-    {
-        parent::setUp();
-
-        update_option('wpcfg_cloudflare_email', 'email@example.com');
-        update_option('wpcfg_cloudflare_api_key', 'API_KEY_123');
-        update_option('wpcfg_cloudflare_zone_id', 'abc123');
-
-        $container = $this->tester->getContainer();
-
-        $this->accessRules = Test::double(
-            $container->get(AccessRules::class),
-            [
-                'create' => null,
-            ]
-        );
-        $container->add(AccessRules::class, $this->accessRules->getObject());
-
-        $this->handler = $container->get(Handler::class);
     }
 }

@@ -16,6 +16,18 @@ class OptionStoreTest extends WPTestCase
      */
     private $optionStore;
 
+    public function setUp()
+    {
+        parent::setUp();
+
+        update_option('wpcfg_cloudflare_email', 'tester@example.com');
+        update_option('wpcfg_cloudflare_api_key', 'passkey123');
+        update_option('wpcfg_cloudflare_zone_id', 'two46o1');
+        update_option('wpcfg_bad_login_bad_usernames', 'tom, mary,peter');
+
+        $this->optionStore = new OptionStore;
+    }
+
     /**
      * @covers ::getApiKey
      */
@@ -67,17 +79,5 @@ class OptionStoreTest extends WPTestCase
     {
         $actual = $this->optionStore->getZoneId();
         $this->assertSame('two46o1', $actual);
-    }
-
-    public function setUp()
-    {
-        parent::setUp();
-
-        update_option('wpcfg_cloudflare_email', 'tester@example.com');
-        update_option('wpcfg_cloudflare_api_key', 'passkey123');
-        update_option('wpcfg_cloudflare_zone_id', 'two46o1');
-        update_option('wpcfg_bad_login_bad_usernames', 'tom, mary,peter');
-
-        $this->optionStore = new OptionStore;
     }
 }

@@ -29,6 +29,15 @@ class BadLoginTest extends WPTestCase
      */
     private $doActionMock;
 
+    public function setUp()
+    {
+        parent::setUp();
+
+        $container = $this->tester->getContainer();
+        $this->badLogin = $container->get(BadLogin::class);
+        $this->doActionMock = Test::func(__NAMESPACE__, 'do_action', 'done');
+    }
+
     /**
      * @covers \TypistTech\WPCFG\BadLogin\BadLogin
      */
@@ -155,14 +164,5 @@ class BadLoginTest extends WPTestCase
         ];
 
         $this->assertEquals($expected, $actual);
-    }
-
-    public function setUp()
-    {
-        parent::setUp();
-
-        $container = $this->tester->getContainer();
-        $this->badLogin = $container->get(BadLogin::class);
-        $this->doActionMock = Test::func(__NAMESPACE__, 'do_action', 'done');
     }
 }

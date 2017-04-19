@@ -25,6 +25,26 @@ class I18nPromoterTest extends WPTestCase
      */
     private $i18nPromoter;
 
+    public function setUp()
+    {
+        parent::setUp();
+
+        $container = $this->tester->getContainer();
+
+        $admin = Test::double(
+            $container->get(Admin::class),
+            [
+                'getMenuSlugs' => [
+                    'wpcfg-cloudflare',
+                    'wpcfg-bad-login',
+                ],
+            ]
+        );
+        $container->share(Admin::class, $admin->getObject());
+
+        $this->i18nPromoter = $container->get(I18nPromoter::class);
+    }
+
     /**
      * @covers ::getHooks
      */
@@ -63,25 +83,5 @@ class I18nPromoterTest extends WPTestCase
                 'hook' => 'wpcfg_bad_login_after_option_form',
             ],
         ]);
-    }
-
-    public function setUp()
-    {
-        parent::setUp();
-
-        $container = $this->tester->getContainer();
-
-        $admin = Test::double(
-            $container->get(Admin::class),
-            [
-                'getMenuSlugs' => [
-                    'wpcfg-cloudflare',
-                    'wpcfg-bad-login',
-                ],
-            ]
-        );
-        $container->share(Admin::class, $admin->getObject());
-
-        $this->i18nPromoter = $container->get(I18nPromoter::class);
     }
 }
