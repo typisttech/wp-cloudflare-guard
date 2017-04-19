@@ -40,15 +40,12 @@ env:
   matrix:
     - WP_VERSION=nightly
     - WP_VERSION=latest WITH_COVERAGE=true
-    - WP_VERSION=4.7.2
-    - WP_VERSION=4.6.3
-    - WP_VERSION=4.5.6
+    - WP_VERSION=4.7.3
 
 matrix:
   allow_failures:
     - php: nightly
     - env: WP_VERSION=nightly
-    - env: WP_VERSION=4.5.6
   fast_finish: true
 
 before_install:
