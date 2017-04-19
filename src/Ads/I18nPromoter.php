@@ -18,13 +18,13 @@
 
 declare(strict_types=1);
 
-namespace WPCFG\Ads;
+namespace TypistTech\WPCFG\Ads;
 
-use WPCFG\Action;
-use WPCFG\Admin;
-use WPCFG\Container;
-use WPCFG\LoadableInterface;
-use WPCFG\Vendor\Yoast_I18n_WordPressOrg_v2;
+use TypistTech\WPCFG\Action;
+use TypistTech\WPCFG\Admin;
+use TypistTech\WPCFG\Container;
+use TypistTech\WPCFG\LoadableInterface;
+use TypistTech\WPCFG\Vendor\Yoast_I18n_WordPressOrg_v2;
 
 /**
  * Final class I18nPromoter
@@ -46,7 +46,7 @@ final class I18nPromoter implements LoadableInterface
     private $container;
 
     /**
-     * I18n_Promoter constructor.
+     * I18nPromoter constructor.
      *
      * @param Admin     $admin     The WPCFG admin.
      * @param Container $container The WPCFG container.

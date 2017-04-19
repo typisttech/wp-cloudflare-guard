@@ -18,7 +18,7 @@
 
 declare(strict_types=1);
 
-namespace WPCFG;
+namespace TypistTech\WPCFG;
 
 /**
  * Define the internationalization functionality.

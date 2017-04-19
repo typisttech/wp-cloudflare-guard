@@ -2,15 +2,17 @@
 
 declare(strict_types=1);
 
-namespace WPCFG\Blacklist;
+namespace TypistTech\WPCFG\Blacklist;
+
+use Codeception\Test\Unit;
 
 /**
- * @coversDefaultClass \WPCFG\Blacklist\Event
+ * @coversDefaultClass TypistTech\WPCFG\Blacklist\Event
  */
-class EventTest extends \Codeception\Test\Unit
+class EventTest extends Unit
 {
     /**
-     * @covers \WPCFG\Blacklist\Event
+     * @covers ::getIpAddress
      */
     public function testHasIpAddressGetter()
     {
@@ -20,7 +22,7 @@ class EventTest extends \Codeception\Test\Unit
     }
 
     /**
-     * @covers \WPCFG\Blacklist\Event
+     * @covers ::getNote
      */
     public function testHasNoteGetter()
     {

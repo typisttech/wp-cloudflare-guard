@@ -18,9 +18,9 @@
 
 declare(strict_types=1);
 
-namespace WPCFG;
+namespace TypistTech\WPCFG;
 
-use WPCFG\Vendor\TypistTech\WPBetterSettings\OptionStore as WPBSOptionStore;
+use TypistTech\WPCFG\Vendor\TypistTech\WPBetterSettings\OptionStore as WPBSOptionStore;
 
 /**
  * Final class OptionStore

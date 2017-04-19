@@ -18,19 +18,19 @@
 
 declare(strict_types=1);
 
-namespace WPCFG;
+namespace TypistTech\WPCFG;
 
-use WPCFG\Ads\I18nPromoter;
-use WPCFG\BadLogin\Admin as BadLoginAdmin;
-use WPCFG\BadLogin\BadLogin;
-use WPCFG\Blacklist\Event;
-use WPCFG\Blacklist\Handler;
-use WPCFG\Cloudflare\AccessRules;
-use WPCFG\Cloudflare\Admin as CloudflareAdmin;
-use WPCFG\Cloudflare\IpUtil;
-use WPCFG\Vendor\League\Container\Container as LeagueContainer;
-use WPCFG\Vendor\League\Container\ReflectionContainer;
-use WPCFG\Vendor\Yoast_I18n_WordPressOrg_v2;
+use TypistTech\WPCFG\Ads\I18nPromoter;
+use TypistTech\WPCFG\BadLogin\Admin as BadLoginAdmin;
+use TypistTech\WPCFG\BadLogin\BadLogin;
+use TypistTech\WPCFG\Blacklist\Event;
+use TypistTech\WPCFG\Blacklist\Handler;
+use TypistTech\WPCFG\Cloudflare\AccessRules;
+use TypistTech\WPCFG\Cloudflare\Admin as CloudflareAdmin;
+use TypistTech\WPCFG\Cloudflare\IpUtil;
+use TypistTech\WPCFG\Vendor\League\Container\Container as LeagueContainer;
+use TypistTech\WPCFG\Vendor\League\Container\ReflectionContainer;
+use TypistTech\WPCFG\Vendor\Yoast_I18n_WordPressOrg_v2;
 
 /**
  * Class Container.

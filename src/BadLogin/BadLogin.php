@@ -18,13 +18,13 @@
 
 declare(strict_types=1);
 
-namespace WPCFG\BadLogin;
+namespace TypistTech\WPCFG\BadLogin;
 
-use WPCFG\Action;
-use WPCFG\Blacklist\Event;
-use WPCFG\Container;
-use WPCFG\LoadableInterface;
-use WPCFG\OptionStore;
+use TypistTech\WPCFG\Action;
+use TypistTech\WPCFG\Blacklist\Event;
+use TypistTech\WPCFG\Container;
+use TypistTech\WPCFG\LoadableInterface;
+use TypistTech\WPCFG\OptionStore;
 
 /**
  * Final class BadLogin.

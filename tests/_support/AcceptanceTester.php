@@ -2,7 +2,9 @@
 
 declare(strict_types=1);
 
-namespace WPCFG;
+namespace TypistTech\WPCFG;
+
+use Codeception\Actor;
 
 /**
  * Inherited Methods
@@ -16,17 +18,14 @@ namespace WPCFG;
  * @method void am($role)
  * @method void lookForwardTo($achieveValue)
  * @method void comment($description)
- * @method \Codeception\Lib\Friend haveFriend($name, $actorClass = null)
+ * @method \Codeception\Lib\Friend haveFriend($name, $actorClass = NULL)
  *
  * @SuppressWarnings(PHPMD)
  */
-class AcceptanceTester extends \Codeception\Actor
+class AcceptanceTester extends Actor
 {
     use _generated\AcceptanceTesterActions;
 
-    /**
-     * Define custom actions here
-     */
     public function amOnWPCFGSettingPage()
     {
         $I = $this;

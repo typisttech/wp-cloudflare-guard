@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace WPCFG;
+use TypistTech\WPCFG\AcceptanceTester;
 
 $I = new AcceptanceTester($scenario);
 $I->wantTo('setting page has tab links');

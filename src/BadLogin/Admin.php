@@ -18,13 +18,13 @@
 
 declare(strict_types=1);
 
-namespace WPCFG\BadLogin;
+namespace TypistTech\WPCFG\BadLogin;
 
-use WPCFG\Filter;
-use WPCFG\LoadableInterface;
-use WPCFG\Vendor\TypistTech\WPBetterSettings\Fields\Textarea;
-use WPCFG\Vendor\TypistTech\WPBetterSettings\Pages\SubmenuPage;
-use WPCFG\Vendor\TypistTech\WPBetterSettings\Section;
+use TypistTech\WPCFG\Filter;
+use TypistTech\WPCFG\LoadableInterface;
+use TypistTech\WPCFG\Vendor\TypistTech\WPBetterSettings\Fields\Textarea;
+use TypistTech\WPCFG\Vendor\TypistTech\WPBetterSettings\Pages\SubmenuPage;
+use TypistTech\WPCFG\Vendor\TypistTech\WPBetterSettings\Section;
 
 /**
  * Final class Admin.

@@ -22,7 +22,15 @@ use Codeception\Actor;
  *
  * @SuppressWarnings(PHPMD)
  */
-class UnitTester extends Actor
+class IntegrationTester extends Actor
 {
-    use _generated\UnitTesterActions;
+    use _generated\IntegrationTesterActions;
+
+    public function getContainer(): Container
+    {
+        $this->container = new Container;
+        $this->container->initialize();
+
+        return $this->container;
+    }
 }

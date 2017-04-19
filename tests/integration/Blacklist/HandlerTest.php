@@ -2,19 +2,20 @@
 
 declare(strict_types=1);
 
-namespace WPCFG\Blacklist;
+namespace TypistTech\WPCFG\Blacklist;
 
 use AspectMock\Test;
-use WPCFG\Action;
-use WPCFG\Cloudflare\AccessRules;
+use Codeception\TestCase\WPTestCase;
+use TypistTech\WPCFG\Action;
+use TypistTech\WPCFG\Cloudflare\AccessRules;
 
 /**
- * @coversDefaultClass \WPCFG\Blacklist\Handler
+ * @coversDefaultClass TypistTech\WPCFG\Blacklist\Handler
  */
-class HandlerTest extends \Codeception\Test\Unit
+class HandlerTest extends WPTestCase
 {
     /**
-     * @var \WPCFG\UnitTester;
+     * @var \TypistTech\WPCFG\IntegrationTester
      */
     protected $tester;
 
@@ -29,7 +30,7 @@ class HandlerTest extends \Codeception\Test\Unit
     private $handler;
 
     /**
-     * @covers \WPCFG\Blacklist\Handler
+     * @covers \TypistTech\WPCFG\Blacklist\Handler
      */
     public function testHandleBlacklistEvent()
     {
@@ -59,7 +60,7 @@ class HandlerTest extends \Codeception\Test\Unit
     }
 
     /**
-     * @covers \WPCFG\Blacklist\Handler
+     * @covers ::getHooks
      */
     public function testHookedIntoWpcfgBlacklist()
     {
@@ -73,7 +74,7 @@ class HandlerTest extends \Codeception\Test\Unit
     }
 
     /**
-     * @covers \WPCFG\Blacklist\Handler
+     * @covers \TypistTech\WPCFG\Blacklist\Handler
      */
     public function testSkipsForNonBlacklistEvents()
     {
@@ -91,7 +92,9 @@ class HandlerTest extends \Codeception\Test\Unit
 
     protected function _after()
     {
-        delete_option('wpcfg_cloudflare');
+        delete_option('wpcfg_cloudflare_email');
+        delete_option('wpcfg_cloudflare_api_key');
+        delete_option('wpcfg_cloudflare_zone_id');
     }
 
     protected function _before()

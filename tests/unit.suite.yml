@@ -5,8 +5,7 @@
 class_name: UnitTester
 modules:
     enabled:
-        - \WPCFG\Helper\Unit
         - Asserts
-        - WPLoader
+        - \TypistTech\WPCFG\Helper\Unit
 coverage:
     enabled: true

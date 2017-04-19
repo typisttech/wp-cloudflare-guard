@@ -31,7 +31,7 @@
 
 declare(strict_types=1);
 
-namespace WPCFG;
+namespace TypistTech\WPCFG;
 
 // If this file is called directly, abort.
 if (! defined('WPINC')) {

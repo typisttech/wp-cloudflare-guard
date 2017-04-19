@@ -2,12 +2,14 @@
 
 declare(strict_types=1);
 
-namespace WPCFG;
+namespace TypistTech\WPCFG;
+
+use Codeception\TestCase\WPTestCase;
 
 /**
- * @coversDefaultClass \WPCFG\OptionStore
+ * @coversDefaultClass \TypistTech\WPCFG\OptionStore
  */
-class OptionStoreTest extends \Codeception\Test\Unit
+class OptionStoreTest extends WPTestCase
 {
     /**
      * @var OptionStore
@@ -23,6 +25,9 @@ class OptionStoreTest extends \Codeception\Test\Unit
         $this->assertSame('passkey123', $actual);
     }
 
+    /**
+     * @covers ::getBadUsernames
+     */
     public function testGetBadUsernames()
     {
         $actual = $this->optionStore->getBadUsernames();
@@ -55,7 +60,7 @@ class OptionStoreTest extends \Codeception\Test\Unit
         delete_option('wpcfg_cloudflare_email');
         delete_option('wpcfg_cloudflare_api_key');
         delete_option('wpcfg_cloudflare_zone_id');
-        delete_option('wpcfg_cloudflare_zone_id');
+        delete_option('wpcfg_bad_login_bad_usernames');
     }
 
     protected function _before()

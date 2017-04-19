@@ -113,8 +113,8 @@ module.exports = function (grunt) {
                 options: {
                     patterns: [
                         {
-                            match: /<\?php\s+(?!namespace WPCFG\\Vendor;\n)/g,
-                            replacement: "<?php namespace WPCFG\\Vendor;\n"
+                            match: /<\?php\s+(?!namespace TypistTech\\WPCFG\\Vendor;\n)/g,
+                            replacement: "<?php namespace TypistTech\\WPCFG\\Vendor;\n"
                         }
                     ],
                     usePrefix: false

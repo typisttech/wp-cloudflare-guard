@@ -2,12 +2,14 @@
 
 declare(strict_types=1);
 
-namespace WPCFG\Helper;
+namespace TypistTech\WPCFG\Helper;
+
+use Codeception\Module;
 
 /**
  * Here you can define custom actions
  * All public methods declared in helper class will be available in $I
  */
-class Functional extends \Codeception\Module
+class Functional extends Module
 {
 }
