@@ -44,10 +44,11 @@ final class OptionStore extends WPBSOptionStore
      *
      * @return string[]
      */
-    public function getBadUsernames(): array
+    public function getBadUsernames()
     {
         $value = $this->get('wpcfg_bad_login_bad_usernames');
-        if (empty($value)) {
+
+        if (! is_string($value)) {
             return [];
         }
 

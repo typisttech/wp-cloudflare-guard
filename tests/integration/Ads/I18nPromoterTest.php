@@ -65,8 +65,10 @@ class I18nPromoterTest extends WPTestCase
         ]);
     }
 
-    protected function _before()
+    public function setUp()
     {
+        parent::setUp();
+
         $container = $this->tester->getContainer();
 
         $admin = Test::double(

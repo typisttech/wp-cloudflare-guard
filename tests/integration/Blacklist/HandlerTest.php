@@ -90,15 +90,10 @@ class HandlerTest extends WPTestCase
         $this->accessRules->verifyNeverInvoked('create');
     }
 
-    protected function _after()
+    public function setUp()
     {
-        delete_option('wpcfg_cloudflare_email');
-        delete_option('wpcfg_cloudflare_api_key');
-        delete_option('wpcfg_cloudflare_zone_id');
-    }
+        parent::setUp();
 
-    protected function _before()
-    {
         update_option('wpcfg_cloudflare_email', 'email@example.com');
         update_option('wpcfg_cloudflare_api_key', 'API_KEY_123');
         update_option('wpcfg_cloudflare_zone_id', 'abc123');

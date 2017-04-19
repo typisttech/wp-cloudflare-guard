@@ -124,35 +124,11 @@ class BadLoginTest extends WPTestCase
     /**
      * @covers \TypistTech\WPCFG\BadLogin\BadLogin
      */
-    public function testSkipsForFalseUsername()
-    {
-        update_option('wpcfg_bad_login_bad_usernames', false);
-
-        $this->badLogin->emitBlacklistEventIfBadUsername(false);
-
-        $this->doActionMock->verifyNeverInvoked();
-    }
-
-    /**
-     * @covers \TypistTech\WPCFG\BadLogin\BadLogin
-     */
     public function testSkipsForNotBadUsername()
     {
         update_option('wpcfg_bad_login_bad_usernames', 'bad-boy, bad-girl');
 
         $this->badLogin->emitBlacklistEventIfBadUsername('good-boy');
-
-        $this->doActionMock->verifyNeverInvoked();
-    }
-
-    /**
-     * @covers \TypistTech\WPCFG\BadLogin\BadLogin
-     */
-    public function testSkipsForNullUsername()
-    {
-        update_option('wpcfg_bad_login_bad_usernames', null);
-
-        $this->badLogin->emitBlacklistEventIfBadUsername(null);
 
         $this->doActionMock->verifyNeverInvoked();
     }
@@ -181,13 +157,10 @@ class BadLoginTest extends WPTestCase
         $this->assertEquals($expected, $actual);
     }
 
-    protected function _after()
+    public function setUp()
     {
-        delete_option('wpcfg_bad_login_bad_usernames');
-    }
+        parent::setUp();
 
-    protected function _before()
-    {
         $container = $this->tester->getContainer();
         $this->badLogin = $container->get(BadLogin::class);
         $this->doActionMock = Test::func(__NAMESPACE__, 'do_action', 'done');

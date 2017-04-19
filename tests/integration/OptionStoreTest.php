@@ -47,6 +47,20 @@ class OptionStoreTest extends WPTestCase
     }
 
     /**
+     * @covers ::getBadUsernames
+     */
+    public function testGetSingleBadUsername()
+    {
+        update_option('wpcfg_bad_login_bad_usernames', 'tom ');
+
+        $actual = $this->optionStore->getBadUsernames();
+
+        $expected = [ 'tom' ];
+
+        $this->assertSame($expected, $actual);
+    }
+
+    /**
      * @covers ::getZoneId
      */
     public function testGetZoneId()
@@ -55,16 +69,10 @@ class OptionStoreTest extends WPTestCase
         $this->assertSame('two46o1', $actual);
     }
 
-    protected function _after()
+    public function setUp()
     {
-        delete_option('wpcfg_cloudflare_email');
-        delete_option('wpcfg_cloudflare_api_key');
-        delete_option('wpcfg_cloudflare_zone_id');
-        delete_option('wpcfg_bad_login_bad_usernames');
-    }
+        parent::setUp();
 
-    protected function _before()
-    {
         update_option('wpcfg_cloudflare_email', 'tester@example.com');
         update_option('wpcfg_cloudflare_api_key', 'passkey123');
         update_option('wpcfg_cloudflare_zone_id', 'two46o1');
