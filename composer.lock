@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "497c34976046d2033563764b935a9069",
+    "content-hash": "83105493a960d919407661c607e38116",
     "packages": [
         {
             "name": "cloudflare/cf-ip-rewrite",
@@ -483,20 +483,20 @@
         },
         {
             "name": "typisttech/wp-contained-hook",
-            "version": "0.1.0",
+            "version": "0.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/TypistTech/wp-contained-hook.git",
-                "reference": "86278407d272f588df330d5e73c5f2c7a62a66b4"
+                "reference": "641dae3974d1c6366ab20aa617683ad81e59c6e4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/TypistTech/wp-contained-hook/zipball/86278407d272f588df330d5e73c5f2c7a62a66b4",
-                "reference": "86278407d272f588df330d5e73c5f2c7a62a66b4",
+                "url": "https://api.github.com/repos/TypistTech/wp-contained-hook/zipball/641dae3974d1c6366ab20aa617683ad81e59c6e4",
+                "reference": "641dae3974d1c6366ab20aa617683ad81e59c6e4",
                 "shasum": ""
             },
             "require": {
-                "league/container": "^2.4",
+                "league/container": "^2.4 | ^3.0",
                 "php": "^7.0"
             },
             "require-dev": {
@@ -505,19 +505,11 @@
                 "neronmoon/scriptsdev": "^0.1.1",
                 "wp-coding-standards/wpcs": "^0.11.0"
             },
-            "suggest": {
-                "league/container": "> 2.3.0 Provides psr/container-implementation",
-                "php-di/php-di": "> 5.4.2 Provides psr/container-implementation"
-            },
             "type": "library",
             "extra": {
                 "scripts-dev": {
-                    "post-install-cmd": [
-                        "@install-dev-extra"
-                    ],
-                    "post-update-cmd": [
-                        "@install-dev-extra"
-                    ]
+                    "post-install-cmd": "@install-dev-extra",
+                    "post-update-cmd": "@install-dev-extra"
                 }
             },
             "autoload": {
@@ -554,7 +546,7 @@
                 "injection",
                 "wordpress"
             ],
-            "time": "2017-04-06T19:03:41+00:00"
+            "time": "2017-04-19T12:42:08+00:00"
         },
         {
             "name": "yoast/i18n-module",
