@@ -36,6 +36,6 @@ class AcceptanceTester extends \Codeception\Actor
         $I->click('WP Cloudflare Guard');
         $I->click('WP Cloudflare Guard');
         $I->waitForText('WP Cloudflare Guard', 10, 'h1');
-        $I->seeInCurrentUrl('/wp-admin/admin.php?page=wpcfg_cloudflare');
+        $I->seeInCurrentUrl('/wp-admin/admin.php?page=wpcfg-cloudflare');
     }
 }

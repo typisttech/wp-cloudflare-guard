@@ -22,12 +22,10 @@ namespace WPCFG\Cloudflare;
 
 use WPCFG\Filter;
 use WPCFG\LoadableInterface;
-use WPCFG\Vendor\TypistTech\WPBetterSettings\FieldConfig;
-use WPCFG\Vendor\TypistTech\WPBetterSettings\MenuPageConfig;
-use WPCFG\Vendor\TypistTech\WPBetterSettings\Sanitizer;
-use WPCFG\Vendor\TypistTech\WPBetterSettings\SectionConfig;
-use WPCFG\Vendor\TypistTech\WPBetterSettings\SettingConfig;
-use WPCFG\Vendor\TypistTech\WPBetterSettings\ViewFactory;
+use WPCFG\Vendor\TypistTech\WPBetterSettings\Fields\Email;
+use WPCFG\Vendor\TypistTech\WPBetterSettings\Fields\Text;
+use WPCFG\Vendor\TypistTech\WPBetterSettings\Pages\MenuPage;
+use WPCFG\Vendor\TypistTech\WPBetterSettings\Section;
 
 /**
  * Final class Admin.
@@ -42,91 +40,87 @@ final class Admin implements LoadableInterface
     public static function getHooks(): array
     {
         return [
-            new Filter(__CLASS__, 'wpcfg_menu_page_configs', 'addMenuPageConfig'),
-            new Filter(__CLASS__, 'wpcfg_setting_configs', 'addSettingConfig'),
+            new Filter(__CLASS__, 'wpcfg_pages', 'addPage'),
+            new Filter(__CLASS__, 'wpcfg_settings_sections', 'addSettingsSection'),
         ];
     }
 
     /**
      * Add the menu page config.
      *
-     * @param MenuPageConfig[] $menuPageConfigs Menu page configurations.
+     * @todo Test via acceptance test.
      *
-     * @return MenuPageConfig[]
+     * @param (MenuPage|SubmenuPage)[] $pages Menu and submenu page configurations.
+     *
+     * @return (MenuPage|SubmenuPage)[]
      */
-    public function addMenuPageConfig(array $menuPageConfigs): array
+    public function addPage(array $pages): array
     {
-        $menuPageConfigs[] = new MenuPageConfig([
-            'menu_slug' => 'wpcfg_cloudflare',
-            'page_title' => 'WP Cloudflare Guard',
-            'menu_title' => 'WP Cloudflare Guard',
-            'option_group' => 'wpcfg_cloudflare',
-            'view' => ViewFactory::build('tabbed-options-page'),
-            'icon_url' => 'dashicons-shield',
-        ]);
+        $pages[] = new MenuPage(
+            'wpcfg-cloudflare',
+            __('WP Cloudflare Guard', 'wp-cloudflare-guard'),
+            __('WP Cloudflare Guard - Cloudflare', 'wp-cloudflare-guard'),
+            null,
+            'dashicons-shield'
+        );
 
-        return $menuPageConfigs;
+        return $pages;
     }
 
     /**
-     * Add settings config.
+     * Add settings section config.
      *
-     * @param SettingConfig[] $settingConfig Setting configurations.
+     * @todo Test via acceptance test.
      *
-     * @return SettingConfig[]
+     * @param Section[] $sections Settings section configurations.
+     *
+     * @return Section[]
      */
-    public function addSettingConfig(array $settingConfig): array
+    public function addSettingsSection(array $sections): array
     {
-        $emailField = new FieldConfig([
-            'id' => 'email',
-            'title' => __('Cloudflare Email', 'wp-cloudflare-guard'),
-            'view' => ViewFactory::build('email-field'),
-            'desc' => __(
-                'The email address associated with your Cloudflare account.',
-                'wp-cloudflare-guard'
-            ),
-            'sanitize_callback' => [ Sanitizer::class, 'sanitizeEmail' ],
-        ]);
+        $email = new Email(
+            'wpcfg_cloudflare_email',
+            __('Cloudflare Email', 'wp-cloudflare-guard')
+        );
+        $email->getDecorator()
+              ->setDescription(
+                  __(
+                      'The email address associated with your Cloudflare account.',
+                      'wp-cloudflare-guard'
+                  )
+              );
 
+        $apiKey = new Text(
+            'wpcfg_cloudflare_api_key',
+            __('Global API Key', 'wp-cloudflare-guard')
+        );
         $apiKeyDesc = sprintf(
             // Translators: %1$s is the url to Cloudflare document.
-            _x(
-                'Help: <a href="%1$s">Where do I find my Cloudflare API key?</a>',
-                '%1$s is the url to Cloudflare document',
-                'wp-cloudflare-guard'
-            ),
+            __('Help: <a href="%1$s">Where do I find my Cloudflare API key?</a>', 'wp-cloudflare-guard'),
             esc_url_raw(
                 'https://support.cloudflare.com/hc/en-us/articles/200167836-Where-do-I-find-my-CloudFlare-API-key-'
             )
         );
+        $apiKey->getDecorator()
+               ->setDescription($apiKeyDesc);
 
-        $apiKeyField = new FieldConfig([
-            'id' => 'api_key',
-            'title' => __('Global API Key', 'wp-cloudflare-guard'),
-            'view' => ViewFactory::build('text-field'),
-            'desc' => $apiKeyDesc,
-        ]);
+        $zoneId = new Text(
+            'wpcfg_cloudflare_zone_id',
+            __('Zone ID', 'wp-cloudflare-guard')
+        );
+        $zoneId->getDecorator()
+               ->setDescription(
+                   __('Zone identifier for this domain', 'wp-cloudflare-guard')
+               );
 
-        $zoneIdField = new FieldConfig([
-            'id' => 'zone_id',
-            'title' => __('Zone ID', 'wp-cloudflare-guard'),
-            'view' => ViewFactory::build('text-field'),
-            'desc' => __('Zone identifier for this domain', 'wp-cloudflare-guard'),
-        ]);
+        $sections[] = new Section(
+            'wpcfg-cloudflare',
+            __('Cloudflare Settings', 'wp-cloudflare-guard'),
+            $email,
+            $apiKey,
+            $zoneId
+        );
 
-        $cloudflareSection = new SectionConfig([
-            'id' => 'wpcfg_cloudflare',
-            'page' => 'wpcfg_cloudflare',
-            'title' => __('Cloudflare Settings', 'wp-cloudflare-guard'),
-            'fields' => [ $emailField, $apiKeyField, $zoneIdField ],
-        ]);
-
-        $settingConfig[] = new SettingConfig([
-            'option_group' => 'wpcfg_cloudflare',
-            'option_name' => 'wpcfg_cloudflare',
-            'sections' => [ $cloudflareSection ],
-        ]);
-
-        return $settingConfig;
+        return $sections;
     }
 }

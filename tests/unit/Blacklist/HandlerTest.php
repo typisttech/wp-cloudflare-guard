@@ -96,11 +96,9 @@ class HandlerTest extends \Codeception\Test\Unit
 
     protected function _before()
     {
-        update_option('wpcfg_cloudflare', [
-            'email' => 'email@example.com',
-            'api_key' => 'API_KEY_123',
-            'zone_id' => 'abc123',
-        ]);
+        update_option('wpcfg_cloudflare_email', 'email@example.com');
+        update_option('wpcfg_cloudflare_api_key', 'API_KEY_123');
+        update_option('wpcfg_cloudflare_zone_id', 'abc123');
 
         $container = $this->tester->getContainer();
 

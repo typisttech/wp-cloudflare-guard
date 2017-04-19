@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "78a19d9975b5218422d8fddde1c565e2",
+    "content-hash": "7e9edec05e49e1c35c2c5726c583bc41",
     "packages": [
         {
             "name": "cloudflare/cf-ip-rewrite",
@@ -420,39 +420,34 @@
         },
         {
             "name": "typisttech/wp-better-settings",
-            "version": "0.9.1",
+            "version": "0.11.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/TypistTech/wp-better-settings.git",
-                "reference": "34e99577976b8850a4f12ea7bc20daa61e2c3352"
+                "reference": "d7c303a979ea0fed23731939021b31ff082d3671"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/TypistTech/wp-better-settings/zipball/34e99577976b8850a4f12ea7bc20daa61e2c3352",
-                "reference": "34e99577976b8850a4f12ea7bc20daa61e2c3352",
+                "url": "https://api.github.com/repos/TypistTech/wp-better-settings/zipball/d7c303a979ea0fed23731939021b31ff082d3671",
+                "reference": "d7c303a979ea0fed23731939021b31ff082d3671",
                 "shasum": ""
             },
             "require": {
                 "php": ">7.0"
             },
             "require-dev": {
-                "codeception/mockery-module": "^0.2.2",
+                "codeception/aspect-mock": "^2.0",
                 "jakoch/phantomjs-installer": "^2.1",
                 "lucatume/wp-browser": "^1.19",
                 "neronmoon/scriptsdev": "^0.1.1",
-                "php-mock/php-mock-phpunit": "^1.1",
                 "site5/phantoman": "^1.1",
                 "wp-coding-standards/wpcs": "^0.11.0"
             },
             "type": "library",
             "extra": {
                 "scripts-dev": {
-                    "post-install-cmd": [
-                        "@install-dev-extra"
-                    ],
-                    "post-update-cmd": [
-                        "@install-dev-extra"
-                    ]
+                    "post-install-cmd": "@install-dev-extra",
+                    "post-update-cmd": "@install-dev-extra"
                 }
             },
             "autoload": {
@@ -484,7 +479,7 @@
                 "wordpress",
                 "wp"
             ],
-            "time": "2017-03-27T02:23:52+00:00"
+            "time": "2017-04-18T10:10:05+00:00"
         },
         {
             "name": "yoast/i18n-module",

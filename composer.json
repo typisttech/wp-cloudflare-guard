@@ -35,7 +35,7 @@
         "league/container": "^2.4",
         "typisttech/cloudflare-wp-api": "^0.3.0",
         "typisttech/imposter-plugin": "^0.2.5",
-        "typisttech/wp-better-settings": "^0.9.1",
+        "typisttech/wp-better-settings": "^0.11.0",
         "yoast/i18n-module": "^2.0"
     },
     "require-dev": {

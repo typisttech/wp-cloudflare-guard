@@ -20,9 +20,12 @@ declare(strict_types=1);
 
 namespace WPCFG;
 
-use WPCFG\Vendor\TypistTech\WPBetterSettings\MenuPageConfig;
-use WPCFG\Vendor\TypistTech\WPBetterSettings\MenuPages;
-use WPCFG\Vendor\TypistTech\WPBetterSettings\Settings;
+use WPCFG\Vendor\TypistTech\WPBetterSettings\PageRegister;
+use WPCFG\Vendor\TypistTech\WPBetterSettings\Pages\MenuPage;
+use WPCFG\Vendor\TypistTech\WPBetterSettings\Pages\PageInterface;
+use WPCFG\Vendor\TypistTech\WPBetterSettings\Pages\SubmenuPage;
+use WPCFG\Vendor\TypistTech\WPBetterSettings\Section;
+use WPCFG\Vendor\TypistTech\WPBetterSettings\SettingRegister;
 
 /**
  * Final class Admin.
@@ -32,20 +35,6 @@ use WPCFG\Vendor\TypistTech\WPBetterSettings\Settings;
 final class Admin implements LoadableInterface
 {
     /**
-     * Menu page configs.
-     *
-     * @var MenuPageConfig[]
-     */
-    private $menuPageConfigs;
-
-    /**
-     * Menu pages.
-     *
-     * @var MenuPages
-     */
-    private $menuPages;
-
-    /**
      * Options store.
      *
      * @var OptionStore
@@ -53,11 +42,18 @@ final class Admin implements LoadableInterface
     private $optionStore;
 
     /**
-     * Settings.
+     * Menu and submenu pages.
      *
-     * @var \WPCFG\Vendor\TypistTech\WPBetterSettings\Settings
+     * @var (MenuPage|SubmenuPage)[]
      */
-    private $settings;
+    private $pages = [];
+
+    /**
+     * Sections
+     *
+     * @var Section[]
+     */
+    private $sections = [];
 
     /**
      * Admin constructor.
@@ -75,48 +71,9 @@ final class Admin implements LoadableInterface
     public static function getHooks(): array
     {
         return [
-            new Action(__CLASS__, 'admin_menu', 'adminMenu'),
-            new Action(__CLASS__, 'admin_init', 'adminInit'),
+            new Action(__CLASS__, 'admin_menu', 'registerPages'),
+            new Action(__CLASS__, 'admin_init', 'registerSettings'),
         ];
-    }
-
-    /**
-     * Register WPCFG settings.
-     *
-     * @return void
-     */
-    public function adminInit()
-    {
-        $settingConfigs = apply_filters('wpcfg_setting_configs', []);
-        $this->settings = new Settings($settingConfigs, $this->optionStore);
-        $this->settings->adminInit();
-    }
-
-    /**
-     * Add menus and submenus.
-     *
-     * @return void
-     */
-    public function adminMenu()
-    {
-        $this->menuPages = new MenuPages(
-            $this->getMenuPageConfigs()
-        );
-        $this->menuPages->adminMenu();
-    }
-
-    /**
-     * Menu page configs getter.
-     *
-     * @return MenuPageConfig[]
-     */
-    private function getMenuPageConfigs()
-    {
-        if (empty($this->menuPageConfigs)) {
-            $this->menuPageConfigs = apply_filters('wpcfg_menu_page_configs', []);
-        }
-
-        return $this->menuPageConfigs;
     }
 
     /**
@@ -126,8 +83,73 @@ final class Admin implements LoadableInterface
      */
     public function getMenuSlugs(): array
     {
-        return array_map(function (MenuPageConfig $menuPageConfig) {
-            return $menuPageConfig->menu_slug;
-        }, $this->getMenuPageConfigs());
+        return array_map(function (PageInterface $page) {
+            return $page->getMenuSlug();
+        }, $this->getPages());
+    }
+
+    /**
+     * Page getter.
+     *
+     * @return (MenuPage|SubmenuPage)[]
+     */
+    private function getPages(): array
+    {
+        if (empty($this->pages)) {
+            $wpcfgPages = apply_filters('wpcfg_pages', []);
+
+            $typedPages = array_filter($wpcfgPages, function ($page) {
+                return $page instanceof MenuPage || $page instanceof SubmenuPage;
+            });
+            $this->pages = array_values($typedPages);
+        }
+
+        return $this->pages;
+    }
+
+    /**
+     * Add menus and submenus.
+     *
+     * @return void
+     */
+    public function registerPages()
+    {
+        $pageRegister = new PageRegister(
+            $this->getPages()
+        );
+        $pageRegister->run();
+    }
+
+    /**
+     * Register WPCFG settings.
+     *
+     * @return void
+     */
+    public function registerSettings()
+    {
+        $settingRegister = new SettingRegister(
+            $this->optionStore,
+            ...$this->getSections()
+        );
+        $settingRegister->run();
+    }
+
+    /**
+     * Section getter.
+     *
+     * @return Section[]
+     */
+    private function getSections(): array
+    {
+        if (empty($this->sections)) {
+            $wpcfgSettingsSections = apply_filters('wpcfg_settings_sections', []);
+
+            $typedSections = array_filter($wpcfgSettingsSections, function ($section) {
+                return $section instanceof Section;
+            });
+            $this->sections = array_values($typedSections);
+        }
+
+        return $this->sections;
     }
 }

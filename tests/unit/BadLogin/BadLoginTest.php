@@ -33,9 +33,7 @@ class BadLoginTest extends \Codeception\Test\Unit
      */
     public function testCanTriggerBlacklistEventWhenMultipleBadUsernamesAreSaved()
     {
-        update_option('wpcfg_bad_login', [
-            'bad_usernames' => 'bad-boy, bad-girl',
-        ]);
+        update_option('wpcfg_bad_login_bad_usernames', 'bad-boy, bad-girl');
 
         $this->badLogin->emitBlacklistEventIfBadUsername('bad-boy');
         $this->badLogin->emitBlacklistEventIfBadUsername('bad-girl');
@@ -56,9 +54,7 @@ class BadLoginTest extends \Codeception\Test\Unit
      */
     public function testCanTriggerBlacklistEventWhenSingleBadUsernameIsSaved()
     {
-        update_option('wpcfg_bad_login', [
-            'bad_usernames' => 'bad-boy',
-        ]);
+        update_option('wpcfg_bad_login_bad_usernames', 'bad-boy');
 
         $this->badLogin->emitBlacklistEventIfBadUsername('bad-boy');
 
@@ -77,9 +73,7 @@ class BadLoginTest extends \Codeception\Test\Unit
      */
     public function testNormalizeInputUsername()
     {
-        update_option('wpcfg_bad_login', [
-            'bad_usernames' => 'bad-boy, bad-girl',
-        ]);
+        update_option('wpcfg_bad_login_bad_usernames', 'bad-boy, bad-girl');
 
         $this->badLogin->emitBlacklistEventIfBadUsername('#b!{a}d;-b>oy<?');
 
@@ -98,9 +92,7 @@ class BadLoginTest extends \Codeception\Test\Unit
      */
     public function testNormalizeSavedBadUsernames()
     {
-        update_option('wpcfg_bad_login', [
-            'bad_usernames' => ' #b!{a}d;-b>oy<?, ?>b}!a{d->>gir!>##l<?girl ',
-        ]);
+        update_option('wpcfg_bad_login_bad_usernames', ' #b!{a}d;-b>oy<?, ?>b}!a{d->>gir!>##l<?girl ');
 
         $this->badLogin->emitBlacklistEventIfBadUsername('bad-boy');
         $this->badLogin->emitBlacklistEventIfBadUsername('bad-girl');
@@ -121,9 +113,7 @@ class BadLoginTest extends \Codeception\Test\Unit
      */
     public function testSkipsEmptyUsername()
     {
-        update_option('wpcfg_bad_login', [
-            'bad_usernames' => '',
-        ]);
+        update_option('wpcfg_bad_login_bad_usernames', '');
 
         $this->badLogin->emitBlacklistEventIfBadUsername('');
 
@@ -135,9 +125,7 @@ class BadLoginTest extends \Codeception\Test\Unit
      */
     public function testSkipsForFalseUsername()
     {
-        update_option('wpcfg_bad_login', [
-            'bad_usernames' => false,
-        ]);
+        update_option('wpcfg_bad_login_bad_usernames', false);
 
         $this->badLogin->emitBlacklistEventIfBadUsername(false);
 
@@ -149,9 +137,7 @@ class BadLoginTest extends \Codeception\Test\Unit
      */
     public function testSkipsForNotBadUsername()
     {
-        update_option('wpcfg_bad_login', [
-            'bad_usernames' => 'bad-boy, bad-girl',
-        ]);
+        update_option('wpcfg_bad_login_bad_usernames', 'bad-boy, bad-girl');
 
         $this->badLogin->emitBlacklistEventIfBadUsername('good-boy');
 
@@ -163,9 +149,7 @@ class BadLoginTest extends \Codeception\Test\Unit
      */
     public function testSkipsForNullUsername()
     {
-        update_option('wpcfg_bad_login', [
-            'bad_usernames' => null,
-        ]);
+        update_option('wpcfg_bad_login_bad_usernames', null);
 
         $this->badLogin->emitBlacklistEventIfBadUsername(null);
 
@@ -198,7 +182,7 @@ class BadLoginTest extends \Codeception\Test\Unit
 
     protected function _after()
     {
-        delete_option('wpcfg_bad_login');
+        delete_option('wpcfg_bad_login_bad_usernames');
     }
 
     protected function _before()
