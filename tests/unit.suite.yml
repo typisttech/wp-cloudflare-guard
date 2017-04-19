@@ -8,3 +8,5 @@ modules:
         - \WPCFG\Helper\Unit
         - Asserts
         - WPLoader
+coverage:
+    enabled: true
