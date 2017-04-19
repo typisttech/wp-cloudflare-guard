@@ -20,11 +20,11 @@ declare(strict_types=1);
 
 namespace TypistTech\WPCFG\BadLogin;
 
-use TypistTech\WPCFG\Action;
 use TypistTech\WPCFG\Blacklist\Event;
 use TypistTech\WPCFG\Container;
 use TypistTech\WPCFG\LoadableInterface;
 use TypistTech\WPCFG\OptionStore;
+use TypistTech\WPCFG\Vendor\TypistTech\WPContainedHook\Action;
 
 /**
  * Final class BadLogin.
@@ -65,7 +65,7 @@ final class BadLogin implements LoadableInterface
     public static function getHooks(): array
     {
         return [
-            new Action(__CLASS__, 'wp_authenticate', 'emitBlacklistEventIfBadUsername'),
+            new Action('wp_authenticate', __CLASS__, 'emitBlacklistEventIfBadUsername'),
         ];
     }
 

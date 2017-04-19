@@ -32,11 +32,13 @@ final class OptionStore extends WPBSOptionStore
     /**
      * Cloudflare api key getter.
      *
-     * @return mixed
+     * @return string
      */
-    public function getApiKey()
+    public function getApiKey(): string
     {
-        return $this->get('wpcfg_cloudflare_api_key');
+        $value = $this->get('wpcfg_cloudflare_api_key');
+
+        return is_string($value) ? $value : '';
     }
 
     /**
@@ -47,7 +49,8 @@ final class OptionStore extends WPBSOptionStore
     public function getBadUsernames(): array
     {
         $value = $this->get('wpcfg_bad_login_bad_usernames');
-        if (empty($value)) {
+
+        if (! is_string($value)) {
             return [];
         }
 
@@ -59,20 +62,24 @@ final class OptionStore extends WPBSOptionStore
     /**
      * Cloudflare email getter.
      *
-     * @return mixed
+     * @return string
      */
-    public function getEmail()
+    public function getEmail(): string
     {
-        return $this->get('wpcfg_cloudflare_email');
+        $value = $this->get('wpcfg_cloudflare_email');
+
+        return is_string($value) ? $value : '';
     }
 
     /**
      * Cloudflare zone id getter.
      *
-     * @return mixed
+     * @return string
      */
-    public function getZoneId()
+    public function getZoneId(): string
     {
-        return $this->get('wpcfg_cloudflare_zone_id');
+        $value = $this->get('wpcfg_cloudflare_zone_id');
+
+        return is_string($value) ? $value : '';
     }
 }

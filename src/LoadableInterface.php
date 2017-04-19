@@ -21,14 +21,14 @@ declare(strict_types=1);
 namespace TypistTech\WPCFG;
 
 /**
- * Interface AbstractLoadable.
+ * Interface LoadableInterface
  */
 interface LoadableInterface
 {
     /**
      * Hooks getter.
      *
-     * @return AbstractHook[]
+     * @return \TypistTech\WPCFG\Vendor\TypistTech\WPContainedHook\AbstractHook[]
      */
     public static function getHooks(): array;
 }

@@ -20,10 +20,10 @@ declare(strict_types=1);
 
 namespace TypistTech\WPCFG\Ads;
 
-use TypistTech\WPCFG\Action;
 use TypistTech\WPCFG\Admin;
 use TypistTech\WPCFG\Container;
 use TypistTech\WPCFG\LoadableInterface;
+use TypistTech\WPCFG\Vendor\TypistTech\WPContainedHook\Action;
 use TypistTech\WPCFG\Vendor\Yoast_I18n_WordPressOrg_v2;
 
 /**
@@ -63,7 +63,7 @@ final class I18nPromoter implements LoadableInterface
     public static function getHooks(): array
     {
         return [
-            new Action(__CLASS__, 'admin_menu', 'addYoastI18nModuleToMenuPages', 20),
+            new Action('admin_menu', __CLASS__, 'addYoastI18nModuleToMenuPages'),
         ];
     }
 

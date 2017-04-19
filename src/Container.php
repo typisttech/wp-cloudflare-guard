@@ -33,9 +33,9 @@ use TypistTech\WPCFG\Vendor\League\Container\ReflectionContainer;
 use TypistTech\WPCFG\Vendor\Yoast_I18n_WordPressOrg_v2;
 
 /**
- * Class Container.
+ * Final class Container.
  */
-class Container extends LeagueContainer
+final class Container extends LeagueContainer
 {
     /**
      * Initialize container.

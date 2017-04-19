@@ -6,8 +6,8 @@ namespace TypistTech\WPCFG\Blacklist;
 
 use AspectMock\Test;
 use Codeception\TestCase\WPTestCase;
-use TypistTech\WPCFG\Action;
 use TypistTech\WPCFG\Cloudflare\AccessRules;
+use TypistTech\WPCFG\Vendor\TypistTech\WPContainedHook\Action;
 
 /**
  * @coversDefaultClass TypistTech\WPCFG\Blacklist\Handler
@@ -28,6 +28,27 @@ class HandlerTest extends WPTestCase
      * @var Handler
      */
     private $handler;
+
+    public function setUp()
+    {
+        parent::setUp();
+
+        update_option('wpcfg_cloudflare_email', 'email@example.com');
+        update_option('wpcfg_cloudflare_api_key', 'API_KEY_123');
+        update_option('wpcfg_cloudflare_zone_id', 'abc123');
+
+        $container = $this->tester->getContainer();
+
+        $this->accessRules = Test::double(
+            $container->get(AccessRules::class),
+            [
+                'create' => null,
+            ]
+        );
+        $container->add(AccessRules::class, $this->accessRules->getObject());
+
+        $this->handler = $container->get(Handler::class);
+    }
 
     /**
      * @covers \TypistTech\WPCFG\Blacklist\Handler
@@ -67,7 +88,7 @@ class HandlerTest extends WPTestCase
         $actual = Handler::getHooks();
 
         $expected = [
-            new Action(Handler::class, 'wpcfg_blacklist', 'handleBlacklist'),
+            new Action('wpcfg_blacklist', Handler::class, 'handleBlacklist'),
         ];
 
         $this->assertEquals($expected, $actual);
@@ -88,31 +109,5 @@ class HandlerTest extends WPTestCase
         $this->accessRules->verifyNeverInvoked('setEmail');
         $this->accessRules->verifyNeverInvoked('setAuthKey');
         $this->accessRules->verifyNeverInvoked('create');
-    }
-
-    protected function _after()
-    {
-        delete_option('wpcfg_cloudflare_email');
-        delete_option('wpcfg_cloudflare_api_key');
-        delete_option('wpcfg_cloudflare_zone_id');
-    }
-
-    protected function _before()
-    {
-        update_option('wpcfg_cloudflare_email', 'email@example.com');
-        update_option('wpcfg_cloudflare_api_key', 'API_KEY_123');
-        update_option('wpcfg_cloudflare_zone_id', 'abc123');
-
-        $container = $this->tester->getContainer();
-
-        $this->accessRules = Test::double(
-            $container->get(AccessRules::class),
-            [
-                'create' => null,
-            ]
-        );
-        $container->add(AccessRules::class, $this->accessRules->getObject());
-
-        $this->handler = $container->get(Handler::class);
     }
 }

@@ -20,10 +20,10 @@ declare(strict_types=1);
 
 namespace TypistTech\WPCFG\Blacklist;
 
-use TypistTech\WPCFG\Action;
 use TypistTech\WPCFG\Cloudflare\AccessRules;
 use TypistTech\WPCFG\LoadableInterface;
 use TypistTech\WPCFG\OptionStore;
+use TypistTech\WPCFG\Vendor\TypistTech\WPContainedHook\Action;
 
 /**
  * Final class Handler.
@@ -64,7 +64,7 @@ final class Handler implements LoadableInterface
     public static function getHooks(): array
     {
         return [
-            new Action(__CLASS__, 'wpcfg_blacklist', 'handleBlacklist'),
+            new Action('wpcfg_blacklist', __CLASS__, 'handleBlacklist'),
         ];
     }
 

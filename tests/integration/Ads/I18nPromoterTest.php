@@ -6,8 +6,8 @@ namespace TypistTech\WPCFG\Ads;
 
 use AspectMock\Test;
 use Codeception\TestCase\WPTestCase;
-use TypistTech\WPCFG\Action;
 use TypistTech\WPCFG\Admin;
+use TypistTech\WPCFG\Vendor\TypistTech\WPContainedHook\Action;
 use TypistTech\WPCFG\Vendor\Yoast_I18n_WordPressOrg_v2;
 
 /**
@@ -25,6 +25,26 @@ class I18nPromoterTest extends WPTestCase
      */
     private $i18nPromoter;
 
+    public function setUp()
+    {
+        parent::setUp();
+
+        $container = $this->tester->getContainer();
+
+        $admin = Test::double(
+            $container->get(Admin::class),
+            [
+                'getMenuSlugs' => [
+                    'wpcfg-cloudflare',
+                    'wpcfg-bad-login',
+                ],
+            ]
+        );
+        $container->share(Admin::class, $admin->getObject());
+
+        $this->i18nPromoter = $container->get(I18nPromoter::class);
+    }
+
     /**
      * @covers ::getHooks
      */
@@ -33,7 +53,7 @@ class I18nPromoterTest extends WPTestCase
         $actual = I18nPromoter::getHooks();
 
         $expected = [
-            new Action(I18nPromoter::class, 'admin_menu', 'addYoastI18nModuleToMenuPages', 20),
+            new Action('admin_menu', I18nPromoter::class, 'addYoastI18nModuleToMenuPages'),
         ];
 
         $this->assertEquals($expected, $actual);
@@ -63,23 +83,5 @@ class I18nPromoterTest extends WPTestCase
                 'hook' => 'wpcfg_bad_login_after_option_form',
             ],
         ]);
-    }
-
-    protected function _before()
-    {
-        $container = $this->tester->getContainer();
-
-        $admin = Test::double(
-            $container->get(Admin::class),
-            [
-                'getMenuSlugs' => [
-                    'wpcfg-cloudflare',
-                    'wpcfg-bad-login',
-                ],
-            ]
-        );
-        $container->share(Admin::class, $admin->getObject());
-
-        $this->i18nPromoter = $container->get(I18nPromoter::class);
     }
 }

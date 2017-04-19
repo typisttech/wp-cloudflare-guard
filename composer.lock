@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "fb5a420c2519cc0ee98cb5417f323023",
+    "content-hash": "497c34976046d2033563764b935a9069",
     "packages": [
         {
             "name": "cloudflare/cf-ip-rewrite",
@@ -480,6 +480,81 @@
                 "wp"
             ],
             "time": "2017-04-18T10:10:05+00:00"
+        },
+        {
+            "name": "typisttech/wp-contained-hook",
+            "version": "0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/TypistTech/wp-contained-hook.git",
+                "reference": "86278407d272f588df330d5e73c5f2c7a62a66b4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/TypistTech/wp-contained-hook/zipball/86278407d272f588df330d5e73c5f2c7a62a66b4",
+                "reference": "86278407d272f588df330d5e73c5f2c7a62a66b4",
+                "shasum": ""
+            },
+            "require": {
+                "league/container": "^2.4",
+                "php": "^7.0"
+            },
+            "require-dev": {
+                "codeception/aspect-mock": "^2.0",
+                "codeception/base": "^2.2",
+                "neronmoon/scriptsdev": "^0.1.1",
+                "wp-coding-standards/wpcs": "^0.11.0"
+            },
+            "suggest": {
+                "league/container": "> 2.3.0 Provides psr/container-implementation",
+                "php-di/php-di": "> 5.4.2 Provides psr/container-implementation"
+            },
+            "type": "library",
+            "extra": {
+                "scripts-dev": {
+                    "post-install-cmd": [
+                        "@install-dev-extra"
+                    ],
+                    "post-update-cmd": [
+                        "@install-dev-extra"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "TypistTech\\WPContainedHook\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Tang Rufus",
+                    "email": "tangrufus@gmail.com",
+                    "homepage": "https://www.typist.tech",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Typist Tech",
+                    "email": "wp-contained-hook@typist.tech",
+                    "homepage": "https://www.typist.tech"
+                }
+            ],
+            "description": "Lazily instantiate objects from dependency injection container to WordPress hooks (actions and filters)",
+            "homepage": "https://www.typist.tech/projects/wp-contained-hook",
+            "keywords": [
+                "HOOK",
+                "action",
+                "container",
+                "dependency",
+                "di",
+                "filter",
+                "injection",
+                "wordpress"
+            ],
+            "time": "2017-04-06T19:03:41+00:00"
         },
         {
             "name": "yoast/i18n-module",

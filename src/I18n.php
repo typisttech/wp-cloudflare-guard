@@ -20,6 +20,8 @@ declare(strict_types=1);
 
 namespace TypistTech\WPCFG;
 
+use TypistTech\WPCFG\Vendor\TypistTech\WPContainedHook\Action;
+
 /**
  * Define the internationalization functionality.
  *
@@ -34,7 +36,7 @@ final class I18n implements LoadableInterface
     public static function getHooks(): array
     {
         return [
-            new Action(__CLASS__, 'plugins_loaded', 'loadPluginTextdomain'),
+            new Action('plugins_loaded', __CLASS__, 'loadPluginTextdomain'),
         ];
     }
 
