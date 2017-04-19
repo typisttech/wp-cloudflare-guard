@@ -2,17 +2,18 @@
 
 declare(strict_types=1);
 
-namespace WPCFG\Cloudflare;
+namespace TypistTech\WPCFG\Cloudflare;
 
-use WPCFG\Vendor\Cloudflare\Zone\Firewall\AccessRules as CloudflareAccessRules;
+use Codeception\Test\Unit;
+use TypistTech\WPCFG\Vendor\Cloudflare\Zone\Firewall\AccessRules as CloudflareAccessRules;
 
 /**
- * @coversDefaultClass \WPCFG\Cloudflare\AccessRules
+ * @coversDefaultClass \TypistTech\WPCFG\Cloudflare\AccessRules
  */
-class AccessRulesTest extends \Codeception\Test\Unit
+class AccessRulesTest extends Unit
 {
     /**
-     * @covers \WPCFG\Cloudflare\AccessRules
+     * @covers \TypistTech\WPCFG\Cloudflare\AccessRules
      */
     public function testInstanceOfCloudflareAccessRules()
     {

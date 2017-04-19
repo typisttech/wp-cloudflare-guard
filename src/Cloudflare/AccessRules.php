@@ -18,9 +18,9 @@
 
 declare(strict_types=1);
 
-namespace WPCFG\Cloudflare;
+namespace TypistTech\WPCFG\Cloudflare;
 
-use WPCFG\Vendor\Cloudflare\Zone\Firewall\AccessRules as CloudflareAccessRules;
+use TypistTech\WPCFG\Vendor\Cloudflare\Zone\Firewall\AccessRules as CloudflareAccessRules;
 
 /**
  * Final class AccessRules.

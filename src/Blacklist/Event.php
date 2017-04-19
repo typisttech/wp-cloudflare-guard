@@ -18,7 +18,7 @@
 
 declare(strict_types=1);
 
-namespace WPCFG\Blacklist;
+namespace TypistTech\WPCFG\Blacklist;
 
 /**
  * Final class Event.

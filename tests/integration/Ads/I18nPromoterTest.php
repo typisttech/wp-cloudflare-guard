@@ -2,20 +2,21 @@
 
 declare(strict_types=1);
 
-namespace WPCFG\Ads;
+namespace TypistTech\WPCFG\Ads;
 
 use AspectMock\Test;
-use WPCFG\Action;
-use WPCFG\Admin;
-use WPCFG\Vendor\Yoast_I18n_WordPressOrg_v2;
+use Codeception\TestCase\WPTestCase;
+use TypistTech\WPCFG\Action;
+use TypistTech\WPCFG\Admin;
+use TypistTech\WPCFG\Vendor\Yoast_I18n_WordPressOrg_v2;
 
 /**
- * @coversDefaultClass \WPCFG\Ads\I18nPromoter
+ * @coversDefaultClass \TypistTech\WPCFG\Ads\I18nPromoter
  */
-class I18nPromoterTest extends \Codeception\Test\Unit
+class I18nPromoterTest extends WPTestCase
 {
     /**
-     * @var \WPCFG\UnitTester;
+     * @var \TypistTech\WPCFG\IntegrationTester
      */
     protected $tester;
 
@@ -25,7 +26,7 @@ class I18nPromoterTest extends \Codeception\Test\Unit
     private $i18nPromoter;
 
     /**
-     * @covers \WPCFG\Ads\I18nPromoter
+     * @covers ::getHooks
      */
     public function testHookedIntoAdminMenu()
     {
@@ -39,7 +40,7 @@ class I18nPromoterTest extends \Codeception\Test\Unit
     }
 
     /**
-     * @covers \WPCFG\Ads\I18nPromoter
+     * @covers \TypistTech\WPCFG\Ads\I18nPromoter
      */
     public function testYoastI18nWordPressOrgV2Initialized()
     {

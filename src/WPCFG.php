@@ -18,13 +18,13 @@
 
 declare(strict_types=1);
 
-namespace WPCFG;
+namespace TypistTech\WPCFG;
 
-use WPCFG\Ads\I18nPromoter;
-use WPCFG\BadLogin\Admin as BadLoginAdmin;
-use WPCFG\BadLogin\BadLogin;
-use WPCFG\Blacklist\Handler;
-use WPCFG\Cloudflare\Admin as CloudflareAdmin;
+use TypistTech\WPCFG\Ads\I18nPromoter;
+use TypistTech\WPCFG\BadLogin\Admin as BadLoginAdmin;
+use TypistTech\WPCFG\BadLogin\BadLogin;
+use TypistTech\WPCFG\Blacklist\Handler;
+use TypistTech\WPCFG\Cloudflare\Admin as CloudflareAdmin;
 
 /**
  * Final class WPCFG

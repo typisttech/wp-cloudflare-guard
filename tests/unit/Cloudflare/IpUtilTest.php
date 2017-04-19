@@ -2,20 +2,18 @@
 
 declare(strict_types=1);
 
-namespace WPCFG\Cloudflare;
+namespace TypistTech\WPCFG\Cloudflare;
+
+use AspectMock\Test;
+use Codeception\Test\Unit;
 
 /**
- * @coversDefaultClass \WPCFG\Cloudflare\IpUtil
+ * @coversDefaultClass \TypistTech\WPCFG\Cloudflare\IpUtil
  */
-class IpUtilTest extends \Codeception\Test\Unit
+class IpUtilTest extends Unit
 {
     /**
-     * @var string
-     */
-    private $remoteAddrBackup;
-
-    /**
-     * @covers \WPCFG\Cloudflare\IpUtil
+     * @covers ::getCurrentIp
      */
     public function testGetCurrentIp()
     {
@@ -31,7 +29,7 @@ class IpUtilTest extends \Codeception\Test\Unit
     }
 
     /**
-     * @covers \WPCFG\Cloudflare\IpUtil
+     * @covers ::getCurrentIp
      */
     public function testGetCurrentIpWhenNotComingThroughCloudflare()
     {
@@ -46,12 +44,18 @@ class IpUtilTest extends \Codeception\Test\Unit
 
     protected function _after()
     {
+        unset($_SERVER['REMOTE_ADDR']);
         unset($_SERVER['HTTP_CF_CONNECTING_IP']);
-        $_SERVER['REMOTE_ADDR'] = $this->remoteAddrBackup;
     }
 
     protected function _before()
     {
-        $this->remoteAddrBackup = $_SERVER['REMOTE_ADDR'];
+        Test::func(__NAMESPACE__, 'wp_unslash', function (string $text) {
+            return $text;
+        });
+
+        Test::func(__NAMESPACE__, 'sanitize_text_field', function (string $text) {
+            return $text;
+        });
     }
 }

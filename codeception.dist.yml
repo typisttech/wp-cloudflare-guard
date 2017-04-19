@@ -1,4 +1,4 @@
-namespace: WPCFG
+namespace: TypistTech\WPCFG
 actor: Tester
 paths:
     tests: tests

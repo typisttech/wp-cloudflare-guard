@@ -18,9 +18,9 @@
 
 declare(strict_types=1);
 
-namespace WPCFG\Cloudflare;
+namespace TypistTech\WPCFG\Cloudflare;
 
-use WPCFG\Vendor\CloudFlare\IpRewrite;
+use TypistTech\WPCFG\Vendor\CloudFlare\IpRewrite;
 
 /**
  * Final class IpUtil

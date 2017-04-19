@@ -2,12 +2,14 @@
 
 declare(strict_types=1);
 
-namespace WPCFG;
+namespace TypistTech\WPCFG;
+
+use Codeception\TestCase\WPTestCase;
 
 /**
- * @coversDefaultClass \WPCFG\OptionStore
+ * @coversDefaultClass \TypistTech\WPCFG\OptionStore
  */
-class OptionStoreTest extends \Codeception\Test\Unit
+class OptionStoreTest extends WPTestCase
 {
     /**
      * @var OptionStore
@@ -23,6 +25,9 @@ class OptionStoreTest extends \Codeception\Test\Unit
         $this->assertSame('passkey123', $actual);
     }
 
+    /**
+     * @covers ::getBadUsernames
+     */
     public function testGetBadUsernames()
     {
         $actual = $this->optionStore->getBadUsernames();

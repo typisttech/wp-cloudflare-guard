@@ -18,14 +18,14 @@
 
 declare(strict_types=1);
 
-namespace WPCFG\Cloudflare;
+namespace TypistTech\WPCFG\Cloudflare;
 
-use WPCFG\Filter;
-use WPCFG\LoadableInterface;
-use WPCFG\Vendor\TypistTech\WPBetterSettings\Fields\Email;
-use WPCFG\Vendor\TypistTech\WPBetterSettings\Fields\Text;
-use WPCFG\Vendor\TypistTech\WPBetterSettings\Pages\MenuPage;
-use WPCFG\Vendor\TypistTech\WPBetterSettings\Section;
+use TypistTech\WPCFG\Filter;
+use TypistTech\WPCFG\LoadableInterface;
+use TypistTech\WPCFG\Vendor\TypistTech\WPBetterSettings\Fields\Email;
+use TypistTech\WPCFG\Vendor\TypistTech\WPBetterSettings\Fields\Text;
+use TypistTech\WPCFG\Vendor\TypistTech\WPBetterSettings\Pages\MenuPage;
+use TypistTech\WPCFG\Vendor\TypistTech\WPBetterSettings\Section;
 
 /**
  * Final class Admin.

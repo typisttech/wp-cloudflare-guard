@@ -2,19 +2,20 @@
 
 declare(strict_types=1);
 
-namespace WPCFG\BadLogin;
+namespace TypistTech\WPCFG\BadLogin;
 
 use AspectMock\Test;
-use WPCFG\Action;
-use WPCFG\Blacklist\Event;
+use Codeception\TestCase\WPTestCase;
+use TypistTech\WPCFG\Action;
+use TypistTech\WPCFG\Blacklist\Event;
 
 /**
- * @coversDefaultClass \WPCFG\BadLogin\BadLogin
+ * @coversDefaultClass \TypistTech\WPCFG\BadLogin\BadLogin
  */
-class BadLoginTest extends \Codeception\Test\Unit
+class BadLoginTest extends WPTestCase
 {
     /**
-     * @var \WPCFG\UnitTester;
+     * @var \TypistTech\WPCFG\IntegrationTester
      */
     protected $tester;
 
@@ -29,7 +30,7 @@ class BadLoginTest extends \Codeception\Test\Unit
     private $doActionMock;
 
     /**
-     * @covers \WPCFG\BadLogin\BadLogin
+     * @covers \TypistTech\WPCFG\BadLogin\BadLogin
      */
     public function testCanTriggerBlacklistEventWhenMultipleBadUsernamesAreSaved()
     {
@@ -50,7 +51,7 @@ class BadLoginTest extends \Codeception\Test\Unit
     }
 
     /**
-     * @covers \WPCFG\BadLogin\BadLogin
+     * @covers \TypistTech\WPCFG\BadLogin\BadLogin
      */
     public function testCanTriggerBlacklistEventWhenSingleBadUsernameIsSaved()
     {
@@ -69,7 +70,7 @@ class BadLoginTest extends \Codeception\Test\Unit
     }
 
     /**
-     * @covers \WPCFG\BadLogin\BadLogin
+     * @covers \TypistTech\WPCFG\BadLogin\BadLogin
      */
     public function testNormalizeInputUsername()
     {
@@ -88,7 +89,7 @@ class BadLoginTest extends \Codeception\Test\Unit
     }
 
     /**
-     * @covers \WPCFG\BadLogin\BadLogin
+     * @covers \TypistTech\WPCFG\BadLogin\BadLogin
      */
     public function testNormalizeSavedBadUsernames()
     {
@@ -109,7 +110,7 @@ class BadLoginTest extends \Codeception\Test\Unit
     }
 
     /**
-     * @covers \WPCFG\BadLogin\BadLogin
+     * @covers \TypistTech\WPCFG\BadLogin\BadLogin
      */
     public function testSkipsEmptyUsername()
     {
@@ -121,7 +122,7 @@ class BadLoginTest extends \Codeception\Test\Unit
     }
 
     /**
-     * @covers \WPCFG\BadLogin\BadLogin
+     * @covers \TypistTech\WPCFG\BadLogin\BadLogin
      */
     public function testSkipsForFalseUsername()
     {
@@ -133,7 +134,7 @@ class BadLoginTest extends \Codeception\Test\Unit
     }
 
     /**
-     * @covers \WPCFG\BadLogin\BadLogin
+     * @covers \TypistTech\WPCFG\BadLogin\BadLogin
      */
     public function testSkipsForNotBadUsername()
     {
@@ -145,7 +146,7 @@ class BadLoginTest extends \Codeception\Test\Unit
     }
 
     /**
-     * @covers \WPCFG\BadLogin\BadLogin
+     * @covers \TypistTech\WPCFG\BadLogin\BadLogin
      */
     public function testSkipsForNullUsername()
     {
@@ -157,7 +158,7 @@ class BadLoginTest extends \Codeception\Test\Unit
     }
 
     /**
-     * @covers \WPCFG\BadLogin\BadLogin
+     * @covers \TypistTech\WPCFG\BadLogin\BadLogin
      */
     public function testSkipsIfNoBadUsernameIsSaved()
     {
@@ -167,7 +168,7 @@ class BadLoginTest extends \Codeception\Test\Unit
     }
 
     /**
-     * @covers \WPCFG\BadLogin\BadLogin
+     * @covers ::getHooks
      */
     public function testsHookedIntoWpAuthenticate()
     {

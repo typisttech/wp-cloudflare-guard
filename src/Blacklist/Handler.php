@@ -18,12 +18,12 @@
 
 declare(strict_types=1);
 
-namespace WPCFG\Blacklist;
+namespace TypistTech\WPCFG\Blacklist;
 
-use WPCFG\Action;
-use WPCFG\Cloudflare\AccessRules;
-use WPCFG\LoadableInterface;
-use WPCFG\OptionStore;
+use TypistTech\WPCFG\Action;
+use TypistTech\WPCFG\Cloudflare\AccessRules;
+use TypistTech\WPCFG\LoadableInterface;
+use TypistTech\WPCFG\OptionStore;
 
 /**
  * Final class Handler.
@@ -71,7 +71,7 @@ final class Handler implements LoadableInterface
     /**
      * Handle blacklist events.
      *
-     * @param mixed $event The event expected to be \WPCFG\Blacklist\Event.
+     * @param mixed $event The event expected to be \TypistTech\WPCFG\Blacklist\Event.
      *
      * @return void
      */

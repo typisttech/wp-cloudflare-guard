@@ -18,10 +18,10 @@
 
 declare(strict_types=1);
 
-namespace WPCFG;
+namespace TypistTech\WPCFG;
 
 use InvalidArgumentException;
-use WPCFG\Vendor\Psr\Container\ContainerInterface;
+use TypistTech\WPCFG\Vendor\Psr\Container\ContainerInterface;
 
 /**
  * Register all actions and filters for the plugin.

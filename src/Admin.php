@@ -18,14 +18,14 @@
 
 declare(strict_types=1);
 
-namespace WPCFG;
+namespace TypistTech\WPCFG;
 
-use WPCFG\Vendor\TypistTech\WPBetterSettings\PageRegister;
-use WPCFG\Vendor\TypistTech\WPBetterSettings\Pages\MenuPage;
-use WPCFG\Vendor\TypistTech\WPBetterSettings\Pages\PageInterface;
-use WPCFG\Vendor\TypistTech\WPBetterSettings\Pages\SubmenuPage;
-use WPCFG\Vendor\TypistTech\WPBetterSettings\Section;
-use WPCFG\Vendor\TypistTech\WPBetterSettings\SettingRegister;
+use TypistTech\WPCFG\Vendor\TypistTech\WPBetterSettings\PageRegister;
+use TypistTech\WPCFG\Vendor\TypistTech\WPBetterSettings\Pages\MenuPage;
+use TypistTech\WPCFG\Vendor\TypistTech\WPBetterSettings\Pages\PageInterface;
+use TypistTech\WPCFG\Vendor\TypistTech\WPBetterSettings\Pages\SubmenuPage;
+use TypistTech\WPCFG\Vendor\TypistTech\WPBetterSettings\Section;
+use TypistTech\WPCFG\Vendor\TypistTech\WPBetterSettings\SettingRegister;
 
 /**
  * Final class Admin.
