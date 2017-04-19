@@ -6,8 +6,8 @@ namespace TypistTech\WPCFG\BadLogin;
 
 use AspectMock\Test;
 use Codeception\TestCase\WPTestCase;
-use TypistTech\WPCFG\Action;
 use TypistTech\WPCFG\Blacklist\Event;
+use TypistTech\WPCFG\Vendor\TypistTech\WPContainedHook\Action;
 
 /**
  * @coversDefaultClass \TypistTech\WPCFG\BadLogin\BadLogin
@@ -160,7 +160,7 @@ class BadLoginTest extends WPTestCase
         $actual = BadLogin::getHooks();
 
         $expected = [
-            new Action(BadLogin::class, 'wp_authenticate', 'emitBlacklistEventIfBadUsername'),
+            new Action('wp_authenticate', BadLogin::class, 'emitBlacklistEventIfBadUsername'),
         ];
 
         $this->assertEquals($expected, $actual);

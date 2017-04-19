@@ -6,8 +6,8 @@ namespace TypistTech\WPCFG\Ads;
 
 use AspectMock\Test;
 use Codeception\TestCase\WPTestCase;
-use TypistTech\WPCFG\Action;
 use TypistTech\WPCFG\Admin;
+use TypistTech\WPCFG\Vendor\TypistTech\WPContainedHook\Action;
 use TypistTech\WPCFG\Vendor\Yoast_I18n_WordPressOrg_v2;
 
 /**
@@ -53,7 +53,7 @@ class I18nPromoterTest extends WPTestCase
         $actual = I18nPromoter::getHooks();
 
         $expected = [
-            new Action(I18nPromoter::class, 'admin_menu', 'addYoastI18nModuleToMenuPages', 20),
+            new Action('admin_menu', I18nPromoter::class, 'addYoastI18nModuleToMenuPages'),
         ];
 
         $this->assertEquals($expected, $actual);

@@ -20,12 +20,12 @@ declare(strict_types=1);
 
 namespace TypistTech\WPCFG\Cloudflare;
 
-use TypistTech\WPCFG\Filter;
 use TypistTech\WPCFG\LoadableInterface;
 use TypistTech\WPCFG\Vendor\TypistTech\WPBetterSettings\Fields\Email;
 use TypistTech\WPCFG\Vendor\TypistTech\WPBetterSettings\Fields\Text;
 use TypistTech\WPCFG\Vendor\TypistTech\WPBetterSettings\Pages\MenuPage;
 use TypistTech\WPCFG\Vendor\TypistTech\WPBetterSettings\Section;
+use TypistTech\WPCFG\Vendor\TypistTech\WPContainedHook\Filter;
 
 /**
  * Final class Admin.
@@ -40,8 +40,8 @@ final class Admin implements LoadableInterface
     public static function getHooks(): array
     {
         return [
-            new Filter(__CLASS__, 'wpcfg_pages', 'addPage'),
-            new Filter(__CLASS__, 'wpcfg_settings_sections', 'addSettingsSection'),
+            new Filter('wpcfg_pages', __CLASS__, 'addPage'),
+            new Filter('wpcfg_settings_sections', __CLASS__, 'addSettingsSection'),
         ];
     }
 

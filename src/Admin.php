@@ -26,6 +26,7 @@ use TypistTech\WPCFG\Vendor\TypistTech\WPBetterSettings\Pages\PageInterface;
 use TypistTech\WPCFG\Vendor\TypistTech\WPBetterSettings\Pages\SubmenuPage;
 use TypistTech\WPCFG\Vendor\TypistTech\WPBetterSettings\Section;
 use TypistTech\WPCFG\Vendor\TypistTech\WPBetterSettings\SettingRegister;
+use TypistTech\WPCFG\Vendor\TypistTech\WPContainedHook\Action;
 
 /**
  * Final class Admin.
@@ -71,8 +72,8 @@ final class Admin implements LoadableInterface
     public static function getHooks(): array
     {
         return [
-            new Action(__CLASS__, 'admin_menu', 'registerPages'),
-            new Action(__CLASS__, 'admin_init', 'registerSettings'),
+            new Action('admin_menu', __CLASS__, 'registerPages'),
+            new Action('admin_init', __CLASS__, 'registerSettings'),
         ];
     }
 

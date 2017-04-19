@@ -6,8 +6,8 @@ namespace TypistTech\WPCFG\Blacklist;
 
 use AspectMock\Test;
 use Codeception\TestCase\WPTestCase;
-use TypistTech\WPCFG\Action;
 use TypistTech\WPCFG\Cloudflare\AccessRules;
+use TypistTech\WPCFG\Vendor\TypistTech\WPContainedHook\Action;
 
 /**
  * @coversDefaultClass TypistTech\WPCFG\Blacklist\Handler
@@ -88,7 +88,7 @@ class HandlerTest extends WPTestCase
         $actual = Handler::getHooks();
 
         $expected = [
-            new Action(Handler::class, 'wpcfg_blacklist', 'handleBlacklist'),
+            new Action('wpcfg_blacklist', Handler::class, 'handleBlacklist'),
         ];
 
         $this->assertEquals($expected, $actual);

@@ -25,6 +25,8 @@ use TypistTech\WPCFG\BadLogin\Admin as BadLoginAdmin;
 use TypistTech\WPCFG\BadLogin\BadLogin;
 use TypistTech\WPCFG\Blacklist\Handler;
 use TypistTech\WPCFG\Cloudflare\Admin as CloudflareAdmin;
+use TypistTech\WPCFG\Vendor\TypistTech\WPContainedHook\Action;
+use TypistTech\WPCFG\Vendor\TypistTech\WPContainedHook\Loader;
 
 /**
  * Final class WPCFG
@@ -59,7 +61,7 @@ final class WPCFG implements LoadableInterface
         $this->container->initialize();
         $this->container->add('\\' . self::class, $this);
 
-        $this->loader->load(
+        $loadables = [
             __CLASS__,
             Admin::class,
             BadLogin::class,
@@ -67,8 +69,13 @@ final class WPCFG implements LoadableInterface
             Handler::class,
             CloudflareAdmin::class,
             I18n::class,
-            I18nPromoter::class
-        );
+            I18nPromoter::class,
+        ];
+
+        foreach ($loadables as $loadable) {
+            /* @var LoadableInterface $loadable */
+            $this->loader->add(...$loadable::getHooks());
+        }
     }
 
     /**
