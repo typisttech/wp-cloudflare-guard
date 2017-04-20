@@ -99,6 +99,9 @@ module.exports = function (grunt) {
             "cf-ip-rewrite": [
                 'vendor/cloudflare/cf-ip-rewrite/tests/**'
             ],
+            imposter: [
+                'vendor/typisttech/imposter*'
+            ],
             vendor: {
                 nocase: true,
                 src: [
@@ -128,6 +131,8 @@ module.exports = function (grunt) {
     });
 
     require('load-grunt-tasks')(grunt);
+
+    grunt.registerTask('clean:install', ['clean:cloudflare', 'clean:cf-ip-rewrite', 'clean:container-interop', 'clean:vendor']);
 
     grunt.util.linefeed = '\n';
 
