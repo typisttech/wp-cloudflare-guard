@@ -46,6 +46,17 @@ class I18nPromoterTest extends WPTestCase
     }
 
     /**
+     * @coversNothing
+     */
+    public function testGetFromContainer()
+    {
+        $this->assertInstanceOf(
+            I18nPromoter::class,
+            $this->tester->getContainer()->get(I18nPromoter::class)
+        );
+    }
+
+    /**
      * @covers ::getHooks
      */
     public function testHookedIntoAdminMenu()

@@ -4,13 +4,10 @@ declare(strict_types=1);
 
 namespace TypistTech\WPCFG\Cloudflare;
 
-use AspectMock\Test;
-use Codeception\Test\Unit;
-
 /**
- * @coversDefaultClass \TypistTech\WPCFG\Cloudflare\IpUtil
+ * @coversDefaultClass \TypistTech\WPCFG\Cloudflare\Helper
  */
-class IpUtilTest extends Unit
+class HelperTest extends \Codeception\TestCase\WPTestCase
 {
     /**
      * @covers ::getCurrentIp
@@ -23,7 +20,8 @@ class IpUtilTest extends Unit
         $_SERVER['REMOTE_ADDR'] = $remoteAddr;
         $_SERVER['HTTP_CF_CONNECTING_IP'] = $connectingIp;
 
-        $actual = IpUtil::getCurrentIp();
+        $helper = new Helper;
+        $actual = $helper->getCurrentIp();
 
         $this->assertSame($connectingIp, $actual);
     }
@@ -37,25 +35,9 @@ class IpUtilTest extends Unit
 
         $_SERVER['REMOTE_ADDR'] = $remoteAddr;
 
-        $actual = IpUtil::getCurrentIp();
+        $helper = new Helper;
+        $actual = $helper->getCurrentIp();
 
         $this->assertSame($remoteAddr, $actual);
-    }
-
-    protected function _after()
-    {
-        unset($_SERVER['REMOTE_ADDR']);
-        unset($_SERVER['HTTP_CF_CONNECTING_IP']);
-    }
-
-    protected function _before()
-    {
-        Test::func(__NAMESPACE__, 'wp_unslash', function (string $text) {
-            return $text;
-        });
-
-        Test::func(__NAMESPACE__, 'sanitize_text_field', function (string $text) {
-            return $text;
-        });
     }
 }

@@ -33,21 +33,28 @@ class HandlerTest extends WPTestCase
     {
         parent::setUp();
 
-        update_option('wpcfg_cloudflare_email', 'email@example.com');
-        update_option('wpcfg_cloudflare_api_key', 'API_KEY_123');
-        update_option('wpcfg_cloudflare_zone_id', 'abc123');
-
         $container = $this->tester->getContainer();
 
         $this->accessRules = Test::double(
             $container->get(AccessRules::class),
             [
-                'create' => null,
+                'create' => [ true ],
             ]
         );
         $container->add(AccessRules::class, $this->accessRules->getObject());
 
         $this->handler = $container->get(Handler::class);
+    }
+
+    /**
+     * @coversNothing
+     */
+    public function testGetFromContainer()
+    {
+        $this->assertInstanceOf(
+            Handler::class,
+            $this->tester->getContainer()->get(Handler::class)
+        );
     }
 
     /**
@@ -60,9 +67,8 @@ class HandlerTest extends WPTestCase
         $this->handler->handleBlacklist($event);
 
         $expectedCreate = [
-            'abc123',
             'block',
-            (object) [
+            [
                 'target' => 'ip',
                 'value' => '127.0.0.1',
             ],
@@ -72,12 +78,6 @@ class HandlerTest extends WPTestCase
         $this->accessRules->verifyInvokedMultipleTimes('create', 1);
         $actualCreate = $this->accessRules->getCallsForMethod('create')[0];
         $this->assertEquals($expectedCreate, $actualCreate);
-
-        $this->accessRules->verifyInvokedMultipleTimes('setEmail', 1);
-        $this->accessRules->verifyInvokedOnce('setEmail', [ 'email@example.com' ]);
-
-        $this->accessRules->verifyInvokedMultipleTimes('setAuthKey', 1);
-        $this->accessRules->verifyInvokedOnce('setAuthKey', [ 'API_KEY_123' ]);
     }
 
     /**
@@ -92,22 +92,5 @@ class HandlerTest extends WPTestCase
         ];
 
         $this->assertEquals($expected, $actual);
-    }
-
-    /**
-     * @covers \TypistTech\WPCFG\Blacklist\Handler
-     */
-    public function testSkipsForNonBlacklistEvents()
-    {
-        $this->handler->handleBlacklist();
-        $this->handler->handleBlacklist(null);
-        $this->handler->handleBlacklist(false);
-        $this->handler->handleBlacklist([]);
-        $this->handler->handleBlacklist('');
-        $this->handler->handleBlacklist(123);
-
-        $this->accessRules->verifyNeverInvoked('setEmail');
-        $this->accessRules->verifyNeverInvoked('setAuthKey');
-        $this->accessRules->verifyNeverInvoked('create');
     }
 }

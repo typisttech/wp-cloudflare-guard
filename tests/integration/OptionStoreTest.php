@@ -12,6 +12,11 @@ use Codeception\TestCase\WPTestCase;
 class OptionStoreTest extends WPTestCase
 {
     /**
+     * @var \TypistTech\WPCFG\IntegrationTester
+     */
+    protected $tester;
+
+    /**
      * @var OptionStore
      */
     private $optionStore;
@@ -56,6 +61,17 @@ class OptionStoreTest extends WPTestCase
     {
         $actual = $this->optionStore->getEmail();
         $this->assertSame('tester@example.com', $actual);
+    }
+
+    /**
+     * @coversNothing
+     */
+    public function testGetFromContainer()
+    {
+        $this->assertInstanceOf(
+            OptionStore::class,
+            $this->tester->getContainer()->get(OptionStore::class)
+        );
     }
 
     /**

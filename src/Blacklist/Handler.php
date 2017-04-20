@@ -22,7 +22,6 @@ namespace TypistTech\WPCFG\Blacklist;
 
 use TypistTech\WPCFG\Cloudflare\AccessRules;
 use TypistTech\WPCFG\LoadableInterface;
-use TypistTech\WPCFG\OptionStore;
 use TypistTech\WPCFG\Vendor\TypistTech\WPContainedHook\Action;
 
 /**
@@ -40,21 +39,12 @@ final class Handler implements LoadableInterface
     private $accessRules;
 
     /**
-     * The option store.
-     *
-     * @var OptionStore
-     */
-    private $optionStore;
-
-    /**
      * Handler constructor.
      *
-     * @param OptionStore $optionStore The WPCFG option store.
      * @param AccessRules $accessRules The api client.
      */
-    public function __construct(OptionStore $optionStore, AccessRules $accessRules)
+    public function __construct(AccessRules $accessRules)
     {
-        $this->optionStore = $optionStore;
         $this->accessRules = $accessRules;
     }
 
@@ -71,23 +61,15 @@ final class Handler implements LoadableInterface
     /**
      * Handle blacklist events.
      *
-     * @param mixed $event The event expected to be \TypistTech\WPCFG\Blacklist\Event.
+     * @param Event $event Immutable data transfer object that holds necessary information about this blacklist action.
      *
      * @return void
      */
-    public function handleBlacklist($event = null)
+    public function handleBlacklist(Event $event)
     {
-        if (! $event instanceof Event) {
-            return;
-        }
-
-        $this->accessRules->setEmail($this->optionStore->getEmail());
-        $this->accessRules->setAuthKey($this->optionStore->getApiKey());
-
         $this->accessRules->create(
-            $this->optionStore->getZoneId(),
             'block',
-            (object) [
+            [
                 'target' => 'ip',
                 'value' => $event->getIpAddress(),
             ],

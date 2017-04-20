@@ -9,20 +9,36 @@ use TypistTech\WPCFG\Vendor\TypistTech\WPContainedHook\Action;
 use TypistTech\WPCFG\Vendor\WP_Review_Me;
 
 /**
- * @coversDefaultClass \TypistTech\WPCFG\Ads\ReviewMe
+ * @coversDefaultClass \TypistTech\WPCFG\Ads\ReviewNotice
  */
-class ReviewMeTest extends \Codeception\TestCase\WPTestCase
+class ReviewNoticeTest extends \Codeception\TestCase\WPTestCase
 {
     /**
-     * @var ReviewMe
+     * @var \TypistTech\WPCFG\IntegrationTester
      */
-    private $reviewMe;
+    protected $tester;
+
+    /**
+     * @var ReviewNotice
+     */
+    private $reviewNotice;
 
     public function setUp()
     {
         parent::setUp();
 
-        $this->reviewMe = new ReviewMe;
+        $this->reviewNotice = new ReviewNotice;
+    }
+
+    /**
+     * @coversNothing
+     */
+    public function testGetFromContainer()
+    {
+        $this->assertInstanceOf(
+            ReviewNotice::class,
+            $this->tester->getContainer()->get(ReviewNotice::class)
+        );
     }
 
     /**
@@ -30,9 +46,9 @@ class ReviewMeTest extends \Codeception\TestCase\WPTestCase
      */
     public function testHookedIntoAdminInit()
     {
-        $actual = ReviewMe::getHooks();
+        $actual = ReviewNotice::getHooks();
 
-        $expected = [ new Action('admin_init', ReviewMe::class, 'run') ];
+        $expected = [ new Action('admin_init', ReviewNotice::class, 'run') ];
 
         $this->assertEquals($expected, $actual);
     }
@@ -44,7 +60,7 @@ class ReviewMeTest extends \Codeception\TestCase\WPTestCase
     {
         $wpReviewMe = Test::double(WP_Review_Me::class);
 
-        $this->reviewMe->run();
+        $this->reviewNotice->run();
 
         $wpReviewMe->verifyInvokedMultipleTimes('__construct', 1);
 

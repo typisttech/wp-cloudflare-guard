@@ -23,7 +23,7 @@ namespace TypistTech\WPCFG\Blacklist;
 /**
  * Final class Event.
  *
- * Immutable data transfer object.
+ * Immutable data transfer object that holds necessary information about a blacklist action.
  */
 final class Event
 {
