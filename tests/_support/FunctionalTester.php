@@ -25,4 +25,15 @@ use Codeception\Actor;
 class FunctionalTester extends Actor
 {
     use _generated\FunctionalTesterActions;
+
+    public function amOnWPCFGSettingPage()
+    {
+        $this->amOnAdminPage('/admin.php?page=wpcfg-cloudflare');
+    }
+
+    public function loginToWPCFGSettingPage()
+    {
+        $this->loginAsAdmin();
+        $this->amOnAdminPage('/admin.php?page=wpcfg-cloudflare');
+    }
 }

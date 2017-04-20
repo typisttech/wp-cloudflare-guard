@@ -21,6 +21,7 @@ declare(strict_types=1);
 namespace TypistTech\WPCFG;
 
 use TypistTech\WPCFG\Ads\I18nPromoter;
+use TypistTech\WPCFG\Ads\ReviewMe;
 use TypistTech\WPCFG\BadLogin\Admin as BadLoginAdmin;
 use TypistTech\WPCFG\BadLogin\BadLogin;
 use TypistTech\WPCFG\Blacklist\Event;
@@ -51,13 +52,14 @@ final class Container extends LeagueContainer
         $keys = [
             AccessRules::class,
             BadLogin::class,
-            I18nPromoter::class,
-            IpUtil::class,
-            Handler::class,
             BadLoginAdmin::class,
             CloudflareAdmin::class,
+            Handler::class,
             I18n::class,
+            I18nPromoter::class,
+            IpUtil::class,
             OptionStore::class,
+            ReviewMe::class,
         ];
         foreach ($keys as $key) {
             $this->add('\\' . $key);

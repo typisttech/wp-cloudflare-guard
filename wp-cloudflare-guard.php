@@ -39,6 +39,8 @@ if (! defined('WPINC')) {
 }
 
 require_once plugin_dir_path(__FILE__) . 'vendor/autoload.php';
+require_once plugin_dir_path(__FILE__) . '/lib/julien731/wp-dismissible-notices-handler/handler.php';
+require_once plugin_dir_path(__FILE__) . '/lib/julien731/wp-dismissible-notices-handler/includes/helper-functions.php';
 
 /**
  * Begins execution of the plugin.
