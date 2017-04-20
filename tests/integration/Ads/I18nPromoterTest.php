@@ -58,7 +58,7 @@ class I18nPromoterTest extends WPTestCase
     }
 
     /**
-     * @covers \TypistTech\WPCFG\Ads\I18nPromoter
+     * @covers ::run
      */
     public function testYoastI18nWordPressOrgV2Initialized()
     {
