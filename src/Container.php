@@ -30,7 +30,6 @@ use TypistTech\WPCFG\Cloudflare\Admin as CloudflareAdmin;
 use TypistTech\WPCFG\Cloudflare\IpUtil;
 use TypistTech\WPCFG\Vendor\League\Container\Container as LeagueContainer;
 use TypistTech\WPCFG\Vendor\League\Container\ReflectionContainer;
-use TypistTech\WPCFG\Vendor\Yoast_I18n_WordPressOrg_v2;
 
 /**
  * Final class Container.
@@ -63,10 +62,6 @@ final class Container extends LeagueContainer
         foreach ($keys as $key) {
             $this->add('\\' . $key);
         }
-
-        $this->add(Yoast_I18n_WordPressOrg_v2::class, function (array $args) {
-            return new Yoast_I18n_WordPressOrg_v2($args);
-        });
 
         $this->add(Event::class, function (string $ip, string $note) {
             return new Event($ip, $note);

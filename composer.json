@@ -36,8 +36,7 @@
         "typisttech/cloudflare-wp-api": "^0.3.0",
         "typisttech/imposter-plugin": "^0.2.5",
         "typisttech/wp-better-settings": "^0.11.0",
-        "typisttech/wp-contained-hook": "^0.1.1",
-        "yoast/i18n-module": "^2.0"
+        "typisttech/wp-contained-hook": "^0.1.1"
     },
     "require-dev": {
         "codeception/aspect-mock": "^2.0",
@@ -48,6 +47,9 @@
         "wp-coding-standards/wpcs": "^0.11.0"
     },
     "autoload": {
+        "classmap": [
+            "lib/"
+        ],
         "psr-4": {
             "TypistTech\\WPCFG\\": "src/"
         }
@@ -56,6 +58,7 @@
         "build": [
             "rm -fr vendor",
             "composer install --no-dev --prefer-dist --optimize-autoloader --no-suggest",
+            "yarn grunt cleanempty",
             "yarn grunt addtextdomain",
             "composer archive --format=zip --dir=release --file=wp-cloudflare-guard"
         ],
@@ -91,9 +94,7 @@
         "transform-vendor": [
             "yarn install",
             "yarn grunt clean",
-            "yarn grunt cleanempty",
-            "cfwp build",
-            "yarn grunt replace"
+            "cfwp build"
         ]
     },
     "config": {
@@ -101,10 +102,7 @@
     },
     "extra": {
         "imposter": {
-            "namespace": "TypistTech\\WPCFG\\Vendor",
-            "excludes": [
-                "yoast/i18n-module"
-            ]
+            "namespace": "TypistTech\\WPCFG\\Vendor"
         },
         "scripts-dev": {
             "post-install-cmd": "@install-dev-extra",
@@ -116,6 +114,7 @@
             "/*",
             ".*",
             "!/languages",
+            "!/lib",
             "!/src",
             "!/vendor",
             "!/LICENSE",

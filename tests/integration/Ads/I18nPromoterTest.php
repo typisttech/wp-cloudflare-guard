@@ -52,9 +52,7 @@ class I18nPromoterTest extends WPTestCase
     {
         $actual = I18nPromoter::getHooks();
 
-        $expected = [
-            new Action('admin_menu', I18nPromoter::class, 'addYoastI18nModuleToMenuPages'),
-        ];
+        $expected = [ new Action('admin_menu', I18nPromoter::class, 'run', 20) ];
 
         $this->assertEquals($expected, $actual);
     }
@@ -66,7 +64,7 @@ class I18nPromoterTest extends WPTestCase
     {
         $yoastI18nWordPressOrgV2 = Test::double(Yoast_I18n_WordPressOrg_v2::class);
 
-        $this->i18nPromoter->addYoastI18nModuleToMenuPages();
+        $this->i18nPromoter->run();
 
         $yoastI18nWordPressOrgV2->verifyInvokedMultipleTimes('__construct', 2);
         $yoastI18nWordPressOrgV2->verifyInvokedOnce('__construct', [
