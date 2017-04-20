@@ -21,7 +21,7 @@ declare(strict_types=1);
 namespace TypistTech\WPCFG\BadLogin;
 
 use TypistTech\WPCFG\Blacklist\Event;
-use TypistTech\WPCFG\Container;
+use TypistTech\WPCFG\Cloudflare\Helper;
 use TypistTech\WPCFG\LoadableInterface;
 use TypistTech\WPCFG\OptionStore;
 use TypistTech\WPCFG\Vendor\TypistTech\WPContainedHook\Action;
@@ -34,14 +34,14 @@ use TypistTech\WPCFG\Vendor\TypistTech\WPContainedHook\Action;
 final class BadLogin implements LoadableInterface
 {
     /**
-     * The WPCFG container.
+     * Cloudflare helper
      *
-     * @var Container
+     * @var Helper
      */
-    private $container;
+    private $helper;
 
     /**
-     * Holds the option store.
+     * The WPCFG option store
      *
      * @var OptionStore
      */
@@ -51,12 +51,12 @@ final class BadLogin implements LoadableInterface
      * BadLogin constructor.
      *
      * @param OptionStore $optionStore The WPCFG option store.
-     * @param Container   $container   The WPCFG container.
+     * @param Helper      $helper      The WPCFG Cloudflare helper.
      */
-    public function __construct(OptionStore $optionStore, Container $container)
+    public function __construct(OptionStore $optionStore, Helper $helper)
     {
         $this->optionStore = $optionStore;
-        $this->container = $container;
+        $this->helper = $helper;
     }
 
     /**
@@ -101,7 +101,13 @@ final class BadLogin implements LoadableInterface
             return false;
         }
 
-        return $this->isBadUsername($inputUsername);
+        $isBadUsername = apply_filters(
+            'wpcfg_is_bad_username',
+            $this->isBadUsername($inputUsername),
+            $inputUsername
+        );
+
+        return true === $isBadUsername;
     }
 
     /**
@@ -113,10 +119,25 @@ final class BadLogin implements LoadableInterface
      */
     private function isBadUsername(string $inputUsername): bool
     {
-        $badUsernames = $this->getNormalizedBadUsernames();
-        $normalizedInput = $this->normalize($inputUsername);
+        return in_array(
+            $this->normalize($inputUsername),
+            $this->getNormalizedBadUsernames(),
+            true
+        );
+    }
 
-        return in_array($normalizedInput, $badUsernames, true);
+    /**
+     * Normalize username string.
+     *
+     * @param string $username Un-normalized username.
+     *
+     * @return string
+     */
+    private function normalize(string $username): string
+    {
+        return strtolower(
+            sanitize_user($username, true)
+        );
     }
 
     /**
@@ -137,18 +158,6 @@ final class BadLogin implements LoadableInterface
     }
 
     /**
-     * Normalize username string.
-     *
-     * @param string $username Un-normalized username.
-     *
-     * @return string
-     */
-    private function normalize(string $username): string
-    {
-        return strtolower(trim(sanitize_user($username, true)));
-    }
-
-    /**
      * Make blacklist event for current ip and the given username.
      *
      * @param string $username The input username which is bad.
@@ -163,6 +172,9 @@ final class BadLogin implements LoadableInterface
             $username
         );
 
-        return $this->container->get('blacklist-event-for-current-ip', [ $note ]);
+        return new Event(
+            $this->helper->getCurrentIp(),
+            $note
+        );
     }
 }

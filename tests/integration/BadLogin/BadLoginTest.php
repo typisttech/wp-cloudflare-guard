@@ -79,6 +79,17 @@ class BadLoginTest extends WPTestCase
     }
 
     /**
+     * @coversNothing
+     */
+    public function testGetFromContainer()
+    {
+        $this->assertInstanceOf(
+            BadLogin::class,
+            $this->tester->getContainer()->get(BadLogin::class)
+        );
+    }
+
+    /**
      * @covers \TypistTech\WPCFG\BadLogin\BadLogin
      */
     public function testNormalizeInputUsername()
@@ -147,6 +158,8 @@ class BadLoginTest extends WPTestCase
      */
     public function testSkipsIfNoBadUsernameIsSaved()
     {
+        delete_option('wpcfg_bad_login_bad_usernames');
+
         $this->badLogin->emitBlacklistEventIfBadUsername('bad-boy');
 
         $this->doActionMock->verifyNeverInvoked();

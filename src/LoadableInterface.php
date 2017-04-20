@@ -26,7 +26,7 @@ namespace TypistTech\WPCFG;
 interface LoadableInterface
 {
     /**
-     * Hooks getter.
+     * Hooks (Action or Filter) getter.
      *
      * @return \TypistTech\WPCFG\Vendor\TypistTech\WPContainedHook\AbstractHook[]
      */

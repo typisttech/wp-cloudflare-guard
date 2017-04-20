@@ -5,15 +5,15 @@ declare(strict_types=1);
 use TypistTech\WPCFG\FunctionalTester;
 
 $I = new FunctionalTester($scenario);
-$I->wantToTest('review me notice after ten days');
+$I->wantToTest('review notice shows up after ten days');
 
 $optionName = 'wrm_a87d157b6f87b8521211';
-$I->amGoingTo('reset review me installed time');
+$I->amGoingTo('reset WP Review Me installed time');
 $I->haveOptionInDatabase($optionName, 0);
 
 $I->loginToWPCFGSettingPage();
 
-$I->wantToTest('review me installed time is set within the past ten seconds');
+$I->wantToTest('WP Review Me installed time is set within the past ten seconds');
 $installed = $I->grabOptionFromDatabase($optionName);
 $I->assertEquals(time(), $installed, null, 10);
 

@@ -47,8 +47,6 @@ final class Admin implements LoadableInterface
     /**
      * Add the menu page config.
      *
-     * @todo Test via acceptance test.
-     *
      * @param (MenuPage|SubmenuPage)[] $pages Menu and submenu page configurations.
      *
      * @return (MenuPage|SubmenuPage)[]
@@ -67,8 +65,6 @@ final class Admin implements LoadableInterface
 
     /**
      * Add settings section config.
-     *
-     * @todo Test via acceptance test.
      *
      * @param Section[] $sections Settings section configurations.
      *

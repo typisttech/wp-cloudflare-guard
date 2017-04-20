@@ -21,7 +21,7 @@ declare(strict_types=1);
 namespace TypistTech\WPCFG;
 
 use TypistTech\WPCFG\Ads\I18nPromoter;
-use TypistTech\WPCFG\Ads\ReviewMe;
+use TypistTech\WPCFG\Ads\ReviewNotice;
 use TypistTech\WPCFG\BadLogin\Admin as BadLoginAdmin;
 use TypistTech\WPCFG\BadLogin\BadLogin;
 use TypistTech\WPCFG\Blacklist\Handler;
@@ -60,7 +60,6 @@ final class WPCFG implements LoadableInterface
         $this->loader = new Loader($this->container);
 
         $this->container->initialize();
-        $this->container->add('\\' . self::class, $this);
 
         $loadables = [
             __CLASS__,
@@ -71,7 +70,7 @@ final class WPCFG implements LoadableInterface
             CloudflareAdmin::class,
             I18n::class,
             I18nPromoter::class,
-            ReviewMe::class,
+            ReviewNotice::class,
         ];
 
         foreach ($loadables as $loadable) {

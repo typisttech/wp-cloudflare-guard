@@ -25,9 +25,9 @@ use TypistTech\WPCFG\Vendor\TypistTech\WPContainedHook\Action;
 use TypistTech\WPCFG\Vendor\WP_Review_Me;
 
 /**
- * Final class ReviewMe
+ * Final class ReviewNotice
  */
-final class ReviewMe implements LoadableInterface
+final class ReviewNotice implements LoadableInterface
 {
     /**
      * {@inheritdoc}
