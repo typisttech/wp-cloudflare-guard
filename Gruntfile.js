@@ -33,6 +33,7 @@ module.exports = function (grunt) {
                 files: {
                     src: [
                         '*.php',
+                        'lib/**/*.php',
                         'src/**/*.php',
                         'vendor/**/*.php'
                     ]
@@ -45,6 +46,7 @@ module.exports = function (grunt) {
                 options: {
                     include: [
                         '.*.php',
+                        'lib/.*',
                         'src/.*',
                         'vendor/.*'
                     ],
@@ -96,35 +98,31 @@ module.exports = function (grunt) {
             ],
             "cf-ip-rewrite": [
                 'vendor/cloudflare/cf-ip-rewrite/tests/**'
-            ]
+            ],
+            vendor: {
+                nocase: true,
+                src: [
+                    'vendor/**/.gitignore',
+                    'vendor/**/.gitkeep',
+                    'vendor/**/*.xml',
+                    'vendor/**/*.yml',
+                    'vendor/**/*.dist',
+                    'vendor/**/*.md',
+                    'vendor/**/*.lock',
+                    '!**/*license*',
+                    '!vendor/composer/**/*.*',
+                    '!vendor/squizlabs/php_codesniffer/**/*.*',
+                    '!vendor/wp-coding-standards/wpcs/**/*.*'
+                ]
+            }
         },
 
         cleanempty: {
             options: {
                 noJunk: true
             },
-            root: {
-                src: ['vendor/jamesryanbell/**/*']
-            }
-        },
-
-        replace: {
-            namespace_yoast_i18n: {
-                options: {
-                    patterns: [
-                        {
-                            match: /<\?php\s+(?!namespace TypistTech\\WPCFG\\Vendor;\n)/g,
-                            replacement: "<?php namespace TypistTech\\WPCFG\\Vendor;\n"
-                        }
-                    ],
-                    usePrefix: false
-                },
-                files: [
-                    {
-                        expand: true,
-                        src: ['vendor/yoast/i18n-module/src/**']
-                    }
-                ]
+            vendor: {
+                src: ['vendor/**/*']
             }
         }
     });

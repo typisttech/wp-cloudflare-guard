@@ -21,6 +21,7 @@ declare(strict_types=1);
 namespace TypistTech\WPCFG;
 
 use TypistTech\WPCFG\Ads\I18nPromoter;
+use TypistTech\WPCFG\Ads\ReviewMe;
 use TypistTech\WPCFG\BadLogin\Admin as BadLoginAdmin;
 use TypistTech\WPCFG\BadLogin\BadLogin;
 use TypistTech\WPCFG\Blacklist\Event;
@@ -30,7 +31,6 @@ use TypistTech\WPCFG\Cloudflare\Admin as CloudflareAdmin;
 use TypistTech\WPCFG\Cloudflare\IpUtil;
 use TypistTech\WPCFG\Vendor\League\Container\Container as LeagueContainer;
 use TypistTech\WPCFG\Vendor\League\Container\ReflectionContainer;
-use TypistTech\WPCFG\Vendor\Yoast_I18n_WordPressOrg_v2;
 
 /**
  * Final class Container.
@@ -52,21 +52,18 @@ final class Container extends LeagueContainer
         $keys = [
             AccessRules::class,
             BadLogin::class,
-            I18nPromoter::class,
-            IpUtil::class,
-            Handler::class,
             BadLoginAdmin::class,
             CloudflareAdmin::class,
+            Handler::class,
             I18n::class,
+            I18nPromoter::class,
+            IpUtil::class,
             OptionStore::class,
+            ReviewMe::class,
         ];
         foreach ($keys as $key) {
             $this->add('\\' . $key);
         }
-
-        $this->add(Yoast_I18n_WordPressOrg_v2::class, function (array $args) {
-            return new Yoast_I18n_WordPressOrg_v2($args);
-        });
 
         $this->add(Event::class, function (string $ip, string $note) {
             return new Event($ip, $note);

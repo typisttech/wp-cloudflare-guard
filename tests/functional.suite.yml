@@ -8,6 +8,7 @@ class_name: FunctionalTester
 modules:
     enabled:
         - \TypistTech\WPCFG\Helper\Functional
+        - Asserts
         - Filesystem
         - WPDb
         - WordPress
