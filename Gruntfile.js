@@ -109,8 +109,10 @@ module.exports = function (grunt) {
                     'vendor/**/*.dist',
                     'vendor/**/*.md',
                     'vendor/**/*.lock',
+                    '!**/*license*',
                     '!vendor/composer/**/*.*',
-                    '!**/*license*'
+                    '!vendor/squizlabs/php_codesniffer/**/*.*',
+                    '!vendor/wp-coding-standards/wpcs/**/*.*'
                 ]
             }
         },
