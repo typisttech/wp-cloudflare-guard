@@ -108,3 +108,17 @@ deploy:
       php: 7.1
       tags: true
       repo: TypistTech/wp-cloudflare-guard
+  - provider: build-branch
+    edge:
+      source: TypistTech/dpl
+      branch: add-build-branch
+    skip_cleanup: true
+    github_token: $GITHUB_ACCESS_TOKEN
+    local_dir: build
+    target_branch: nightly
+    project_name: "WP Cloudflare Guard"
+    on:
+      branch: deploy-production-build-to-nightly-branch
+      condition: "$WP_VERSION = latest"
+      php: 7.0
+      repo: TypistTech/wp-cloudflare-guard
