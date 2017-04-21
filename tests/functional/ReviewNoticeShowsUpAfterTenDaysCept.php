@@ -15,7 +15,8 @@ $I->loginToWPCFGSettingPage();
 
 $I->wantToTest('WP Review Me installed time is set within the past ten seconds');
 $installed = $I->grabOptionFromDatabase($optionName);
-$I->assertEquals(time(), $installed, null, 10);
+$I->assertGreaterOrEquals(time() - 10, $installed);
+$I->assertLessOrEquals(time(), $installed);
 
 $I->amGoingTo('fast forward ten days and one minute (864060 seconds)');
 $I->haveOptionInDatabase($optionName, time() - 864060);
