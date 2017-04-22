@@ -2,9 +2,9 @@
 Contributors: typisttech, tangrufus
 Donate link: https://www.typist.tech/donate/wp-cloudflare-guard/
 Tags: cloudflare, firewall, security, spam
-Requires at least: 4.6
-Tested up to: 4.7.2
-Stable tag: 0.1.3
+Requires at least: 4.7
+Tested up to: 4.7.3
+Stable tag: 0.2.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -36,6 +36,7 @@ At the time of writing, Cloudflare's [official plugin](https://wordpress.org/plu
 = Things You Need to Know =
 
 * You need PHP 7.0 or later
+* You need WordPress 4.7 or later
 * You need a Cloudflare account (free plan is okay)
 * This plugin was not built by [Cloudflare, Inc](https://www.cloudflare.com/)
 
@@ -47,7 +48,7 @@ If you have written an article about `WP Cloudflare Guard`, do [let me know](htt
 
 = For Developers =
 
-WP Cloudflare Guard is open source and hosted on [GitHub](https://github.com/TypistTech/wp-cloudflare-guard). Feel free to make pull requests.
+WP Cloudflare Guard is open source and hosted on [GitHub](https://github.com/TypistTech/wp-cloudflare-guard). Feel free to make [pull requests](https://github.com/Typisttech/wp-cloudflare-guard/pulls).
 
 = Who make this plugin? =
 
@@ -56,7 +57,12 @@ I make [Typist Tech](https://www.typist.tech/) also.
 
 = Support =
 
-We hang out in the WordPress [support forum](https://wordpress.org/support/plugin/wp-cloudflare-guard) for this plugin. However, to save time so that we can spend it on development, please read the plugin's [FAQs](https://wordpress.org/plugins/wp-cloudflare-guard/faq/) first. Before going there, and ensure that you have updated WP Cloudflare Guard and WordPress to the latest released version and installed PHP 7 or later.
+To save time so that we can spend it on development, please read the plugin's [FAQs](https://wordpress.org/plugins/wp-cloudflare-guard/faq/) first.
+Before requesting support, and ensure that you have updated WP Cloudflare Guard and WordPress to the latest released version and installed PHP 7 or later.
+
+We hang out in the WordPress [support forum](https://wordpress.org/support/plugin/wp-cloudflare-guard) for this plugin.
+
+If you know what `GitHub` is, use [GitHub issues](https://github.com/Typisttech/wp-cloudflare-guard/issues) instead.
 
 == Installation ==
 
@@ -119,14 +125,19 @@ Use the WordPress support forum for this plugin at [https://wordpress.org/suppor
 
 Make sure you have read the plugin's FAQs at [https://wordpress.org/plugins/wp-cloudflare-guard/faq/](https://wordpress.org/plugins/wp-cloudflare-guard/faq/). And, updated WP Cloudflare Guard and WordPress to the latest released version before asking questions.
 
+If you know what `GitHub` is, use [GitHub issues](https://github.com/Typisttech/wp-cloudflare-guard/issues) instead.
+
 = How can I support this plugin? =
 
-If you like the plugin, feel free to [rate it](https://wordpress.org/support/plugin/wp-cloudflare-guard/reviews/#new-post) or [donate via PayPal](https://www.typist.tech/donate/wp-cloudflare-guard/). Thanks a lot! :)
+If you like the plugin, feel free to:
 
-You can add your own translation at [translate.wordpress.org](https://translate.wordpress.org/projects/wp-plugins/wp-cloudflare-guard).
-
+* Give ot a 5-star review on [WordPress.org](https://wordpress.org/support/plugin/wp-cloudflare-guard/reviews/#new-post)
+* Donate via [PayPal](https://www.typist.tech/donate/wp-cloudflare-guard/). Thanks a lot! :)
+* Translate it at [translate.wordpress.org](https://translate.wordpress.org/projects/wp-plugins/wp-cloudflare-guard).
 
 Besides, `WP Cloudflare Guard` is open source and hosted on [GitHub](https://github.com/TypistTech/wp-cloudflare-guard). Feel free to make pull requests.
+
+> Last but not least, you can hire me. Shoot me an email at [info@typist.tech](mailto:info@typist.tech) or use this [contact form](https://www.typist.tech/contact/).
 
 = What if I want more? =
 
@@ -144,6 +155,10 @@ Shoot me an email at [info@typist.tech](mailto:info@typist.tech) or use this [co
 == Changelog ==
 
 Full change log available at [GitHub](https://github.com/TangRufus/wp-cloudflare-guard/blob/master/CHANGELOG.md)
+
+= 0.2.0 =
+
+* Code refactor
 
 = 0.1.3 =
 
@@ -163,7 +178,6 @@ Full change log available at [GitHub](https://github.com/TangRufus/wp-cloudflare
 
 == Upgrade Notice ==
 
-= 0.1.3 =
+= 0.2.0 =
 
-* Add yoast i18n module
-* Fix PHP undefined notices
+* You have to re-enter Cloudflare settings.

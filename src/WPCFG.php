@@ -85,7 +85,7 @@ final class WPCFG implements LoadableInterface
     public static function getHooks(): array
     {
         return [
-            new Action(__CLASS__, 'plugin_loaded', 'giveContainer'),
+            new Action(__CLASS__, 'plugin_loaded', 'giveContainer', 5),
         ];
     }
 
