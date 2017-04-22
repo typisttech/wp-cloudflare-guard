@@ -59,8 +59,9 @@
             "rm -fr vendor",
             "composer install --no-dev --prefer-dist --optimize-autoloader --no-suggest",
             "yarn grunt clean",
-            "yarn grunt cleanempty",
             "yarn grunt addtextdomain",
+            "yarn grunt makepot",
+            "yarn grunt cleanempty",
             "composer archive --format=zip --dir=release --file=wp-cloudflare-guard"
         ],
         "deploy": [
@@ -73,8 +74,6 @@
             "composer update --no-suggest",
             "yarn upgrade",
             "yarn grunt version",
-            "yarn grunt addtextdomain",
-            "yarn grunt makepot",
             "yarn doctoc README.md",
             "github_changelog_generator --no-verbose"
         ],
