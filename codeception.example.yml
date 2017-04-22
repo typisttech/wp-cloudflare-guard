@@ -1,0 +1,20 @@
+modules:
+    config:
+        WPDb:
+            dsn: 'mysql:host=vvv.dev;dbname=wpcfg-tester'
+            user: external
+            password: external
+            url: 'http://wpcfg-tester.dev'
+        WPBrowser:
+            url: 'http://wpcfg-tester.dev'
+        WordPress:
+            wpRootFolder: /Users/developer/vagrant-local/www/wpcfg-tester/htdocs/
+        WPLoader:
+            wpRootFolder: /Users/developer/vagrant-local/www/wpcfg-tester/htdocs/
+            dbHost: vvv.dev
+            dbName: wpcfg-tester_int
+            dbUser: external
+            dbPassword: external
+        WPWebDriver:
+            url: 'http://wpcfg-tester.dev'
+            host: '127.0.0.1'
