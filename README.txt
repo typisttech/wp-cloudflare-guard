@@ -109,7 +109,7 @@ Yes, all of them work together without problems.
 1. Login [CloudFlare](http://cloudflare.com)
 1. Select your domain
 1. Go `Firewall`
-1. Release you IP under `Access Rules`
+1. Release your IP under `Access Rules`
 
 = Does this plugin available in my language? =
 
@@ -131,13 +131,13 @@ If you know what `GitHub` is, use [GitHub issues](https://github.com/Typisttech/
 
 If you like the plugin, feel free to:
 
-* Give ot a 5-star review on [WordPress.org](https://wordpress.org/support/plugin/wp-cloudflare-guard/reviews/#new-post)
+* Give us a 5-star review on [WordPress.org](https://wordpress.org/support/plugin/wp-cloudflare-guard/reviews/#new-post)
 * Donate via [PayPal](https://www.typist.tech/donate/wp-cloudflare-guard/). Thanks a lot! :)
 * Translate it at [translate.wordpress.org](https://translate.wordpress.org/projects/wp-plugins/wp-cloudflare-guard).
 
 Besides, `WP Cloudflare Guard` is open source and hosted on [GitHub](https://github.com/TypistTech/wp-cloudflare-guard). Feel free to make pull requests.
 
-> Last but not least, you can hire me. Shoot me an email at [info@typist.tech](mailto:info@typist.tech) or use this [contact form](https://www.typist.tech/contact/).
+Last but not least, you can hire me. Shoot me an email at [info@typist.tech](mailto:info@typist.tech) or use this [contact form](https://www.typist.tech/contact/).
 
 = What if I want more? =
 
