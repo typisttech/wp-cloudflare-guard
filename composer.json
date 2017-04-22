@@ -64,12 +64,6 @@
             "yarn grunt cleanempty",
             "composer archive --format=zip --dir=release --file=wp-cloudflare-guard"
         ],
-        "deploy": [
-            "rm -fr build",
-            "@build",
-            "unzip -qo release/wp-cloudflare-guard.zip -d build",
-            "yarn grunt wp_deploy"
-        ],
         "pre-tag": [
             "composer update --no-suggest",
             "yarn upgrade",

@@ -9,7 +9,7 @@ $I->wantToTest('review notice shows up after ten days');
 
 $optionName = 'wrm_a87d157b6f87b8521211';
 $I->amGoingTo('reset WP Review Me installed time');
-$I->haveOptionInDatabase($optionName, 0);
+$I->dontHaveOptionInDatabase($optionName);
 
 $I->loginToWPCFGSettingPage();
 
