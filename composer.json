@@ -32,7 +32,7 @@
     "require": {
         "php": "^7.0",
         "cloudflare/cf-ip-rewrite": "^1.0",
-        "league/container": "^2.4",
+        "league/container": "^2.4.1",
         "typisttech/cloudflare-wp-api": "^0.3.0",
         "typisttech/imposter-plugin": "^0.2.5",
         "typisttech/wp-better-settings": "^0.11.0",
@@ -41,7 +41,7 @@
     "require-dev": {
         "codeception/aspect-mock": "^2.0",
         "jakoch/phantomjs-installer": "^2.1",
-        "lucatume/wp-browser": "^1.19",
+        "lucatume/wp-browser": "^1.21.3",
         "neronmoon/scriptsdev": "^0.1.1",
         "site5/phantoman": "^1.1",
         "wp-coding-standards/wpcs": "^0.11.0"
