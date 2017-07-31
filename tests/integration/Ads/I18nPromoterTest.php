@@ -78,19 +78,25 @@ class I18nPromoterTest extends WPTestCase
         $this->i18nPromoter->run();
 
         $yoastI18nWordPressOrgV2->verifyInvokedMultipleTimes('__construct', 2);
-        $yoastI18nWordPressOrgV2->verifyInvokedOnce('__construct', [
+        $yoastI18nWordPressOrgV2->verifyInvokedOnce(
+            '__construct',
             [
-                'textdomain' => 'wp-cloudflare-guard',
-                'plugin_name' => 'WP Cloudflare Guard',
-                'hook' => 'wpcfg_cloudflare_after_option_form',
-            ],
-        ]);
-        $yoastI18nWordPressOrgV2->verifyInvokedOnce('__construct', [
+                [
+                    'textdomain' => 'wp-cloudflare-guard',
+                    'plugin_name' => 'WP Cloudflare Guard',
+                    'hook' => 'wpcfg_cloudflare_after_option_form',
+                ],
+            ]
+        );
+        $yoastI18nWordPressOrgV2->verifyInvokedOnce(
+            '__construct',
             [
-                'textdomain' => 'wp-cloudflare-guard',
-                'plugin_name' => 'WP Cloudflare Guard',
-                'hook' => 'wpcfg_bad_login_after_option_form',
-            ],
-        ]);
+                [
+                    'textdomain' => 'wp-cloudflare-guard',
+                    'plugin_name' => 'WP Cloudflare Guard',
+                    'hook' => 'wpcfg_bad_login_after_option_form',
+                ],
+            ]
+        );
     }
 }

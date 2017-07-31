@@ -64,16 +64,21 @@ final class I18nPromoter implements LoadableInterface
      */
     public function run()
     {
-        $hooks = array_map(function (string $menuSlug) {
-            return str_replace('-', '_', $menuSlug . '_after_option_form');
-        }, $this->admin->getMenuSlugs());
+        $hooks = array_map(
+            function (string $menuSlug) {
+                return str_replace('-', '_', $menuSlug . '_after_option_form');
+            },
+            $this->admin->getMenuSlugs()
+        );
 
         foreach ($hooks as $hook) {
-            new Yoast_I18n_WordPressOrg_v2([
-                'textdomain' => 'wp-cloudflare-guard',
-                'plugin_name' => 'WP Cloudflare Guard',
-                'hook' => $hook,
-            ]);
+            new Yoast_I18n_WordPressOrg_v2(
+                [
+                    'textdomain' => 'wp-cloudflare-guard',
+                    'plugin_name' => 'WP Cloudflare Guard',
+                    'hook' => $hook,
+                ]
+            );
         }
     }
 }

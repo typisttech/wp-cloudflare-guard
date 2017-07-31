@@ -20,7 +20,7 @@ class HelperTest extends \Codeception\TestCase\WPTestCase
         $_SERVER['REMOTE_ADDR'] = $remoteAddr;
         $_SERVER['HTTP_CF_CONNECTING_IP'] = $connectingIp;
 
-        $helper = new Helper;
+        $helper = new Helper();
         $actual = $helper->getCurrentIp();
 
         $this->assertSame($connectingIp, $actual);
@@ -35,7 +35,7 @@ class HelperTest extends \Codeception\TestCase\WPTestCase
 
         $_SERVER['REMOTE_ADDR'] = $remoteAddr;
 
-        $helper = new Helper;
+        $helper = new Helper();
         $actual = $helper->getCurrentIp();
 
         $this->assertSame($remoteAddr, $actual);

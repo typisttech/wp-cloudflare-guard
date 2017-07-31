@@ -84,9 +84,12 @@ final class Admin implements LoadableInterface
      */
     public function getMenuSlugs(): array
     {
-        return array_map(function (PageInterface $page) {
-            return $page->getMenuSlug();
-        }, $this->getPages());
+        return array_map(
+            function (PageInterface $page) {
+                return $page->getMenuSlug();
+            },
+            $this->getPages()
+        );
     }
 
     /**
@@ -99,9 +102,12 @@ final class Admin implements LoadableInterface
         if (empty($this->pages)) {
             $wpcfgPages = apply_filters('wpcfg_pages', []);
 
-            $typedPages = array_filter($wpcfgPages, function ($page) {
-                return $page instanceof MenuPage || $page instanceof SubmenuPage;
-            });
+            $typedPages = array_filter(
+                $wpcfgPages,
+                function ($page) {
+                    return $page instanceof MenuPage || $page instanceof SubmenuPage;
+                }
+            );
             $this->pages = array_values($typedPages);
         }
 
@@ -145,9 +151,12 @@ final class Admin implements LoadableInterface
         if (empty($this->sections)) {
             $wpcfgSettingsSections = apply_filters('wpcfg_settings_sections', []);
 
-            $typedSections = array_filter($wpcfgSettingsSections, function ($section) {
-                return $section instanceof Section;
-            });
+            $typedSections = array_filter(
+                $wpcfgSettingsSections,
+                function ($section) {
+                    return $section instanceof Section;
+                }
+            );
             $this->sections = array_values($typedSections);
         }
 

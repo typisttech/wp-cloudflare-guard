@@ -56,7 +56,7 @@ final class WPCFG implements LoadableInterface
      */
     public function __construct()
     {
-        $this->container = new Container;
+        $this->container = new Container();
         $this->loader = new Loader($this->container);
 
         $this->container->initialize();

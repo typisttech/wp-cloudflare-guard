@@ -40,11 +40,13 @@
     },
     "require-dev": {
         "codeception/aspect-mock": "^2.0",
+        "doctrine/annotations": "<1.5.0",
+        "doctrine/instantiator": "<1.1.0",
         "jakoch/phantomjs-installer": "^2.1",
         "lucatume/wp-browser": "^1.21.3",
         "neronmoon/scriptsdev": "^0.1.1",
         "site5/phantoman": "^1.1",
-        "wp-coding-standards/wpcs": "^0.11.0"
+        "wp-coding-standards/wpcs": "^0.12.0"
     },
     "autoload": {
         "classmap": [

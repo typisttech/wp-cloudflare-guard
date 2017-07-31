@@ -52,7 +52,7 @@ require_once plugin_dir_path(__FILE__) . '/lib/julien731/wp-dismissible-notices-
  */
 function run()
 {
-    $plugin = new WPCFG;
+    $plugin = new WPCFG();
     $plugin->run();
 }
 

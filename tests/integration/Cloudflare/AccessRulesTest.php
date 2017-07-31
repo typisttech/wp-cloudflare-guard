@@ -40,7 +40,7 @@ class AccessRulesTest extends WPTestCase
         parent::setUp();
 
         $this->cloudflareAccessRules = Test::double(
-            new CloudflareAccessRules,
+            new CloudflareAccessRules(),
             [
                 'create' => [ true ],
             ]
