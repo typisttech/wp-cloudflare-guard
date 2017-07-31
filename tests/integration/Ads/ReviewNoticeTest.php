@@ -27,7 +27,7 @@ class ReviewNoticeTest extends \Codeception\TestCase\WPTestCase
     {
         parent::setUp();
 
-        $this->reviewNotice = new ReviewNotice;
+        $this->reviewNotice = new ReviewNotice();
     }
 
     /**

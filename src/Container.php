@@ -42,10 +42,10 @@ final class Container extends LeagueContainer
      */
     public function initialize()
     {
-        $this->delegate(new ReflectionContainer);
+        $this->delegate(new ReflectionContainer());
         $this->add(self::class, $this);
 
-        $optionStore = new OptionStore;
+        $optionStore = new OptionStore();
         $admin = new Admin($optionStore);
         $this->add('\\' . OptionStore::class, $optionStore);
         $this->add('\\' . Admin::class, $admin);

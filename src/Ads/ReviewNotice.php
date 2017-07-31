@@ -53,10 +53,12 @@ final class ReviewNotice implements LoadableInterface
         );
         // @codingStandardsIgnoreEnd
 
-        new WP_Review_Me([
-            'type' => 'plugin',
-            'slug' => 'wp-cloudflare-guard',
-            'message' => $message,
-        ]);
+        new WP_Review_Me(
+            [
+                'type' => 'plugin',
+                'slug' => 'wp-cloudflare-guard',
+                'message' => $message,
+            ]
+        );
     }
 }

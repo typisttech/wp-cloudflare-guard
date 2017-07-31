@@ -54,9 +54,12 @@ final class OptionStore extends WPBSOptionStore
             return [];
         }
 
-        return array_map(function (string $username) {
-            return sanitize_user($username, true);
-        }, explode(',', $value));
+        return array_map(
+            function (string $username) {
+                return sanitize_user($username, true);
+            },
+            explode(',', $value)
+        );
     }
 
     /**

@@ -152,9 +152,12 @@ final class BadLogin implements LoadableInterface
             $this->optionStore->getBadUsernames()
         );
 
-        return array_filter($normalized, function ($username) {
-            return ! empty($username);
-        });
+        return array_filter(
+            $normalized,
+            function ($username) {
+                return ! empty($username);
+            }
+        );
     }
 
     /**

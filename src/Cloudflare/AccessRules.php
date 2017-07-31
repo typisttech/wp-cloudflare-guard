@@ -51,7 +51,7 @@ final class AccessRules
     public function __construct(OptionStore $optionStore, CloudflareAccessRules $client = null)
     {
         $this->optionStore = $optionStore;
-        $this->client = $client ?? new CloudflareAccessRules;
+        $this->client = $client ?? new CloudflareAccessRules();
     }
 
     /**

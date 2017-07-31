@@ -43,7 +43,7 @@ final class Helper
      */
     public function __construct()
     {
-        $this->ipRewrite = new IpRewrite;
+        $this->ipRewrite = new IpRewrite();
     }
 
     /**

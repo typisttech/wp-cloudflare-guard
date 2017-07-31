@@ -30,7 +30,7 @@ class OptionStoreTest extends WPTestCase
         update_option('wpcfg_cloudflare_zone_id', 'two46o1');
         update_option('wpcfg_bad_login_bad_usernames', 'tom, mary,peter');
 
-        $this->optionStore = new OptionStore;
+        $this->optionStore = new OptionStore();
     }
 
     /**
