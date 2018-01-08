@@ -1,10 +1,5 @@
 language: php
 
-dist: trusty
-
-# Wait until travis bug fixes
-sudo: require
-
 branches:
   only:
     - master
@@ -23,6 +18,8 @@ addons:
   apt:
     packages:
       - nginx
+  hosts:
+    - wp.dev
 
 notifications:
   email:
@@ -30,8 +27,9 @@ notifications:
     on_failure: change
 
 php:
-  - 7.0
   - 7.1
+  - 7.2
+  - nightly
 
 env:
   global:
@@ -39,11 +37,12 @@ env:
   matrix:
     - WP_VERSION=nightly
     - WP_VERSION=latest WITH_COVERAGE=true
-    - WP_VERSION=4.8
-    - WP_VERSION=4.7.5
+    - WP_VERSION=4.9.3
+    - WP_VERSION=4.8.5
 
 matrix:
   allow_failures:
+    - php: nightly
     - env: WP_VERSION=nightly
   fast_finish: true
 
@@ -52,7 +51,7 @@ before_install:
   - if [[ "$WITH_COVERAGE" != "true" ]]; then phpenv config-rm xdebug.ini; fi
 
   # Install helper scripts
-  - travis_retry composer global require --prefer-dist --no-suggest typisttech/travis-nginx-wordpress
+  - travis_retry composer global require --prefer-dist --no-suggest typisttech/travis-nginx-wordpress:^3.0
   - export PATH=$HOME/.composer/vendor/bin:$PATH
   - tnw-install-nginx
   - tnw-install-wordpress
@@ -85,8 +84,8 @@ deploy:
     file: release/wp-cloudflare-guard.zip
     skip_cleanup: true
     on:
-      condition: "$WP_VERSION = latest"
-      php: 7.0
+      condition: "$WP_VERSION = nightly"
+      php: 7.1
       tags: true
       repo: TypistTech/wp-cloudflare-guard
   - provider: wordpress-plugin
@@ -112,5 +111,5 @@ deploy:
     on:
       branch: master
       condition: "$WP_VERSION = latest"
-      php: 7.0
+      php: 7.2
       repo: TypistTech/wp-cloudflare-guard
