@@ -11,7 +11,7 @@
  * @copyright 2017 Typist Tech
  * @license GPL-2.0+
  *
- * @see https://www.typist.tech/projects/wp-cloudflare-guard
+ * @see https://typist.tech/projects/wp-cloudflare-guard
  * @see https://wordpress.org/plugins/wp-cloudflare-guard/
  */
 

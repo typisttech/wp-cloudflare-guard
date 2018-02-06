@@ -9,10 +9,9 @@
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/TypistTech/wp-cloudflare-guard/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/TypistTech/wp-cloudflare-guard/?branch=master)
 [![PHP Versions Tested](http://php-eye.com/badge/typisttech/wp-cloudflare-guard/tested.svg)](https://travis-ci.org/TypistTech/wp-cloudflare-guard)
 [![StyleCI](https://styleci.io/repos/83855037/shield?branch=master)](https://styleci.io/repos/83855037)
-[![Dependency Status](https://gemnasium.com/badges/github.com/TypistTech/wp-cloudflare-guard.svg)](https://gemnasium.com/github.com/TypistTech/wp-cloudflare-guard)
 [![License](https://poser.pugx.org/typisttech/wp-cloudflare-guard/license)](https://packagist.org/packages/typisttech/wp-cloudflare-guard)
-[![Donate via PayPal](https://img.shields.io/badge/Donate-PayPal-blue.svg)](https://www.typist.tech/donate/wp-cloudflare-guard/)
-[![Hire Typist Tech](https://img.shields.io/badge/Hire-Typist%20Tech-ff69b4.svg)](https://www.typist.tech/contact/)
+[![Donate via PayPal](https://img.shields.io/badge/Donate-PayPal-blue.svg)](https://typist.tech/donate/wp-cloudflare-guard/)
+[![Hire Typist Tech](https://img.shields.io/badge/Hire-Typist%20Tech-ff69b4.svg)](https://typist.tech/contact/)
 
 Connecting WordPress with Cloudflare firewall, protect your WordPress site at DNS level. Automatically create firewall rules to block dangerous IPs
 
@@ -44,7 +43,7 @@ Connecting WordPress with Cloudflare firewall, protect your WordPress site at DN
 
 
 
-This repository is a development version of [WP Cloudflare Guard](https://wordpress.org/plugins/wp-cloudflare-guard/) intended to facilitate communication with developers. It is not stable and not intended for installation on production sites. 
+This repository is a development version of [WP Cloudflare Guard](https://wordpress.org/plugins/wp-cloudflare-guard/) intended to facilitate communication with developers. It is not stable and not intended for installation on production sites.
 
 Bug reports and pull requests are welcome.
 
@@ -122,15 +121,15 @@ The `nightly` branch is built by TravisCI whenever the `master` branch is update
 
 ## Support!
 
-### Donate via PayPal [![Donate via PayPal](https://img.shields.io/badge/Donate-PayPal-blue.svg)](https://www.typist.tech/donate/wp-cloudflare-guard/)
+### Donate via PayPal [![Donate via PayPal](https://img.shields.io/badge/Donate-PayPal-blue.svg)](https://typist.tech/donate/wp-cloudflare-guard/)
 
-Love WP Cloudflare Guard? Help me maintain WP Cloudflare Guard, a [donation here](https://www.typist.tech/donate/wp-cloudflare-guard/) can help with it. 
+Love WP Cloudflare Guard? Help me maintain WP Cloudflare Guard, a [donation here](https://typist.tech/donate/wp-cloudflare-guard/) can help with it.
 
 ### Why don't you hire me?
 
-Ready to take freelance WordPress jobs. Contact me via the contact form [here](https://www.typist.tech/contact/) or, via email [info@typist.tech](mailto:info@typist.tech)
+Ready to take freelance WordPress jobs. Contact me via the contact form [here](https://typist.tech/contact/) or, via email [info@typist.tech](mailto:info@typist.tech)
 
-### Want to help in other way? Want to be a sponsor? 
+### Want to help in other way? Want to be a sponsor?
 
 Contact: [Tang Rufus](mailto:tangrufus@gmail.com)
 
@@ -151,7 +150,7 @@ $ composer test
 
 We also test all PHP files against [PSR-2: Coding Style Guide](http://www.php-fig.org/psr/psr-2/) and part of the [WordPress coding standard](https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards).
 
-Check the code style with ``$ composer check-style`` and fix it with ``$ composer fix-style``.
+Check the code style with ``$ composer check-style``.
 
 
 
@@ -183,7 +182,7 @@ Please see [CONTRIBUTING](.github/CONTRIBUTING.md) and [CODE_OF_CONDUCT](./CODE_
 
 ## Credits
 
-[WP Cloudflare Guard](https://github.com/TypistTech/wp-cloudflare-guard) is a [Typist Tech](https://www.typist.tech) project and maintained by [Tang Rufus](https://twitter.com/Tangrufus), freelance developer for [hire](https://www.typist.tech/contact/).
+[WP Cloudflare Guard](https://github.com/TypistTech/wp-cloudflare-guard) is a [Typist Tech](https://typist.tech) project and maintained by [Tang Rufus](https://twitter.com/Tangrufus), freelance developer for [hire](https://typist.tech/contact/).
 
 Full list of contributors can be found [here](https://github.com/TypistTech/wp-cloudflare-guard/graphs/contributors).
 

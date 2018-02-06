@@ -79,12 +79,12 @@ final class Admin implements LoadableInterface
             __('Cloudflare Email', 'wp-cloudflare-guard')
         );
         $email->getDecorator()
-              ->setDescription(
-                  __(
-                      'The email address associated with your Cloudflare account.',
-                      'wp-cloudflare-guard'
-                  )
-              );
+            ->setDescription(
+                __(
+                    'The email address associated with your Cloudflare account.',
+                    'wp-cloudflare-guard'
+                )
+            );
 
         $apiKey = new Text(
             'wpcfg_cloudflare_api_key',
@@ -97,17 +97,17 @@ final class Admin implements LoadableInterface
                 'https://support.cloudflare.com/hc/en-us/articles/200167836-Where-do-I-find-my-CloudFlare-API-key-'
             )
         );
-        $apiKey->getDecorator()
-               ->setDescription($apiKeyDesc);
+        $apiKey->getDecorator();
+        $apiKey->setDescription($apiKeyDesc);
 
         $zoneId = new Text(
             'wpcfg_cloudflare_zone_id',
             __('Zone ID', 'wp-cloudflare-guard')
         );
         $zoneId->getDecorator()
-               ->setDescription(
-                   __('Zone identifier for this domain', 'wp-cloudflare-guard')
-               );
+            ->setDescription(
+                __('Zone identifier for this domain', 'wp-cloudflare-guard')
+            );
 
         $sections[] = new Section(
             'wpcfg-cloudflare',

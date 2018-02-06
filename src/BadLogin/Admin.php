@@ -77,12 +77,12 @@ final class Admin implements LoadableInterface
             __('Bad Usernames', 'wp-cloudflare-guard')
         );
         $badUsernames->getDecorator()
-                     ->setDescription(
-                         __(
-                             'You can define your own bad usernames here, separated by commas.',
-                             'wp-cloudflare-guard'
-                         )
-                     );
+                    ->setDescription(
+                        __(
+                            'You can define your own bad usernames here, separated by commas.',
+                            'wp-cloudflare-guard'
+                        )
+                    );
 
         $sections[] = new Section(
             'wpcfg-bad-login',

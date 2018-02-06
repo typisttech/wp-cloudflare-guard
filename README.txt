@@ -1,9 +1,10 @@
 === WP Cloudflare Guard ===
 Contributors: typisttech, tangrufus
-Donate link: https://www.typist.tech/donate/wp-cloudflare-guard/
+Donate link: https://typist.tech/donate/wp-cloudflare-guard/
 Tags: cloudflare, firewall, security, spam
-Requires at least: 4.7
-Tested up to: 4.7.3
+Requires at least: 4.8.5
+Requires PHP: 7.1.0
+Tested up to: 4.9
 Stable tag: 0.2.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -20,7 +21,7 @@ Connecting WordPress with Cloudflare firewall, protect your WordPress site at DN
 
 = Integrations (Coming soon as add-ons) =
 
-* [iThemes Security](https://www.typist.tech/go/ithemes-security/)
+* [iThemes Security](https://typist.tech/go/ithemes-security/)
 * [Contact Form 7](https://wordpress.org/plugins/contact-form-7/)
 * [WordPress Zero Spam](https://wordpress.org/plugins/zero-spam)
 
@@ -40,11 +41,11 @@ At the time of writing, Cloudflare's [official plugin](https://wordpress.org/plu
 * You need a Cloudflare account (free plan is okay)
 * This plugin was not built by [Cloudflare, Inc](https://www.cloudflare.com/)
 
-> If you like the plugin, feel free to [rate it](https://wordpress.org/support/plugin/wp-cloudflare-guard/reviews/#new-post) or [donate via PayPal](https://www.typist.tech/donate/wp-cloudflare-guard/). Thanks a lot! :)
+> If you like the plugin, feel free to [rate it](https://wordpress.org/support/plugin/wp-cloudflare-guard/reviews/#new-post) or [donate via PayPal](https://typist.tech/donate/wp-cloudflare-guard/). Thanks a lot! :)
 
 = For Bloggers =
 
-If you have written an article about `WP Cloudflare Guard`, do [let me know](https://www.typist.tech/contact/). For any questions, shoot me an email at [info@typist.tech](mailto:info@typist.tech)
+If you have written an article about `WP Cloudflare Guard`, do [let me know](https://typist.tech/contact/). For any questions, shoot me an email at [info@typist.tech](mailto:info@typist.tech)
 
 = For Developers =
 
@@ -53,7 +54,7 @@ WP Cloudflare Guard is open source and hosted on [GitHub](https://github.com/Typ
 = Who make this plugin? =
 
 [Tang Rufus](mailto:info@typist.tech), a freelance developer for hire.
-I make [Typist Tech](https://www.typist.tech/) also.
+I make [Typist Tech](https://typist.tech/) also.
 
 = Support =
 
@@ -94,7 +95,7 @@ PHP 7 or later.
 = Is this plugin written by Cloudflare, Inc.? =
 
 No.
-This plugin is a [Typist Tech](https://www.typist.tech) project.
+This plugin is a [Typist Tech](https://typist.tech) project.
 
 = Can I install WP Cloudflare Guard, Sunny and Cloudflare's official plugin at the same time? =
 
@@ -132,18 +133,18 @@ If you know what `GitHub` is, use [GitHub issues](https://github.com/Typisttech/
 If you like the plugin, feel free to:
 
 * Give us a 5-star review on [WordPress.org](https://wordpress.org/support/plugin/wp-cloudflare-guard/reviews/#new-post)
-* Donate via [PayPal](https://www.typist.tech/donate/wp-cloudflare-guard/). Thanks a lot! :)
+* Donate via [PayPal](https://typist.tech/donate/wp-cloudflare-guard/). Thanks a lot! :)
 * Translate it at [translate.wordpress.org](https://translate.wordpress.org/projects/wp-plugins/wp-cloudflare-guard).
 
 Besides, `WP Cloudflare Guard` is open source and hosted on [GitHub](https://github.com/TypistTech/wp-cloudflare-guard). Feel free to make pull requests.
 
-Last but not least, you can hire me. Shoot me an email at [info@typist.tech](mailto:info@typist.tech) or use this [contact form](https://www.typist.tech/contact/).
+Last but not least, you can hire me. Shoot me an email at [info@typist.tech](mailto:info@typist.tech) or use this [contact form](https://typist.tech/contact/).
 
 = What if I want more? =
 
 Hire me!
 
-Shoot me an email at [info@typist.tech](mailto:info@typist.tech) or use this [contact form](https://www.typist.tech/contact/).
+Shoot me an email at [info@typist.tech](mailto:info@typist.tech) or use this [contact form](https://typist.tech/contact/).
 
 
 == Screenshots ==
