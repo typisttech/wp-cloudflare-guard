@@ -84,7 +84,7 @@ deploy:
     file: release/wp-cloudflare-guard.zip
     skip_cleanup: true
     on:
-      condition: "$WP_VERSION = nightly"
+      condition: "$WP_VERSION = latest"
       php: 7.1
       tags: true
       repo: TypistTech/wp-cloudflare-guard
